@@ -1,75 +1,277 @@
-# React + TypeScript + Vite
+# Rencana Implementasi UI Portofolio Danu (`Home.tsx`)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Dokumen ini berisi rencana komprehensif untuk mengimplementasikan halaman hero/beranda portofolio Danu di file [`src/pages/sections/Home.tsx`](file:///d:/data%20rayhan/programs/project-2/portfolio-danu/src/pages/sections/Home.tsx) agar 100% sesuai dengan gambar referensi desain.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 1. Analisis Visual & Spesifikasi Desain
 
-## React Compiler
+Berdasarkan gambar desain referensi, terdapat 3 lapisan utama (sections/layers):
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### A. Palet Warna (Color Palette)
+| Elemen | Kode Warna Hex | Catatan |
+|---|---|---|
+| **Background Utama** | `#5b13ec` / `#5a10ec` | Vibrant Royal Violet / Purple |
+| **Aksen Banner & Teks "I'M"** | `#eaff00` / `#f6ed28` | Electric Neon Yellow |
+| **WhatsApp Button** | `#22c55e` / `#25d366` | WhatsApp Green |
+| **Instagram Button** | `linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888)` | Instagram Signature Gradient |
+| **Gmail Button** | `#ffffff` | Clean White Card |
+| **Teks & Garis Ornamen** | `#ffffff` | Pure White dengan opacity variatif (60% - 100%) |
 
-## Expanding the ESLint configuration
+### B. Tipografi (Typography) dari `@theme` di `index.css`
+- **`font-playfair`** (`--font-playfair: "Playfair Display", serif`): Digunakan pada teks *"Hi There!"* dan *"Software I"* (italic, elegan).
+- **`font-spartan`** (`--font-spartan: "League Spartan", sans-serif`): Digunakan pada judul *"I'M DANU"* (`font-black`, tebal dan bold).
+- **`font-bubbles`** (`--font-bubbles: "Rubik Bubbles", cursive`): Digunakan pada teks *"USE"* (chunky, retro bubble ungu).
+- **`font-sans`** (`--font-sans: "Inter", sans-serif`): Font default untuk seluruh teks body dan deskripsi.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### C. Layering & Posisi (Z-Index Architecture)
+1. **Layer 0 (Background)**: Warna dasar ungu `#5b13ec` + ornamen garis lengkung kanan atas dan ornamen cross/plus (`+`).
+2. **Layer 10 (Yellow Banner & Social Row)**: Banner kuning memanjang horizontal dan baris tombol sosial media di bawah.
+3. **Layer 20 (Hero Content Text)**: Kolom teks nama "Hi There! I'M DANU" dan deskripsi perkenalan di sisi kanan.
+4. **Layer 30 (Foto Profil Danu)**: Foto Danu ditempatkan di pojok kiri bawah (`absolute bottom-0 left-0`), menembus dan berada di atas banner kuning secara mulus.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+---
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## 2. Struktur Komponen `Home.tsx`
 
 ```
+Home (Section: #home)
+├── Background Ornaments
+│   ├── Golden Curve / Line (Kanan Atas)
+│   └── Plus / Sparkle Grid Ornaments (+)
+├── Foto Danu (Cutout PNG di kiri bawah - Layer z-30)
+├── Hero Content Grid (Layer z-20)
+│   ├── Kolom Kosong (Spacer Foto Danu)
+│   ├── Kolom Identitas:
+│   │   ├── "Hi There!" (Italic Serif)
+│   │   ├── "I'M DANU" (Kuning & Putih)
+│   │   ├── Garis Barbell (●─────────●)
+│   │   └── Sub-teks profesi ("I'm a graphic designer...")
+│   └── Kolom Deskripsi Kanan:
+│       ├── Garis Vertikal Putih (|)
+│       └── Teks "Welcome to my creative space..."
+└── Bottom Section (Layer z-10)
+    ├── Banner Kuning "Software I USE"
+    │   ├── Label "Software I" + Garis Penghubung
+    │   ├── Bubbly Text "USE"
+    │   └── 5 Tool Badges (Ps, Ai, Ae, Canva, Pr)
+    └── Baris Tombol Sosial Media
+        ├── WhatsApp Card (Ikon WA + Panah Atas-Kanan ↗)
+        ├── Instagram Card (Ikon IG + Panah Atas-Kanan ↗)
+        └── Gmail Card (Logo Gmail + Panah Atas-Kanan ↗)
+```
 
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 3. Langkah-Langkah Pengerjaan (Step-by-Step Plan)
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### Tahap 1: Verifikasi Asset & Font
+- Pastikan font Google Fonts terhubung di `index.html` (*League Spartan*, *Playfair Display*, *Rubik Bubbles*, *Inter*).
+- Pastikan asset foto dan icon tersedia:
+  - Foto: `/img/profile/danu.png`
+  - Software Icons: `/img/tools-skills/{ps,ai,ae,canva,pr}.png`
 
+### Tahap 2: Implementasi Banner Kuning "Software I USE"
+- Atur banner kuning dengan background `#f6ed28`.
+- Berikan layout flexbox untuk teks "Software I", garis horizontal, teks "USE", dan daftar ikon tool.
+- Gunakan badge gambar atau stylize div box dengan border halus menyerupai UI aslinya.
+
+### Tahap 3: Implementasi Kartu Sosial Media
+- Buat tombol WhatsApp dengan background hijau `#24d058`.
+- Buat tombol Instagram dengan linear gradient oranye-pink-ungu.
+- Buat tombol Gmail dengan background putih dan logo multi-warna Google.
+- Tambahkan icon panah miring ke atas (`lucide-react: ArrowUpRight` atau icon panah putih/hitam).
+
+### Tahap 4: Penyesuaian Foto & Ornamen Retro
+- Posisikan foto Danu secara `absolute` di sisi kiri bawah agar menumpuk rapi di atas banner kuning.
+- Tambahkan elemen cross/plus (`+`) dengan garis putus-putus tipis menyerupai style desain grafis retro.
+
+### Tahap 5: Finishing & Responsivitas
+- Optimalkan tata letak agar proporsional pada layar desktop lebar maupun layar mobile/tablet.
+
+---
+
+## 4. Blueprint / Kode Lengkap `Home.tsx`
+
+Berikut adalah kode yang siap dipasang di [`src/pages/sections/Home.tsx`](file:///d:/data%20rayhan/programs/project-2/portfolio-danu/src/pages/sections/Home.tsx):
+
+```tsx
+import React from "react";
+import { ArrowUpRight } from "lucide-react";
+
+export default function Home() {
+  const softwareList = [
+    { name: "Photoshop", icon: "/img/tools-skills/ps.png", code: "Ps", bg: "bg-[#001e36]", text: "text-[#31a8ff]" },
+    { name: "Illustrator", icon: "/img/tools-skills/ai.png", code: "Ai", bg: "bg-[#330000]", text: "text-[#ff9a00]" },
+    { name: "After Effects", icon: "/img/tools-skills/ae.png", code: "Ae", bg: "bg-[#00005b]", text: "text-[#9999ff]" },
+    { name: "Canva", icon: "/img/tools-skills/canva.png", code: "Canva", isCanva: true },
+    { name: "Premiere Pro", icon: "/img/tools-skills/pr.png", code: "Pr", bg: "bg-[#00005b]", text: "text-[#ea77ff]" },
+  ];
+
+  return (
+    <section
+      id="home"
+      className="relative w-full min-h-screen bg-[#5b13ec] text-white overflow-hidden select-none font-sans flex flex-col justify-between"
+    >
+      {/* 1. Ornamen Cross Retro (+) */}
+      <div className="absolute top-24 left-[5%] flex items-center justify-center pointer-events-none opacity-70">
+        <span className="text-xl font-light text-white">+</span>
+        <div className="absolute w-10 border-t border-dashed border-white/40"></div>
+        <div className="absolute h-10 border-l border-dashed border-white/40"></div>
+      </div>
+      <div className="absolute top-[48%] left-[22%] flex items-center justify-center pointer-events-none opacity-80 z-30">
+        <span className="text-xl font-light text-white">+</span>
+        <div className="absolute w-10 border-t border-dashed border-white/40"></div>
+        <div className="absolute h-10 border-l border-dashed border-white/40"></div>
+      </div>
+      <div className="absolute top-20 right-[5%] flex items-center justify-center pointer-events-none opacity-50">
+        <span className="text-sm font-light text-white">+</span>
+        <div className="absolute w-8 border-t border-dashed border-white/30"></div>
+        <div className="absolute h-8 border-l border-dashed border-white/30"></div>
+      </div>
+
+      {/* 2. FOTO DANU (Menempel di sudut kiri bawah & menembus banner kuning) */}
+      <div className="absolute left-0 bottom-0 z-30 pointer-events-none flex items-end">
+        <img
+          src="/img/profile/danu.png"
+          alt="Danu"
+          className="w-[380px] sm:w-[500px] md:w-[620px] lg:w-[720px] max-h-[95vh] object-contain object-bottom drop-shadow-2xl"
+        />
+      </div>
+
+      {/* 3. Hero Section (Atas) */}
+      <div className="relative z-20 w-full pt-12 md:pt-16 px-6 sm:px-12 lg:px-20">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-6 items-end">
+          {/* Spacer area foto */}
+          <div className="hidden md:block md:col-span-4 lg:col-span-4" />
+
+          {/* Kolom Teks Nama */}
+          <div className="md:col-span-5 lg:col-span-5 pb-4">
+            <h2 className="font-playfair italic text-3xl sm:text-4xl text-white font-normal tracking-wide">
+              Hi There!
+            </h2>
+            <h1 className="font-spartan font-black text-6xl sm:text-7xl lg:text-8xl tracking-tight leading-none my-1 flex items-baseline gap-3">
+              <span className="text-[#e5fc34]">I'M</span>
+              <span className="text-white">DANU</span>
+            </h1>
+
+            {/* Garis Horizontal Barbell */}
+            <div className="flex items-center my-3 max-w-md">
+              <div className="w-2 h-2 rounded-full bg-white shrink-0" />
+              <div className="flex-1 h-[2px] bg-white/90" />
+              <div className="w-2 h-2 rounded-full bg-white shrink-0" />
+            </div>
+
+            <p className="text-xs sm:text-sm text-white/90 font-light max-w-md leading-relaxed">
+              I'm a graphic designer, and in my portfolio, you'll find a selection of my best work.
+            </p>
+          </div>
+
+          {/* Kolom Deskripsi Kanan */}
+          <div className="md:col-span-3 lg:col-span-3 border-l-2 border-white pl-4 pb-2 mb-2">
+            <p className="text-xs sm:text-sm text-white/90 leading-relaxed font-light">
+              Welcome to my creative space. Here you'll find not only my best work, but also the experiences, ideas, and inspirations behind it. This portfolio is a glimpse into who I am, what I value, and how I express myself through design.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* 4. Bottom Section (Banner Kuning + Tombol Sosial Media) */}
+      <div className="relative z-10 w-full mt-auto">
+        {/* BANNER KUNING */}
+        <div className="w-full bg-[#f6ed28] text-slate-900 py-3.5 sm:py-4 px-6 sm:px-12 lg:px-20 shadow-md">
+          <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-end gap-6 lg:gap-10 md:pl-[24rem] lg:pl-[28rem]">
+            {/* Teks Software I USE */}
+            <div className="flex flex-col items-start leading-none shrink-0">
+              <div className="flex items-center gap-2 w-full">
+                <span className="font-playfair italic text-2xl sm:text-3xl text-[#5b13ec] font-semibold">
+                  Software I
+                </span>
+                <div className="h-[2px] bg-[#5b13ec] flex-1 min-w-[2.5rem]" />
+              </div>
+              <span className="font-bubbles text-6xl sm:text-7xl lg:text-8xl text-[#5b13ec] tracking-tighter -mt-2">
+                USE
+              </span>
+            </div>
+
+            {/* Icon Software Badges */}
+            <div className="flex flex-wrap items-center gap-2.5 sm:gap-3">
+              {softwareList.map((item) => (
+                <div
+                  key={item.name}
+                  className={`w-14 h-14 sm:w-16 sm:h-16 flex items-center justify-center font-bold text-lg sm:text-xl shadow-md border border-black/10 overflow-hidden ${
+                    item.isCanva
+                      ? "rounded-full bg-gradient-to-tr from-[#00c4cc] to-[#7d2ae8] text-white font-serif italic"
+                      : `rounded-2xl ${item.bg} ${item.text}`
+                  }`}
+                >
+                  <img
+                    src={item.icon}
+                    alt={item.name}
+                    className="w-full h-full object-cover"
+                    onError={(e) => {
+                      e.currentTarget.style.display = "none";
+                    }}
+                  />
+                  <span className="fallback-text">{item.code}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* BARIS KARTU SOSIAL MEDIA */}
+        <div className="w-full bg-[#5b13ec] py-5 sm:py-6 px-6 sm:px-12 lg:px-20">
+          <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-4 md:pl-[24rem] lg:pl-[28rem]">
+            {/* WhatsApp */}
+            <a
+              href="https://wa.me/6281234567890"
+              target="_blank"
+              rel="noreferrer"
+              className="flex items-center justify-between px-6 py-3.5 bg-[#24d058] hover:bg-[#20bd50] text-white rounded-2xl font-semibold shadow-md transition-all hover:scale-[1.02]"
+            >
+              <div className="flex items-center gap-3">
+                <svg className="w-6 h-6 fill-white" viewBox="0 0 24 24">
+                  <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.842-.981z" />
+                </svg>
+              </div>
+              <ArrowUpRight className="w-5 h-5 text-white" />
+            </a>
+
+            {/* Instagram */}
+            <a
+              href="https://instagram.com/danu"
+              target="_blank"
+              rel="noreferrer"
+              className="flex items-center justify-between px-6 py-3.5 bg-gradient-to-r from-[#f09433] via-[#dc2743] to-[#bc1888] hover:opacity-95 text-white rounded-2xl font-semibold shadow-md transition-all hover:scale-[1.02]"
+            >
+              <div className="flex items-center gap-3">
+                <svg className="w-6 h-6 fill-white" viewBox="0 0 24 24">
+                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                </svg>
+              </div>
+              <ArrowUpRight className="w-5 h-5 text-white" />
+            </a>
+
+            {/* Gmail */}
+            <a
+              href="mailto:danu@example.com"
+              className="flex items-center justify-between px-6 py-3.5 bg-white hover:bg-slate-100 text-slate-900 rounded-2xl font-semibold shadow-md transition-all hover:scale-[1.02]"
+            >
+              <div className="flex items-center gap-3">
+                <svg className="w-6 h-6" viewBox="0 0 24 24">
+                  <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" />
+                  <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" />
+                  <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z" />
+                  <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z" />
+                </svg>
+              </div>
+              <ArrowUpRight className="w-5 h-5 text-slate-800" />
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
 ```
