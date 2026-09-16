@@ -275,3 +275,411 @@ export default function Home() {
   );
 }
 ```
+
+---
+
+# Plan Responsif `Home.tsx` — Mobile → Desktop
+
+Dokumen ini berisi rencana detail untuk membuat halaman `Home.tsx` yang saat ini sudah optimal di desktop, agar menjadi **fully responsive** dari layar mobile kecil (320px) hingga desktop besar (1440px+).
+
+---
+
+## 1. Analisis Masalah Saat Ini (Desktop-Only)
+
+Berikut elemen-elemen yang saat ini **belum/kurang responsif** di mobile:
+
+| Elemen | Masalah di Mobile |
+|---|---|
+| **Foto Danu** | Posisi `absolute -left-[70.8px]` membuat foto terpotong / overflow di layar kecil |
+| **Grid Hero Text** | Spacer `md:col-span-4` hidden di mobile → teks tidak punya ruang yang benar |
+| **Yellow Banner** | `md:pl-[24rem]` / `lg:pl-[28rem]` hanya cocok desktop — di mobile konten terdorong jauh |
+| **Social Media Row** | `md:pl-[24rem]` sama — di mobile terpotong atau sempit |
+| **Ornamen Cross (+)** | Posisi `absolute` hardcoded berdasarkan viewport desktop |
+| **`overflow-hidden`** | Di mobile konten bisa ter-clip secara tidak terduga |
+
+---
+
+## 2. Breakpoint Strategy (Tailwind CSS v4)
+
+| Prefix | Min-Width | Target Device |
+|---|---|---|
+| *(none)* | `0px` | Mobile portrait (320px–639px) |
+| `sm:` | `640px` | Mobile landscape / tablet kecil |
+| `md:` | `768px` | Tablet (iPad portrait) |
+| `lg:` | `1024px` | Tablet landscape / laptop kecil |
+| `xl:` | `1280px` | Desktop |
+
+---
+
+## 3. Layout Per Breakpoint
+
+### 📱 Mobile (< 768px) — Stack Vertical
+
+```
+┌─────────────────────────────┐
+│  [bg purple]                │
+│  ┌─────────────────────┐    │
+│  │  "Hi There!"        │    │ ← teks centered/left, padding normal
+│  │  "I'M DANU"         │    │
+│  │  ●───────────────●  │    │
+│  │  Sub-text         │    │
+│  └─────────────────────┘    │
+│  ┌─────────────────────┐    │
+│  │     [Foto Danu]     │    │ ← foto dalam flow, centered, w-full
+│  └─────────────────────┘    │
+│  ┌─────────────────────┐    │ ← Yellow Banner tanpa padding kiri
+│  │  Software I USE 🎨  │    │
+│  └─────────────────────┘    │
+│  ┌─────────────────────┐    │ ← 1 kolom, stacked
+│  │     [WhatsApp]      │    │
+│  │     [Instagram]     │    │
+│  │     [Gmail]         │    │
+│  └─────────────────────┘    │
+└─────────────────────────────┘
+```
+
+### 💻 Desktop (≥ 768px) — Full Layered (Kondisi Saat Ini)
+
+Layout saat ini dipertahankan penuh:
+- Foto `absolute` di kiri bawah menembus banner kuning
+- Grid 12 kolom untuk hero text
+- Banner & social row dengan `pl-[24rem]` / `lg:pl-[28rem]`
+
+---
+
+## 4. Perubahan Detail Per Elemen
+
+### 4.1 — Foto Danu (Prioritas Utama)
+
+**Strategi**: relative di mobile (masuk dalam document flow), absolute di `md+`.
+
+```tsx
+// SEBELUM:
+<div className="absolute -left-[70.8px] bottom-0 z-30 pointer-events-none flex items-end">
+  <img className="w-[380px] sm:w-[500px] md:w-[620px] lg:w-[720px] ..." />
+</div>
+
+// SESUDAH:
+<div className="
+  relative flex justify-center items-end w-full mt-4 z-30 pointer-events-none
+  md:absolute md:-left-[70.8px] md:bottom-0 md:w-auto md:mt-0
+">
+  <img className="
+    w-[280px] sm:w-[380px] md:w-[500px] lg:w-[620px] xl:w-[720px]
+    max-h-[55vh] md:max-h-[90vh]
+    object-contain object-bottom drop-shadow-2xl
+  " />
+</div>
+```
+
+### 4.2 — Hero Text Grid
+
+```tsx
+// SESUDAH:
+<div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-end">
+  {/* Spacer: hidden di mobile */}
+  <div className="hidden md:block md:col-span-4 lg:col-span-4" />
+
+  {/* Nama: centered di mobile, left di desktop */}
+  <div className="md:col-span-5 pb-4 text-center md:text-left">
+    <p className="font-playfair italic text-2xl sm:text-3xl ...">Hi There!</p>
+    <h1 className="font-spartan text-5xl sm:text-6xl lg:text-7xl xl:text-8xl ...">
+      <span className="text-[#e5fc34]">I'M</span>
+      <span className="text-white">DANU</span>
+    </h1>
+    {/* Barbell: max-w dan margin auto di mobile */}
+    <div className="flex items-center my-3 max-w-[280px] sm:max-w-md mx-auto md:mx-0"> ... </div>
+    <p className="text-xs sm:text-sm max-w-sm mx-auto md:mx-0"> ... </p>
+  </div>
+
+  {/* Deskripsi kanan: hidden di mobile agar tidak sesak */}
+  <div className="hidden md:block md:col-span-3 border-l-2 border-white pl-4 pb-2 mb-2">
+    <p> ... deskripsi ... </p>
+  </div>
+</div>
+```
+
+### 4.3 — Yellow Banner "Software I USE"
+
+```tsx
+// SESUDAH:
+<div className="
+  max-w-7xl mx-auto
+  flex flex-col items-center gap-4    /* mobile: column, centered */
+  md:flex-row md:justify-end          /* desktop: row */
+  md:pl-[24rem] lg:pl-[28rem]
+">
+  {/* Label: centered di mobile */}
+  <div className="flex flex-col items-center md:items-start shrink-0">
+    ...
+  </div>
+
+  {/* Icons: wrap dan centered di mobile */}
+  <div className="flex flex-wrap justify-center md:justify-start items-center gap-2.5">
+    ...
+  </div>
+</div>
+```
+
+### 4.4 — Social Media Buttons
+
+```tsx
+// SESUDAH — 1 kolom di mobile, 3 kolom di sm+:
+<div className="
+  max-w-7xl mx-auto
+  grid grid-cols-1 gap-3
+  sm:grid-cols-3
+  md:pl-[24rem] lg:pl-[28rem]
+">
+  ... tombol WA / IG / Gmail ...
+</div>
+```
+
+### 4.5 — Ornamen Cross (+)
+
+```tsx
+// Cross tengah (left-[22%]): hidden di mobile — posisi tidak relevan di narrow screen
+<div className="hidden md:flex absolute top-[48%] left-[22%] ...">
+```
+
+### 4.6 — Section Overflow
+
+```tsx
+// SEBELUM:
+className="... overflow-hidden ..."
+
+// SESUDAH:
+className="... overflow-x-hidden ..." // hanya clip horizontal, konten vertikal tetap scroll
+```
+
+---
+
+## 5. Urutan Implementasi
+
+- [ ] **Step 1** — Perbaiki Foto Danu: `relative` di mobile → `md:absolute`
+- [ ] **Step 2** — Perbaiki Hero Text Grid: centering & `text-center md:text-left`
+- [ ] **Step 3** — Perbaiki Yellow Banner: `flex-col` di mobile, `md:flex-row`
+- [ ] **Step 4** — Perbaiki Social Media Row: `grid-cols-1` di mobile, `sm:grid-cols-3`
+- [ ] **Step 5** — Sembunyikan ornamen tengah di mobile
+- [ ] **Step 6** — Ganti `overflow-hidden` → `overflow-x-hidden`
+- [ ] **Step 7** — Testing di semua breakpoint
+
+---
+
+## 6. Target Visual Per Breakpoint
+
+| Breakpoint | Layout |
+|---|---|
+| `320px` (Mobile S) | Stack vertical; teks → foto → banner → buttons |
+| `375px` (Mobile M) | Sama, font sedikit lebih besar |
+| `414px` (Mobile L) | Foto lebih besar, spacing lebih nyaman |
+| `768px` (Tablet) | Foto absolute di kiri, grid 12 kolom aktif |
+| `1024px` (Laptop) | Layout desktop penuh |
+| `1280px+` (Desktop) | Layout desktop saat ini (sudah optimal) |
+
+---
+
+## 7. File yang Diubah
+
+| File | Perubahan |
+|---|---|
+| [`src/pages/sections/Home.tsx`](file:///d:/data%20rayhan/programs/project-2/portfolio-danu/src/pages/sections/Home.tsx) | **Perubahan utama** — semua responsive classes |
+| [`src/index.css`](file:///d:/data%20rayhan/programs/project-2/portfolio-danu/src/index.css) | Tambah utility jika diperlukan (opsional) |
+
+> **Catatan**: Tidak ada komponen baru. Semua perubahan menggunakan Tailwind responsive prefix langsung di `Home.tsx`.
+
+---
+
+# Plan Implementasi: Section "My Portofolio." (Junior & Low-AI Friendly)
+
+Panduan ini dibuat sesederhana mungkin agar mudah dipahami oleh **junior programmer** maupun diproses oleh **low AI**. Semua instruksi dibuat terstruktur langkah-demi-langkah (step-by-step) beserta potongan kodenya.
+
+Section ini akan diletakkan di dalam file [`src/pages/sections/Home.tsx`](file:///d:/data%20rayhan/programs/project-2/portfolio-danu/src/pages/sections/Home.tsx), tepat di bawah section Hero yang baru saja dibuat.
+
+---
+
+## 1. Analisis Visual Berdasarkan Foto Referensi
+
+Berdasarkan foto yang diberikan, section ini memiliki komponen:
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│ [Background Ungu: #5b13ec]                                 │
+│                                                             │
+│       My                                                    │  ← "My" (Tulisan tangan/cursive warna putih)
+│      Portofolio.                                            │  ← "Portofolio." (Teks tebal kuning neon)
+│                                                             │
+│   ┌─────────────────────────────────────────────────────┐   │
+│   │ [Kotak Kuning Neon: bg-[#f6ed28] / p-6 rounded-2xl] │   │  ← Container kuning pembungkus 3 card
+│   │                                                     │   │
+│   │  ┌──────────────┐  ┌──────────────┐  ┌───────────┐  │   │
+│   │  │  Experience  │  │Graphic Desig.│  │motion grp.│  │   │  ← Header Card (Hitam pekat, teks putih)
+│   │  ├──────────────┤  ├──────────────┤  ├───────────┤  │   │
+│   │  │              │  │              │  │           │  │   │
+│   │  │  [Thumbnail  │  │  [Thumbnail  │  │ [Thumbnail │  │   │  ← Foto proyek/karya (aspect 3:4 atau 4:5)
+│   │  │   Karya]     │  │   Karya]     │  │  Karya]   │  │   │
+│   │  │           ⤴  │  │           ⤴  │  │        ⤴  │  │   │  ← Ikon panah lengkung ungu di pojok kanan bawah
+│   │  └──────────────┘  └──────────────┘  └───────────┘  │   │
+│   └─────────────────────────────────────────────────────┘   │
+└─────────────────────────────────────────────────────────────┘
+```
+
+---
+
+## 2. Struktur Data (Data Array)
+
+Agar kode rapi, mudah diedit, dan tidak mengulang-ulang HTML (DRY - *Don't Repeat Yourself*), kita buat satu array data kartu portofolio:
+
+```tsx
+const portfolioCategories = [
+  {
+    id: "experience",
+    title: "Experience",
+    image: "/img/profile/danu-salinan.png", // Bisa diganti gambar karya nyata
+    link: "#experience",
+  },
+  {
+    id: "graphic-designer",
+    title: "Graphic Designer",
+    image: "/img/profile/danu-jas.png", // Bisa diganti gambar karya grafis
+    link: "#graphic-design",
+  },
+  {
+    id: "motion-graphic",
+    title: "motion graphic",
+    image: "/img/profile/danu.png", // Bisa diganti preview video/motion
+    link: "#motion-graphic",
+  },
+];
+```
+
+---
+
+## 3. Strategi Responsif (Mobile → Desktop)
+
+Junior programmer cukup mengingat aturan sederhana Tailwind CSS berikut:
+
+| Breakpoint | Kode Tailwind | Tampilan Kotak Kuning & 3 Kartu |
+|---|---|---|
+| **Mobile** (< 768px) | Default (`grid-cols-1`) | 3 kartu disusun **menurun vertikal** (1 kolom), padding nyaman agar tidak mepet layar |
+| **Tablet** (768px - 1023px) | `md:grid-cols-3` | 3 kartu mulai berjajar ke samping secara fleksibel |
+| **Desktop** (≥ 1024px) | `lg:grid-cols-3` | 3 kartu berjajar rapi 3 kolom dengan batas lebar maksimal (`max-w-6xl`) di tengah |
+
+---
+
+## 4. Bedah Komponen Elemen per Elemen
+
+### A. Judul "My Portofolio."
+- **"My"**: Teks warna putih, tulisan miring/script, sedikit bertumpuk di atas "Portofolio."
+  - Class: `font-playfair italic text-3xl sm:text-4xl md:text-5xl text-white -mb-2 sm:-mb-3 ml-2 z-10`
+- **"Portofolio."**: Teks warna kuning neon (`#e5fc34` / `#f6ed28`), font tebal dan padat.
+  - Class: `font-spartan font-black text-4xl sm:text-6xl md:text-7xl text-[#f6ed28] tracking-tight`
+
+### B. Wadah Kuning (Yellow Frame Box)
+- Warna kuning neon sama persis dengan banner hero.
+- Class: `w-full max-w-6xl bg-[#f6ed28] p-4 sm:p-6 md:p-8 rounded-3xl shadow-2xl`
+
+### C. Grid 3 Kartu
+- Menampilkan 1 kolom di mobile, dan 3 kolom di layar md/lg.
+- Class: `grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6`
+
+### D. Tiap Kartu (Card Item)
+1. **Header Hitam**:
+   - Background: `bg-black text-white`
+   - Teks: `font-serif font-bold text-center py-2.5 sm:py-3 px-4 text-base sm:text-lg`
+2. **Area Gambar (Thumbnail)**:
+   - Aspect ratio seragam: `relative w-full aspect-[4/5] sm:aspect-[3/4] overflow-hidden bg-slate-800`
+   - Efek Zoom saat di-hover: `group-hover:scale-105 transition-transform duration-300`
+3. **Ikon Panah Lengkung Ungu (Bottom-Right)**:
+   - Posisi melayang di pojok kanan bawah: `absolute bottom-3 right-3 z-10`
+   - Bentuk panah lengkung khas berwarna ungu (#5b13ec) dengan kontur putih tajam.
+
+---
+
+## 5. Template Kode Siap Pakai (Full Snippet)
+
+Salin kode ini dan letakkan tepat di bawah Hero Section di `Home.tsx`:
+
+```tsx
+{/* ============================================================ */}
+{/* SECTION: MY PORTOFOLIO (Responsif Mobile -> Desktop)          */}
+{/* ============================================================ */}
+<section id="portfolio" className="w-full bg-[#5b13ec] py-16 px-4 sm:px-8 md:px-12 lg:px-20">
+  <div className="max-w-6xl mx-auto flex flex-col items-center">
+    
+    {/* 1. Header Judul: "My Portofolio." */}
+    <div className="flex flex-col items-start w-full mb-6 sm:mb-8 pl-2 sm:pl-4">
+      <span className="font-playfair italic text-3xl sm:text-4xl md:text-5xl text-white -mb-2 sm:-mb-3 ml-2 select-none">
+        My
+      </span>
+      <h2 className="font-spartan font-black text-4xl sm:text-6xl md:text-7xl text-[#f6ed28] tracking-tight leading-none">
+        Portofolio.
+      </h2>
+    </div>
+
+    {/* 2. Container Kuning (Yellow Frame) */}
+    <div className="w-full bg-[#f6ed28] p-4 sm:p-6 md:p-8 rounded-2xl sm:rounded-3xl shadow-2xl">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
+        {portfolioCategories.map((item) => (
+          <a
+            key={item.id}
+            href={item.link}
+            className="group relative flex flex-col bg-white overflow-hidden shadow-lg border-2 border-black/10 transition-transform duration-300 hover:-translate-y-1.5"
+          >
+            {/* Header Hitam Kartu */}
+            <div className="bg-black text-white text-center py-2.5 sm:py-3 px-4 font-serif font-bold text-base sm:text-lg tracking-wide select-none">
+              {item.title}
+            </div>
+
+            {/* Thumbnail Proyek */}
+            <div className="relative w-full aspect-[4/5] sm:aspect-[3/4] overflow-hidden bg-slate-900">
+              <img
+                src={item.image}
+                alt={item.title}
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+
+              {/* Ikon Panah Lengkung Ungu di Pojok Kanan Bawah */}
+              <div className="absolute bottom-3 right-3 w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center drop-shadow-md">
+                <svg
+                  viewBox="0 0 48 48"
+                  fill="none"
+                  className="w-full h-full text-[#5b13ec] transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"
+                >
+                  {/* Outer White Contour */}
+                  <path
+                    d="M12 36C18 36 28 32 32 20M32 20L22 18M32 20L34 30"
+                    stroke="white"
+                    strokeWidth="8"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                  {/* Inner Purple Arrow */}
+                  <path
+                    d="M12 36C18 36 28 32 32 20M32 20L22 18M32 20L34 30"
+                    stroke="#5b13ec"
+                    strokeWidth="4"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+
+  </div>
+</section>
+```
+
+---
+
+## 6. Checklist Langkah Implementasi
+
+- [ ] **Langkah 1**: Buka [`src/pages/sections/Home.tsx`](file:///d:/data%20rayhan/programs/project-2/portfolio-danu/src/pages/sections/Home.tsx).
+- [ ] **Langkah 2**: Tambahkan array `portfolioCategories` di dalam komponen `Home()`.
+- [ ] **Langkah 3**: Tambahkan markup `<section id="portfolio">` tepat sebelum penutup `</section>` atau di bawah section hero utama.
+- [ ] **Langkah 4**: Pastikan gambar thumbnail tersedia di folder `public/img/` (atau gunakan gambar yang sudah ada sebagai placeholder awal).
+- [ ] **Langkah 5**: Uji tampilan di mode responsive (Inspect Element: iPhone SE 375px, iPad 768px, Desktop 1280px).
