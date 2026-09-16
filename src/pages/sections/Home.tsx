@@ -136,18 +136,27 @@ export default function Home() {
 
         {/* 3. FOTO DANU (Mobile: centered di bawah teks; Desktop: absolute di kiri bawah menembus banner kuning) */}
         <div className="relative flex justify-center items-end w-full mt-4 md:mt-0 md:absolute md:-left-[70.8px] md:bottom-0 md:w-auto z-30 pointer-events-none">
-          <img
-            src={`${import.meta.env.BASE_URL}img/profile/danu.png`}
-            alt="Danu"
-            className="w-[260px] sm:w-[340px] md:w-[500px] lg:w-[620px] xl:w-[720px] max-h-[50vh] sm:max-h-[55vh] md:max-h-[95vh] object-contain object-bottom drop-shadow-2xl"
-          />
+          <picture>
+            {/* Layar lg ke atas (min-width: 1024px): tampilkan danu.png */}
+            <source
+              media="(min-width: 1024px)"
+              srcSet={`${import.meta.env.BASE_URL}img/profile/danu.png`}
+            />
+
+            {/* Layar di bawah lg (mobile & tablet): tampilkan danu-jas.png */}
+            <img
+              src={`${import.meta.env.BASE_URL}img/profile/danu-jas.png`}
+              alt="Danu"
+              className="w-[260px] sm:w-[340px] md:w-[500px] lg:w-[620px] xl:w-[720px] max-h-[50vh] sm:max-h-[55vh] md:max-h-[95vh] object-contain object-bottom drop-shadow-2xl"
+            />
+          </picture>
         </div>
 
         {/* 4. Bottom Section (Banner Kuning + Tombol Sosial Media) */}
         <div className="relative z-10 w-full mt-auto">
           {/* BANNER KUNING "Software I USE" */}
           <div className="w-full bg-[#f6ed28] text-slate-900 py-3.5 sm:py-4 px-4 sm:px-8 md:px-12 lg:px-20 shadow-md">
-            <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-center md:justify-end gap-4 sm:gap-6 lg:gap-10 md:pl-[24rem] lg:pl-[28rem]">
+            <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-center md:justify-end gap-4 sm:gap-6 lg:gap-10 md:pl-[20rem] lg:pl-[28rem]">
               {/* Teks "Software I USE" */}
               <div className="flex flex-col items-center md:items-start leading-none shrink-0">
                 <div className="flex items-center gap-2 w-full justify-center md:justify-start">
@@ -200,7 +209,7 @@ export default function Home() {
 
           {/* BARIS KARTU SOSIAL MEDIA */}
           <div className="w-full bg-[#5b13ec] py-4 sm:py-5 md:py-6 px-4 sm:px-8 md:px-12 lg:px-20">
-            <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 md:pl-[24rem] lg:pl-[28rem]">
+            <div className="max-w-7xl mx-auto grid grid-cols-2 xs:grid-cols-3 gap-3 sm:gap-4 md:pl-[24rem] lg:pl-[28rem]">
               {/* WhatsApp */}
               <a
                 id="btn-whatsapp"

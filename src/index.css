@@ -1,6 +1,8 @@
 @import "tailwindcss";
 
 @theme {
+  --breakpoint-xs: 30rem;
+
   /* Inter menjadi font sans default untuk seluruh halaman */
   --font-sans: "Inter", sans-serif;
 
