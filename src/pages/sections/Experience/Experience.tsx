@@ -6,12 +6,12 @@ export default function Experience() {
   return (
     <section
       id="experience"
-      className="relative w-full min-h-screen bg-[#5b13ec] text-white overflow-x-hidden font-sans py-8 px-4 sm:px-8"
+      className="relative w-full min-h-screen bg-gradient-to-r from-[#1d59f3] via-[#4328ec] to-[#5b13ec] text-white overflow-x-hidden font-sans py-12 px-4 sm:px-8 md:px-12 flex flex-col justify-between"
     >
-      {/* 1. Hero Section "EXPER I ENCE" */}
+      {/* 1. Hero Section "EXPER I ENCE" (Skala Besar) */}
       <ExperienceHero />
 
-      {/* 2. Horizontal Timeline Overview (2024 - 2025 - 2026) */}
+      {/* 2. Horizontal Timeline Overview (Skala Besar & Luas) */}
       <ExperienceTimelineOverview />
 
       {/* 3. Detail Container Krem Pengalaman */}
