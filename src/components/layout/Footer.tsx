@@ -27,6 +27,10 @@ const contactList = [
 ];
 
 export default function Footer() {
+  const handleScrollTop = () => {
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+  };
+
   return (
     <footer
       id="footer"
@@ -62,7 +66,8 @@ export default function Footer() {
                 <li key={link.href}>
                   <Link
                     to={link.href}
-                    className="font-sans italic underline text-white/90 text-sm sm:text-base hover:text-[#e5fc34] transition-colors duration-200"
+                    onClick={handleScrollTop}
+                    className="font-sans italic no-underline text-white/90 text-sm sm:text-base hover:text-[#e5fc34] transition-colors duration-200 inline-block"
                   >
                     {link.label}
                   </Link>
@@ -82,7 +87,7 @@ export default function Footer() {
                   href={item.href}
                   target="_blank"
                   rel="noreferrer"
-                  className="font-sans text-sm sm:text-base text-white/90 underline hover:text-[#e5fc34] transition-colors duration-200 break-all"
+                  className="font-sans text-sm sm:text-base text-white/90 no-underline hover:text-[#e5fc34] transition-colors duration-200 break-all inline-block"
                 >
                   {item.value}
                 </a>
