@@ -13,9 +13,7 @@ export default function RootLayout() {
   return (
     <>
       <Navbar />
-      <div className="pt-20">
-        <Outlet />
-      </div>
+      <Outlet />
       <Footer />
     </>
   );

@@ -1,6 +1,6 @@
 export default function ExperienceHero() {
   return (
-    <div className="relative w-full max-w-7xl mx-auto flex flex-col items-center justify-center pt-8 sm:pt-12 md:pt-16 pb-6 px-3 select-none overflow-hidden">
+    <div className="relative w-full max-w-7xl mx-auto flex flex-col items-center justify-center pt-16 sm:pt-20 md:pt-24 pb-6 px-3 select-none overflow-hidden">
       {/* Ornamen Crop Marks (+) di Sudut-Sudut Luar */}
       <div className="absolute top-2 left-2 sm:top-4 sm:left-4 text-white/70 text-base sm:text-xl font-light pointer-events-none">
         +

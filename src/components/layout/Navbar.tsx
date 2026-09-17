@@ -31,7 +31,10 @@ export default function Navbar() {
   // Tutup dropdown jika klik di luar
   useEffect(() => {
     function handleClickOutside(e: MouseEvent) {
-      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(e.target as Node)
+      ) {
         setDesignOpen(false);
       }
     }
@@ -50,7 +53,7 @@ export default function Navbar() {
   return (
     <nav
       id="main-navbar"
-      className="fixed top-0 left-0 right-0 z-50 w-full px-4 sm:px-6 py-4 bg-transparent border-none"
+      className="absolute top-0 left-0 right-0 z-50 w-full px-4 sm:px-6 py-4 sm:py-6 bg-transparent border-none"
     >
       {/* ============================
           DESKTOP NAVBAR (md ke atas)
@@ -58,7 +61,6 @@ export default function Navbar() {
       <div className="hidden md:flex items-center justify-center">
         {/* Pill kuning melayang */}
         <div className="flex items-center gap-1 lg:gap-2 bg-[#e8fb31] rounded-full px-4 lg:px-6 py-2 shadow-xl border border-black/5">
-
           {/* Link: Home */}
           <Link
             to="/"
@@ -102,7 +104,11 @@ export default function Navbar() {
                 stroke="currentColor"
                 strokeWidth={2.5}
               >
-                <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M19 9l-7 7-7-7"
+                />
               </svg>
             </button>
 
@@ -158,7 +164,6 @@ export default function Navbar() {
               className="w-8 h-8 lg:w-9 lg:h-9 rounded-full object-cover object-top border-2 border-[#5b13ec] shadow-md"
             />
           </div>
-
         </div>
       </div>
 
@@ -180,9 +185,15 @@ export default function Navbar() {
           aria-label="Toggle menu"
           className="flex flex-col justify-center items-center gap-1.5 w-10 h-10 rounded-full bg-[#e8fb31] shadow-md border-none cursor-pointer"
         >
-          <span className={`block w-5 h-0.5 bg-[#1a1a1a] transition-all duration-300 ${mobileOpen ? "rotate-45 translate-y-2" : ""}`} />
-          <span className={`block w-5 h-0.5 bg-[#1a1a1a] transition-all duration-300 ${mobileOpen ? "opacity-0" : ""}`} />
-          <span className={`block w-5 h-0.5 bg-[#1a1a1a] transition-all duration-300 ${mobileOpen ? "-rotate-45 -translate-y-2" : ""}`} />
+          <span
+            className={`block w-5 h-0.5 bg-[#1a1a1a] transition-all duration-300 ${mobileOpen ? "rotate-45 translate-y-2" : ""}`}
+          />
+          <span
+            className={`block w-5 h-0.5 bg-[#1a1a1a] transition-all duration-300 ${mobileOpen ? "opacity-0" : ""}`}
+          />
+          <span
+            className={`block w-5 h-0.5 bg-[#1a1a1a] transition-all duration-300 ${mobileOpen ? "-rotate-45 -translate-y-2" : ""}`}
+          />
         </button>
       </div>
 

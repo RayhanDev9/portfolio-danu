@@ -1,6 +1,6 @@
 export default function HeroSection() {
   return (
-    <div className="relative z-20 w-full pt-8 sm:pt-12 md:pt-16 px-4 sm:px-8 md:px-12 lg:px-20">
+    <div className="relative z-20 w-full pt-20 sm:pt-24 md:pt-28 px-4 sm:px-8 md:px-12 lg:px-20">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-6 items-end">
         {/* Spacer area foto (desktop only) */}
         <div className="hidden md:block md:col-span-4 lg:col-span-4" />
