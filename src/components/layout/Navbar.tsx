@@ -2,15 +2,14 @@ import { useState, useRef, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 
 // =============================================
-// DATA: Daftar link navbar
-// Tambahkan sub-link design di sini nanti
+// DATA: Sub-link Graphic Design
 // =============================================
 const designSubLinks = [
   { label: "Majlis Ta'lim", href: "/graphic-design/majlis" },
 ];
 
 // =============================================
-// HELPER: Apakah path saat ini = link ini?
+// HELPER: Cek link aktif
 // =============================================
 function isActive(currentPath: string, href: string): boolean {
   if (href === "/") return currentPath === "/";
@@ -18,22 +17,18 @@ function isActive(currentPath: string, href: string): boolean {
 }
 
 // =============================================
-// MAIN COMPONENT
+// MAIN NAVBAR COMPONENT
 // =============================================
 export default function Navbar() {
   const location = useLocation();
   const currentPath = location.pathname;
 
-  // State untuk hamburger menu (mobile)
   const [mobileOpen, setMobileOpen] = useState(false);
-
-  // State untuk dropdown "Graphic Design" (desktop)
   const [designOpen, setDesignOpen] = useState(false);
 
-  // Ref untuk detect klik di luar dropdown (supaya dropdown bisa tertutup)
   const dropdownRef = useRef<HTMLDivElement>(null);
 
-  // Tutup dropdown jika klik di luar area dropdown
+  // Tutup dropdown jika klik di luar
   useEffect(() => {
     function handleClickOutside(e: MouseEvent) {
       if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
@@ -44,26 +39,25 @@ export default function Navbar() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  // Tutup mobile menu saat pindah halaman
+  // Tutup menu saat pindah halaman
   useEffect(() => {
     setMobileOpen(false);
     setDesignOpen(false);
   }, [location.pathname]);
 
-  // Apakah halaman yang aktif sekarang ada di bawah graphic-design?
   const isDesignActive = currentPath.startsWith("/graphic-design");
 
   return (
     <nav
       id="main-navbar"
-      className="fixed top-0 left-0 right-0 z-50 w-full px-4 sm:px-6 py-3 bg-gradient-to-r from-[#1a3a9e] to-[#4b1fa8]"
+      className="fixed top-0 left-0 right-0 z-50 w-full px-4 sm:px-6 py-4 bg-transparent border-none"
     >
       {/* ============================
           DESKTOP NAVBAR (md ke atas)
           ============================ */}
       <div className="hidden md:flex items-center justify-center">
-        {/* Pill kuning */}
-        <div className="flex items-center gap-1 lg:gap-2 bg-[#e8fb31] rounded-full px-4 lg:px-6 py-2 shadow-lg">
+        {/* Pill kuning melayang */}
+        <div className="flex items-center gap-1 lg:gap-2 bg-[#e8fb31] rounded-full px-4 lg:px-6 py-2 shadow-xl border border-black/5">
 
           {/* Link: Home */}
           <Link
@@ -101,7 +95,6 @@ export default function Navbar() {
               }`}
             >
               Graphic Design
-              {/* Panah kecil: rotasi saat dropdown terbuka */}
               <svg
                 className={`w-3.5 h-3.5 transition-transform duration-200 ${designOpen ? "rotate-180" : ""}`}
                 viewBox="0 0 24 24"
@@ -177,7 +170,7 @@ export default function Navbar() {
         <img
           src={`${import.meta.env.BASE_URL}img/profile/danu.png`}
           alt="Danu"
-          className="w-9 h-9 rounded-full object-cover object-top border-2 border-[#e8fb31]"
+          className="w-10 h-10 rounded-full object-cover object-top border-2 border-[#e8fb31] shadow-md"
         />
 
         {/* Hamburger Button */}
@@ -185,7 +178,7 @@ export default function Navbar() {
           id="mobile-menu-btn"
           onClick={() => setMobileOpen((prev) => !prev)}
           aria-label="Toggle menu"
-          className="flex flex-col justify-center items-center gap-1.5 w-10 h-10 rounded-full bg-[#e8fb31] border-none cursor-pointer"
+          className="flex flex-col justify-center items-center gap-1.5 w-10 h-10 rounded-full bg-[#e8fb31] shadow-md border-none cursor-pointer"
         >
           <span className={`block w-5 h-0.5 bg-[#1a1a1a] transition-all duration-300 ${mobileOpen ? "rotate-45 translate-y-2" : ""}`} />
           <span className={`block w-5 h-0.5 bg-[#1a1a1a] transition-all duration-300 ${mobileOpen ? "opacity-0" : ""}`} />
@@ -195,7 +188,7 @@ export default function Navbar() {
 
       {/* Mobile Dropdown Menu */}
       {mobileOpen && (
-        <div className="md:hidden mt-3 bg-[#e8fb31] rounded-2xl px-4 py-4 flex flex-col gap-1 shadow-xl">
+        <div className="md:hidden mt-3 bg-[#e8fb31] rounded-2xl px-4 py-4 flex flex-col gap-1 shadow-2xl border border-black/10">
           <Link
             to="/"
             className={`font-spartan font-bold text-base px-4 py-2.5 rounded-xl no-underline transition-colors ${
@@ -217,7 +210,6 @@ export default function Navbar() {
             Experience
           </Link>
 
-          {/* Graphic Design di mobile: tampilkan langsung sub-link tanpa dropdown */}
           <div>
             <span className="font-spartan font-bold text-base px-4 py-1 text-[#5b13ec] block">
               Graphic Design

@@ -1,109 +1,61 @@
-# Plan Implementasi Navbar Portfolio Danu
+# Plan Implementasi Navbar Portfolio Danu (Tanpa Outer BG / Transparent Nav)
 
-Panduan lengkap membangun **Navbar** yang responsif (mobile → desktop) untuk portfolio Danu. Ditulis untuk junior programmer dan low-cost AI.
+Panduan lengkap memperbarui **Navbar** menjadi serba transparan di bagian luar (tanpa background biru/ungu & tanpa border luar), hanya menyisa elemen **Pill Kuning (`#e8fb31`)** yang melayang di atas konten halaman.
 
 ---
 
-## 1. Analisis Visual (Berdasarkan Foto Referensi)
+## 1. Perubahan Desain & Spesifikasi
 
 ```
+[ TAMPILAN BARU: Outer Nav Transparan ]
+
 +--------------------------------------------------------------------+
-| [Background: Biru/Ungu gradient — seluruh lebar halaman]          |
+| (Luar Navbar: Transparan total / bg-transparent, tanpa border)     |
 |                                                                    |
 |   +----------------------------------------------------------+    |
-|   | [Pill Kuning / #e8fb31 — rounded-full — padding x besar] |    |
+|   | [Pill Kuning / #e8fb31 — rounded-full — Melayang/Float] |    |
 |   |                                                          |    |
-|   |  Home   [Experience]  graphic design  motion  contact   |    |
-|   |          (aktif: pill  (dropdown hover ▾)                |    |
-|   |          ungu, putih)                                    |    |
+|   |  Home   [Experience]  Graphic Design ▾  Motion  Contact  |    |
+|   |          (pill ungu)   (dropdown)                         |    |
 |   +----------------------------------------------------------+    |
 +--------------------------------------------------------------------+
 ```
 
-### Elemen Visual:
-| Elemen | Detail |
-|---|---|
-| Background navbar (outer) | Biru/ungu gradien `from-[#1a3a9e] to-[#4b1fa8]` |
-| Pill container navbar | Kuning `bg-[#e8fb31]` rounded-full, lebar auto/max |
-| Link biasa | `font-spartan font-bold` warna gelap `text-[#1a1a1a]`, underline tipis |
-| Link aktif (halaman yang sedang dibuka) | Pill ungu `bg-[#5b13ec] text-white` rounded-full, padding `px-5 py-2` |
-| Dropdown "Graphic Design" | Muncul ke bawah saat hover/klik, berisi sub-link |
-| Foto profil | Avatar kecil circle di ujung kanan pill |
+### Detail Perubahan CSS:
+| Bagian | Sebelum | Sesudah (Fixed Plan) |
+|---|---|---|
+| Outer `<nav>` background | `bg-gradient-to-r from-[#1a3a9e] to-[#4b1fa8]` | `bg-transparent` (bening total, tanpa warna) |
+| Outer border | Ada border/pembatas tipis | **Tanpa border** di luar pill kuning |
+| Pill Nav Kuning | `bg-[#e8fb31] rounded-full` | **Tetap dipertahankan** `bg-[#e8fb31] rounded-full shadow-lg` |
+| Link Aktif | Pill ungu `bg-[#5b13ec] text-white` | **Tetap dipertahankan** `bg-[#5b13ec] text-white` |
 
 ---
 
-## 2. Daftar Link Navbar
+## 2. Strategi Komponen & Code Update
 
-```
-Home          → /
-Experience    → /experience
-Graphic Design (DROPDOWN) ▾
-   ├── Majlis Ta'lim    → /graphic-design/majlis
-   ├── (tambah link lain nanti di sini)
-Motion Graphic → /motion-graphic
-Contact        → /contact
-[Foto Profil]  → (avatar kecil, pojok kanan, untuk tampilan identitas)
-```
-
-> **Catatan**: Hanya "Graphic Design" yang punya dropdown. Link lainnya langsung pindah halaman.
+File yang perlu diperbarui:
+1. **[`src/components/layout/Navbar.tsx`](file:///d:/data%20rayhan/programs/project-2/portfolio-danu/src/components/layout/Navbar.tsx)** — Hapus kelas gradien biru/ungu di tag `<nav>`, ubah menjadi `bg-transparent`.
+2. **[`src/pages/RootLayout.tsx`](file:///d:/data%20rayhan/programs/project-2/portfolio-danu/src/pages/RootLayout.tsx)** — Tetap menggunakan padding top `pt-20` agar konten halaman pertama tidak tertutup pill navbar.
 
 ---
 
-## 3. Strategi Responsif
-
-| Breakpoint | Tampilan Navbar |
-|---|---|
-| **Mobile (< 768px)** | Hamburger button (☰). Klik buka **Side Drawer** dari kiri/atas, berisi semua link + foto profil |
-| **Tablet (768px–1023px)** | Pill navbar muncul, tapi lebih kecil font & padding |
-| **Desktop (>=1024px)** | Pill navbar penuh seperti di foto referensi + foto profil di kanan |
-
----
-
-## 4. Struktur File yang Akan Dibuat
-
-Satu file komponen + satu file data, lalu didaftarkan di `RootLayout.tsx`:
-
-```
-src/components/layout/
-├── Navbar.tsx        ← [BARU] Komponen navbar utama (pill + dropdown + foto)
-└── Footer.tsx        (sudah ada)
-
-src/pages/
-└── RootLayout.tsx    ← [MODIFIKASI] tambahkan <Navbar /> di atas <Outlet />
-```
-
----
-
-## 5. Blueprint Kode Lengkap
+## 3. Blueprint Kode Lengkap Update
 
 ### 📄 A. File: `src/components/layout/Navbar.tsx`
-
-Salin kode ini ke [`src/components/layout/Navbar.tsx`](file:///d:/data%20rayhan/programs/project-2/portfolio-danu/src/components/layout/Navbar.tsx):
 
 ```tsx
 import { useState, useRef, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 
 // =============================================
-// DATA: Daftar link navbar
-// Tambahkan sub-link design di sini nanti
+// DATA: Sub-link Graphic Design
 // =============================================
 const designSubLinks = [
   { label: "Majlis Ta'lim", href: "/graphic-design/majlis" },
-  // Tambah desain lain di sini:
-  // { label: "Nama Proyek Lain", href: "/graphic-design/nama-lain" },
-];
-
-const navLinks = [
-  { label: "Home", href: "/" },
-  { label: "Experience", href: "/experience" },
-  // "graphic design" = special, punya dropdown, lihat JSX di bawah
-  { label: "Motion Graphic", href: "/motion-graphic" },
-  { label: "Contact", href: "/contact" },
 ];
 
 // =============================================
-// HELPER: Apakah path saat ini = link ini?
+// HELPER: Cek link aktif
 // =============================================
 function isActive(currentPath: string, href: string): boolean {
   if (href === "/") return currentPath === "/";
@@ -111,22 +63,18 @@ function isActive(currentPath: string, href: string): boolean {
 }
 
 // =============================================
-// MAIN COMPONENT
+// MAIN NAVBAR COMPONENT
 // =============================================
 export default function Navbar() {
   const location = useLocation();
   const currentPath = location.pathname;
 
-  // State untuk hamburger menu (mobile)
   const [mobileOpen, setMobileOpen] = useState(false);
-
-  // State untuk dropdown "Graphic Design" (desktop)
   const [designOpen, setDesignOpen] = useState(false);
 
-  // Ref untuk detect klik di luar dropdown (supaya dropdown bisa tertutup)
   const dropdownRef = useRef<HTMLDivElement>(null);
 
-  // Tutup dropdown jika klik di luar area dropdown
+  // Tutup dropdown jika klik di luar
   useEffect(() => {
     function handleClickOutside(e: MouseEvent) {
       if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
@@ -137,26 +85,25 @@ export default function Navbar() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  // Tutup mobile menu saat pindah halaman
+  // Tutup menu saat pindah halaman
   useEffect(() => {
     setMobileOpen(false);
     setDesignOpen(false);
   }, [location.pathname]);
 
-  // Apakah halaman yang aktif sekarang ada di bawah graphic-design?
   const isDesignActive = currentPath.startsWith("/graphic-design");
 
   return (
     <nav
       id="main-navbar"
-      className="fixed top-0 left-0 right-0 z-50 w-full px-4 sm:px-6 py-3 bg-gradient-to-r from-[#1a3a9e] to-[#4b1fa8]"
+      className="fixed top-0 left-0 right-0 z-50 w-full px-4 sm:px-6 py-4 bg-transparent border-none"
     >
       {/* ============================
           DESKTOP NAVBAR (md ke atas)
           ============================ */}
       <div className="hidden md:flex items-center justify-center">
-        {/* Pill kuning */}
-        <div className="flex items-center gap-1 lg:gap-2 bg-[#e8fb31] rounded-full px-4 lg:px-6 py-2 shadow-lg">
+        {/* Pill kuning melayang */}
+        <div className="flex items-center gap-1 lg:gap-2 bg-[#e8fb31] rounded-full px-4 lg:px-6 py-2 shadow-xl border border-black/5">
 
           {/* Link: Home */}
           <Link
@@ -194,7 +141,6 @@ export default function Navbar() {
               }`}
             >
               Graphic Design
-              {/* Panah kecil: rotasi saat dropdown terbuka */}
               <svg
                 className={`w-3.5 h-3.5 transition-transform duration-200 ${designOpen ? "rotate-180" : ""}`}
                 viewBox="0 0 24 24"
@@ -270,7 +216,7 @@ export default function Navbar() {
         <img
           src={`${import.meta.env.BASE_URL}img/profile/danu.png`}
           alt="Danu"
-          className="w-9 h-9 rounded-full object-cover object-top border-2 border-[#e8fb31]"
+          className="w-10 h-10 rounded-full object-cover object-top border-2 border-[#e8fb31] shadow-md"
         />
 
         {/* Hamburger Button */}
@@ -278,7 +224,7 @@ export default function Navbar() {
           id="mobile-menu-btn"
           onClick={() => setMobileOpen((prev) => !prev)}
           aria-label="Toggle menu"
-          className="flex flex-col justify-center items-center gap-1.5 w-10 h-10 rounded-full bg-[#e8fb31] border-none cursor-pointer"
+          className="flex flex-col justify-center items-center gap-1.5 w-10 h-10 rounded-full bg-[#e8fb31] shadow-md border-none cursor-pointer"
         >
           <span className={`block w-5 h-0.5 bg-[#1a1a1a] transition-all duration-300 ${mobileOpen ? "rotate-45 translate-y-2" : ""}`} />
           <span className={`block w-5 h-0.5 bg-[#1a1a1a] transition-all duration-300 ${mobileOpen ? "opacity-0" : ""}`} />
@@ -288,7 +234,7 @@ export default function Navbar() {
 
       {/* Mobile Dropdown Menu */}
       {mobileOpen && (
-        <div className="md:hidden mt-3 bg-[#e8fb31] rounded-2xl px-4 py-4 flex flex-col gap-1 shadow-xl">
+        <div className="md:hidden mt-3 bg-[#e8fb31] rounded-2xl px-4 py-4 flex flex-col gap-1 shadow-2xl border border-black/10">
           <Link
             to="/"
             className={`font-spartan font-bold text-base px-4 py-2.5 rounded-xl no-underline transition-colors ${
@@ -310,7 +256,6 @@ export default function Navbar() {
             Experience
           </Link>
 
-          {/* Graphic Design di mobile: tampilkan langsung sub-link tanpa dropdown */}
           <div>
             <span className="font-spartan font-bold text-base px-4 py-1 text-[#5b13ec] block">
               Graphic Design
@@ -361,63 +306,8 @@ export default function Navbar() {
 
 ---
 
-### 📄 B. Update: `src/pages/RootLayout.tsx`
+## 4. Langkah Implementasi Ringkas
 
-Tambahkan `<Navbar />` di atas `<Outlet />`. Juga tambahkan **padding top** supaya konten halaman tidak tertimpa navbar fixed.
-
-```tsx
-import { useEffect } from "react";
-import { Outlet, useLocation } from "react-router-dom";
-import Navbar from "../components/layout/Navbar";
-import Footer from "../components/layout/Footer";
-
-export default function RootLayout() {
-  const { pathname } = useLocation();
-
-  useEffect(() => {
-    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-  }, [pathname]);
-
-  return (
-    <>
-      <Navbar />
-      {/* pt-20 supaya konten halaman tidak ketutupan navbar fixed */}
-      <div className="pt-20">
-        <Outlet />
-      </div>
-      <Footer />
-    </>
-  );
-}
-```
-
----
-
-## 6. Cara Kerja Kode (Penjelasan Singkat)
-
-### `isActive()` — Mendeteksi Link Aktif
-- Jika link adalah `/` → aktif hanya jika path persis `/`.
-- Jika link lain → aktif jika path dimulai dengan href tersebut (`startsWith`).
-- Contoh: path `/graphic-design/majlis` → `isDesignActive = true` → button Graphic Design juga aktif.
-
-### Dropdown Graphic Design
-- Menggunakan `useState(false)` untuk buka/tutup.
-- Klik tombol → toggle `setDesignOpen`.
-- Klik di luar dropdown → otomatis tutup via `useRef` + `addEventListener("mousedown")`.
-- Pindah halaman → dropdown otomatis tutup via `useEffect([location.pathname])`.
-
-### Hamburger Mobile
-- Tombol hamburger toggle `mobileOpen`.
-- Animasi: `rotate-45` + `translate-y-2` untuk baris 1, `opacity-0` untuk baris 2, `-rotate-45` untuk baris 3.
-- Di mobile, Graphic Design langsung tampilkan sub-link (tidak pakai overlay dropdown).
-
----
-
-## 7. Checklist Implementasi
-
-- [ ] **Langkah 1**: Buat file [`src/components/layout/Navbar.tsx`](file:///d:/data%20rayhan/programs/project-2/portfolio-danu/src/components/layout/Navbar.tsx) — salin kode Bagian A.
-- [ ] **Langkah 2**: Update [`src/pages/RootLayout.tsx`](file:///d:/data%20rayhan/programs/project-2/portfolio-danu/src/pages/RootLayout.tsx) — salin kode Bagian B.
-- [ ] **Langkah 3**: Jalankan `npx tsc --noEmit` untuk validasi TypeScript.
-- [ ] **Langkah 4**: Buka browser, uji tampilan desktop (1280px), tablet (768px), dan mobile (375px).
-- [ ] **Langkah 5**: Uji dropdown Graphic Design: hover/klik → muncul, klik di luar → tutup.
-- [ ] **Langkah 6**: Uji hamburger mobile: klik → menu muncul, navigasi → menu tutup otomatis.
+1. Salin kode di atas ke file [`src/components/layout/Navbar.tsx`](file:///d:/data%20rayhan/programs/project-2/portfolio-danu/src/components/layout/Navbar.tsx).
+2. Jalankan `npx tsc --noEmit` untuk memastikan tidak ada kesalahan TypeScript.
+3. Lakukan commit dan push otomatis ke repository GitHub.
