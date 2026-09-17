@@ -683,3 +683,378 @@ Salin kode ini dan letakkan tepat di bawah Hero Section di `Home.tsx`:
 - [ ] **Langkah 3**: Tambahkan markup `<section id="portfolio">` tepat sebelum penutup `</section>` atau di bawah section hero utama.
 - [ ] **Langkah 4**: Pastikan gambar thumbnail tersedia di folder `public/img/` (atau gunakan gambar yang sudah ada sebagai placeholder awal).
 - [ ] **Langkah 5**: Uji tampilan di mode responsive (Inspect Element: iPhone SE 375px, iPad 768px, Desktop 1280px).
+
+---
+
+# Plan Implementasi Halaman `Experience` (Junior & Low-AI Friendly)
+
+Dokumen ini berisi panduan dan rencana implementasi komprehensif untuk halaman **Experience** ([`src/pages/sections/Experience/Experience.tsx`](file:///d:/data%20rayhan/programs/project-2/portfolio-danu/src/pages/sections/Experience/Experience.tsx)) berdasarkan acuan desain Gambar 1, Gambar 2, dan Gambar 3.
+
+---
+
+## 1. Analisis Visual & Spesifikasi Desain
+
+### A. Komponen Utama Layar (Berdasarkan Foto Referensi)
+
+1. **Section 1: Hero Experience (Gambar 1)**
+   - **Background**: Ungu-Biru Gradient (`bg-[#5b13ec]` / `bg-gradient-to-r from-[#3b82f6] to-[#5b13ec]`) dengan tekstur retro halus.
+   - **Judul Raksasa "EXPER I ENCE"**:
+     - Teks warna kuning neon (`#e5fc34` / `#f6ed28`), font `League Spartan` (`font-spartan font-black`).
+     - Di tengah-tengah antara kata "EXPER" dan "ENCE", terdapat **Foto Danu berdiri memakai jas** (`danu-jas.png` / `danu.png`) yang bertindak melambangkan huruf "I".
+     - Aksesori Crop Marks / Cross (`+`) kecil di sudut-sudut huruf "E" awal dan akhir.
+   - **Timeline Horizontal (Overview)**:
+     - Garis horizontal warna kuning neon (`#e5fc34`) dengan 3 titik node lingkaran kuning (`●`).
+     - **Node 1 (2024)**: Teks `2024 (June - December)` di atas garis, Logo **Horison Altama Pandeglang** di bawah garis.
+     - **Node 2 (2025)**: Logo **FABULA** di atas garis, Teks `2025 (August - December)` di bawah garis.
+     - **Node 3 (2026)**: Teks `2026 (Februari - juli)` di atas garis, Logo **NEO DIGITAL** di bawah garis.
+
+2. **Section 2: Container Detail Experience (Gambar 2 & 3)**
+   - **Wadah / Frame Krem**: Kotak besar warna krem / paper texture (`bg-[#f4f1d6]` / `bg-[#ece8cd]`) dengan border tipis pekat dan shadow.
+   - **Garis Timeline Vertikal Ungu**: Garis lurus ungu di sebelah kiri beserta lingkaran titik ungu pada tiap entri pengalaman.
+   - **Detail Pengalaman**:
+     1. **HORISON ALTAMA PANDEGLANG**
+        - Deskripsi: *"Horison Altama Pandeglang is a modern hospitality destination strategically located in Pandeglang, Banten. Combining comfort, professional service, and well-appointed facilities, the hotel offers an exceptional experience for both business and leisure travelers."*
+        - Posisi/Peran: `as marketing communication` (Teks warna ungu, posisi kanan bawah).
+     2. **FABULA**
+        - Deskripsi: *"Via Fabula is a creative agency focused on storytelling, and event organizing. Through compelling narratives, innovative creative solutions, and memorable experiences, Via Fabula helps brands connect with their audiences in meaningful and impactful ways."*
+        - Posisi/Peran: `as graphic designer` (Teks warna ungu, posisi kanan bawah).
+     3. **NEO DIGITAL**
+        - Deskripsi: *"Neo Digital is a creative and technology-driven company specializing in digital solutions, innovative marketing strategies, and brand development. By combining creativity with technology, Neo Digital helps businesses strengthen their digital presence and connect effectively with their target audience."*
+        - Posisi/Peran: `as visual designer` (Teks warna ungu, posisi kanan bawah).
+
+---
+
+## 2. Struktur Folder & Komponen Modular
+
+Sesuai dengan arsitektur folder yang sudah disiapkan pada [`src/pages/sections/Experience/`](file:///d:/data%20rayhan/programs/project-2/portfolio-danu/src/pages/sections/Experience):
+
+```
+src/pages/sections/Experience/
+├── Experience.tsx                      ← Main Section Component (Komposer Utama)
+├── data/
+│   └── experienceData.ts               ← Array Data Statis (Perusahaan, Tahun, Deskripsi, Peran)
+└── components/
+    ├── ExperienceHero.tsx              ← Sub-komponen Judul Raksasa "EXPER I ENCE" + Foto Danu
+    ├── ExperienceTimelineOverview.tsx  ← Sub-komponen Timeline Horizontal (Kuning) + Logo
+    ├── ExperienceDetailCard.tsx        ← Sub-komponen Kartu Individu Detail Pengalaman
+    └── ExperienceDetailSection.tsx     ← Sub-komponen Container Krem & Garis Vertikal Ungu
+```
+
+---
+
+## 3. Strategi Responsif (Mobile → Desktop)
+
+| Breakpoint | Layout Hero & Timeline Overview | Layout Container Detail |
+|---|---|---|
+| **Mobile (< 768px)** | - Judul `text-4xl sm:text-6xl`<br>- Foto Danu diskalakan rapi<br>- Timeline Horizontal diset `overflow-x-auto` (dapat di-swipe) atau stacked vertikal | - Container krem `p-4 sm:p-6`<br>- Garis vertikal ungu disesuaikan agar tidak menghalangi teks<br>- Teks peran `as ...` rapi di kanan bawah |
+| **Tablet (768px - 1023px)** | - Judul `text-6xl md:text-7xl`<br>- Timeline horizontal menyesuaikan lebar layar | - Container krem `p-8 sm:p-10`<br>- Padding dan font-size sedang |
+| **Desktop (≥ 1024px)** | - Judul `text-8xl lg:text-9xl` persis Gambar 1<br>- Full Horizontal Timeline | - Container krem lebar `max-w-6xl` di tengah (persis Gambar 2 & 3) |
+
+---
+
+## 4. Blueprint / Kode Lengkap Setiap File
+
+### Step 1: File Data Statis [`src/pages/sections/Experience/data/experienceData.ts`](file:///d:/data%20rayhan/programs/project-2/portfolio-danu/src/pages/sections/Experience/data/experienceData.ts)
+
+```typescript
+export interface TimelineOverviewItem {
+  id: string;
+  year: string;
+  period: string;
+  logo: string;
+  companyName: string;
+  position: "top" | "bottom"; // Menentukan logo di atas atau di bawah garis horizontal
+}
+
+export interface ExperienceDetailItem {
+  id: string;
+  companyName: string;
+  description: string;
+  role: string;
+}
+
+export const timelineOverviewList: TimelineOverviewItem[] = [
+  {
+    id: "horison",
+    year: "2024",
+    period: "(June - December)",
+    logo: `${import.meta.env.BASE_URL}img/experience/horison.png`,
+    companyName: "HORISON ALTAMA PANDEGLANG",
+    position: "top",
+  },
+  {
+    id: "fabula",
+    year: "2025",
+    period: "(August - December)",
+    logo: `${import.meta.env.BASE_URL}img/experience/fabula.png`,
+    companyName: "FABULA",
+    position: "bottom",
+  },
+  {
+    id: "neodigital",
+    year: "2026",
+    period: "(Februari - juli)",
+    logo: `${import.meta.env.BASE_URL}img/experience/neodigital.png`,
+    companyName: "NEO DIGITAL",
+    position: "top",
+  },
+];
+
+export const experienceDetailList: ExperienceDetailItem[] = [
+  {
+    id: "horison-detail",
+    companyName: "HORISON ALTAMA PANDEGLANG",
+    description:
+      "Horison Altama Pandeglang is a modern hospitality destination strategically located in Pandeglang, Banten. Combining comfort, professional service, and well-appointed facilities, the hotel offers an exceptional experience for both business and leisure travelers.",
+    role: "as marketing communication",
+  },
+  {
+    id: "fabula-detail",
+    companyName: "FABULA",
+    description:
+      "Via Fabula is a creative agency focused on storytelling, and event organizing. Through compelling narratives, innovative creative solutions, and memorable experiences, Via Fabula helps brands connect with their audiences in meaningful and impactful ways.",
+    role: "as graphic designer",
+  },
+  {
+    id: "neodigital-detail",
+    companyName: "NEO DIGITAL",
+    description:
+      "Neo Digital is a creative and technology-driven company specializing in digital solutions, innovative marketing strategies, and brand development. By combining creativity with technology, Neo Digital helps businesses strengthen their digital presence and connect effectively with their target audience.",
+    role: "as visual designer",
+  },
+];
+```
+
+---
+
+### Step 2: Komponen [`ExperienceHero.tsx`](file:///d:/data%20rayhan/programs/project-2/portfolio-danu/src/pages/sections/Experience/components/ExperienceHero.tsx)
+
+```tsx
+export default function ExperienceHero() {
+  return (
+    <div className="relative w-full flex flex-col items-center justify-center pt-8 sm:pt-12 md:pt-16 pb-6 select-none">
+      {/* Ornamen Crop Marks (+) */}
+      <div className="absolute top-4 left-6 text-white/60 text-lg sm:text-xl font-light">+</div>
+      <div className="absolute top-4 right-6 text-white/60 text-lg sm:text-xl font-light">+</div>
+
+      {/* Container Judul EXPER I ENCE */}
+      <div className="relative flex items-center justify-center gap-1 sm:gap-2 md:gap-4 font-spartan font-black text-5xl sm:text-7xl md:text-8xl lg:text-9xl tracking-tight leading-none text-[#e5fc34]">
+        {/* Teks Kiri "EXPER" */}
+        <span className="relative">
+          EXPER
+          <span className="absolute -top-2 -left-2 text-white text-xs font-normal">+</span>
+          <span className="absolute -bottom-2 -left-2 text-white text-xs font-normal">+</span>
+        </span>
+
+        {/* Foto Danu di Tengah (Menjadi huruf "I") */}
+        <div className="relative h-16 sm:h-24 md:h-32 lg:h-40 w-8 sm:w-12 md:w-16 lg:w-20 flex items-end justify-center shrink-0">
+          <img
+            src={`${import.meta.env.BASE_URL}img/profile/danu-jas.png`}
+            alt="Danu"
+            className="h-full object-contain drop-shadow-xl"
+          />
+        </div>
+
+        {/* Teks Kanan "ENCE" */}
+        <span className="relative">
+          ENCE
+          <span className="absolute -top-2 -right-2 text-white text-xs font-normal">+</span>
+          <span className="absolute -bottom-2 -right-2 text-white text-xs font-normal">+</span>
+        </span>
+      </div>
+    </div>
+  );
+}
+```
+
+---
+
+### Step 3: Komponen [`ExperienceTimelineOverview.tsx`](file:///d:/data%20rayhan/programs/project-2/portfolio-danu/src/pages/sections/Experience/components/ExperienceTimelineOverview.tsx)
+
+```tsx
+import { timelineOverviewList } from "../data/experienceData";
+
+export default function ExperienceTimelineOverview() {
+  return (
+    <div className="w-full max-w-5xl mx-auto py-8 px-4 overflow-x-auto">
+      <div className="min-w-[600px] relative flex flex-col items-center">
+        {/* Garis Horizontal Kuning */}
+        <div className="relative w-full h-[3px] bg-[#e5fc34] flex items-center justify-between my-16 px-12">
+          {/* Ujung Kanan-Kiri Garis Barbell */}
+          <div className="absolute left-0 w-2 h-2 rounded-full bg-[#e5fc34]" />
+          <div className="absolute right-0 w-2 h-2 rounded-full bg-[#e5fc34]" />
+
+          {/* Node Iterasi 3 Perusahaan */}
+          {timelineOverviewList.map((item) => (
+            <div key={item.id} className="relative flex flex-col items-center">
+              {/* Lingkaran Node Kuning */}
+              <div className="w-5 h-5 rounded-full bg-[#e5fc34] border-2 border-[#5b13ec] shadow-md z-10" />
+
+              {/* Element Atas Garis */}
+              <div className="absolute bottom-8 flex flex-col items-center text-center">
+                {item.position === "top" ? (
+                  <>
+                    <span className="font-spartan font-bold text-lg sm:text-xl text-[#e5fc34]">
+                      {item.year}
+                    </span>
+                    <span className="font-sans italic text-xs text-white/90">
+                      {item.period}
+                    </span>
+                  </>
+                ) : (
+                  <div className="h-10 flex items-center justify-center">
+                    <img
+                      src={item.logo}
+                      alt={item.companyName}
+                      className="max-h-8 object-contain filter brightness-0 invert"
+                      onError={(e) => {
+                        /* Fallback jika logo belum ada */
+                        e.currentTarget.style.display = "none";
+                      }}
+                    />
+                    <span className="font-bold text-white text-sm">
+                      {item.companyName}
+                    </span>
+                  </div>
+                )}
+              </div>
+
+              {/* Element Bawah Garis */}
+              <div className="absolute top-8 flex flex-col items-center text-center">
+                {item.position === "top" ? (
+                  <div className="h-10 flex items-center justify-center">
+                    <img
+                      src={item.logo}
+                      alt={item.companyName}
+                      className="max-h-8 object-contain filter brightness-0 invert"
+                      onError={(e) => {
+                        e.currentTarget.style.display = "none";
+                      }}
+                    />
+                    <span className="font-bold text-white text-sm">
+                      {item.companyName}
+                    </span>
+                  </div>
+                ) : (
+                  <>
+                    <span className="font-spartan font-bold text-lg sm:text-xl text-[#e5fc34]">
+                      {item.year}
+                    </span>
+                    <span className="font-sans italic text-xs text-white/90">
+                      {item.period}
+                    </span>
+                  </>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+```
+
+---
+
+### Step 4: Komponen [`ExperienceDetailCard.tsx`](file:///d:/data%20rayhan/programs/project-2/portfolio-danu/src/pages/sections/Experience/components/ExperienceDetailCard.tsx)
+
+```tsx
+import type { ExperienceDetailItem } from "../data/experienceData";
+
+interface ExperienceDetailCardProps {
+  item: ExperienceDetailItem;
+}
+
+export default function ExperienceDetailCard({ item }: ExperienceDetailCardProps) {
+  return (
+    <div className="relative pl-8 sm:pl-12 pb-10 last:pb-0">
+      {/* Node Lingkaran Ungu di Garis Vertikal */}
+      <div className="absolute left-[-9px] top-1.5 w-4 h-4 rounded-full bg-[#5b13ec] border-2 border-white shadow-md z-10" />
+
+      {/* Nama Perusahaan */}
+      <h3 className="font-spartan font-bold text-xl sm:text-2xl md:text-3xl text-[#5b13ec] uppercase tracking-wide mb-2">
+        {item.companyName}
+      </h3>
+
+      {/* Deskripsi Perusahaan */}
+      <p className="font-sans text-xs sm:text-sm text-slate-800 leading-relaxed font-normal max-w-4xl mb-3">
+        {item.description}
+      </p>
+
+      {/* Posisi / Role (Kanan Bawah) */}
+      <div className="w-full flex justify-end">
+        <span className="font-sans italic text-sm sm:text-base md:text-lg text-[#5b13ec] font-semibold">
+          {item.role}
+        </span>
+      </div>
+    </div>
+  );
+}
+```
+
+---
+
+### Step 5: Komponen [`ExperienceDetailSection.tsx`](file:///d:/data%20rayhan/programs/project-2/portfolio-danu/src/pages/sections/Experience/components/ExperienceDetailSection.tsx)
+
+```tsx
+import { experienceDetailList } from "../data/experienceData";
+import ExperienceDetailCard from "./ExperienceDetailCard";
+
+export default function ExperienceDetailSection() {
+  return (
+    <div className="w-full max-w-6xl mx-auto py-10 px-4 sm:px-6 lg:px-8">
+      {/* Frame Krem (Paper Textured Container) */}
+      <div className="w-full bg-[#f4f1d6] p-6 sm:p-10 md:p-14 rounded-2xl sm:rounded-3xl shadow-2xl border-2 border-black/10 relative">
+        {/* Garis Vertikal Ungu di Sisi Kiri */}
+        <div className="relative border-l-2 border-[#5b13ec] ml-2 sm:ml-4">
+          {experienceDetailList.map((item) => (
+            <ExperienceDetailCard key={item.id} item={item} />
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+```
+
+---
+
+### Step 6: Main Composer [`Experience.tsx`](file:///d:/data%20rayhan/programs/project-2/portfolio-danu/src/pages/sections/Experience/Experience.tsx)
+
+```tsx
+import ExperienceHero from "./components/ExperienceHero";
+import ExperienceTimelineOverview from "./components/ExperienceTimelineOverview";
+import ExperienceDetailSection from "./components/ExperienceDetailSection";
+
+export default function Experience() {
+  return (
+    <section
+      id="experience"
+      className="relative w-full min-h-screen bg-[#5b13ec] text-white overflow-x-hidden font-sans py-8 px-4 sm:px-8"
+    >
+      {/* 1. Hero Section "EXPER I ENCE" */}
+      <ExperienceHero />
+
+      {/* 2. Horizontal Timeline Overview (2024 - 2025 - 2026) */}
+      <ExperienceTimelineOverview />
+
+      {/* 3. Detail Container Krem Pengalaman */}
+      <ExperienceDetailSection />
+    </section>
+  );
+}
+```
+
+---
+
+## 5. Checklist Langkah Pengerjaan
+
+- [ ] **Langkah 1**: Buat file data [`experienceData.ts`](file:///d:/data%20rayhan/programs/project-2/portfolio-danu/src/pages/sections/Experience/data/experienceData.ts).
+- [ ] **Langkah 2**: Buat sub-komponen [`ExperienceHero.tsx`](file:///d:/data%20rayhan/programs/project-2/portfolio-danu/src/pages/sections/Experience/components/ExperienceHero.tsx).
+- [ ] **Langkah 3**: Buat sub-komponen [`ExperienceTimelineOverview.tsx`](file:///d:/data%20rayhan/programs/project-2/portfolio-danu/src/pages/sections/Experience/components/ExperienceTimelineOverview.tsx).
+- [ ] **Langkah 4**: Buat sub-komponen [`ExperienceDetailCard.tsx`](file:///d:/data%20rayhan/programs/project-2/portfolio-danu/src/pages/sections/Experience/components/ExperienceDetailCard.tsx).
+- [ ] **Langkah 5**: Buat sub-komponen [`ExperienceDetailSection.tsx`](file:///d:/data%20rayhan/programs/project-2/portfolio-danu/src/pages/sections/Experience/components/ExperienceDetailSection.tsx).
+- [ ] **Langkah 6**: Update [`Experience.tsx`](file:///d:/data%20rayhan/programs/project-2/portfolio-danu/src/pages/sections/Experience/Experience.tsx).
+- [ ] **Langkah 7**: Jalankan `npx tsc --noEmit` untuk verifikasi tipe TypeScript.
+
