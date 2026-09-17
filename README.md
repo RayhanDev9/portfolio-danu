@@ -1,227 +1,252 @@
+# Plan Implementasi Footer "Lets CONNECT There"
 
-# Plan Perbaikan: Skala Ukuran (Scale) & Background Gradient Halaman Experience
-
-Dokumen ini berisi rencana perbaikan detail untuk mengatasi **ukuran yang terlalu kecil** serta menambahkan **background gradient dari Biru (atas/awal) ke Ungu (bawah/akhir)** sesuai dengan gambar referensi yang diberikan.
+Panduan implementasi **Footer** untuk portofolio Danu, dari desain desktop hingga **responsif mobile**. Ditulis untuk junior programmer dan low-cost AI.
 
 ---
 
-## 1. Analisis Kebutuhan & Masalah Saat Ini
+## 1. Analisis Visual (Berdasarkan Foto Referensi)
 
-| Bagian | Masalah Saat Ini | Target Perbaikan (Sesuai Referensi Gambar) |
+```
++---------------------------------------------------------------+
+| [Background: Ungu Tua/Gelap #2d0fa3]                         |
+| [Diagonal stripe pattern tipis di background - efek retro]   |
+|                                                               |
+|         Lets   CONNECT   There                                |
+|         (putih) (KUNING)  (putih)                             |
+|                                                               |
+|  +------------------+  +------------------+  +------------+  |
+|  |  NAVIGATION      |  |  Gmail           |  |  [Foto     |  |
+|  |  (kuning bold)   |  |  (kuning bold)   |  |  Danu Jas  |  |
+|  |                  |  |  Danusatya9@...  |  |  Melambai] |  |
+|  |  Home            |  |                  |  |            |  |
+|  |  Experience      |  |  Instagram       |  |            |  |
+|  |  Graphic designer|  |  (kuning bold)   |  |            |  |
+|  |  Motion graphic  |  |  dnustya_        |  |            |  |
+|  |  Contact         |  |                  |  |            |  |
+|  |                  |  |  WhatsApp        |  |            |  |
+|  |  (italic+underln)|  |  (kuning bold)   |  |            |  |
+|  |                  |  |  +62 881...      |  |            |  |
+|  +------------------+  +------------------+  +------------+  |
+|                                                               |
+|  ---------------------------------------------------------   |
+|  (c) 2026                                                     |
++---------------------------------------------------------------+
+```
+
+---
+
+## 2. Spesifikasi Detail Visual
+
+### A. Warna
+| Elemen | Warna | Tailwind Class |
 |---|---|---|
-| **Background Warna** | Background flat ungu tunggal (`#5b13ec`) | **Gradient Horisontal**: Biru Elektrik (`#1d59f3` / `#2563eb`) di sisi kiri beralih mulus ke Ungu Elektrik (`#5b13ec`) di sisi kanan. |
-| **Judul "EXPER I ENCE"** | Ukuran font terlalu kecil (`text-5xl ... text-9xl`), terkesan tenggelam | **Extra Large Scale**: Diperbesar hingga `text-6xl sm:text-8xl md:text-9xl lg:text-[11rem] xl:text-[13rem]` dengan line-height padat (`leading-none`). |
-| **Foto Danu ("I")** | Ukuran terlalu kecil (`h-16 ... h-40`) tidak seimbang dengan teks | **Proporsional Full Height**: Tinggi foto dinaikkan menjadi `h-32 sm:h-48 md:h-64 lg:h-80 xl:h-[22rem]`, kepala sejajar puncak huruf dan kaki sejajar dasar huruf. |
-| **Ornamen Crop Marks (+)** | Hanya 2 titik di atas | Ditambahkan di 4 sudut luar area hero dan 4 sudut di teks `EXPER` & `ENCE` persis seperti desain referensi. |
-| **Timeline Horizontal** | Max width sempit (`max-w-5xl`), node & garis kecil | Lebar dinaikkan ke `max-w-7xl`, garis lebih tebal (`h-[4px]`), node lingkaran diperbesar (`w-6 h-6`), teks tahun lebih besar (`text-xl sm:text-2xl`), dan logo diperjelas. |
+| Background footer | Ungu gelap lebih tua | `bg-[#2d0fa3]` |
+| Stripe diagonal di bg | Garis miring putih tipis (CSS) | Inline style |
+| Teks "Lets" dan "There" | Putih | `text-white` |
+| Teks "CONNECT" | Kuning neon | `text-[#e5fc34]` |
+| Label kolom (NAVIGATION, Gmail, dll) | Kuning neon bold | `text-[#e5fc34] font-bold` |
+| Link navigasi | Putih, italic, underline | `text-white italic underline` |
+| Teks kontak | Putih | `text-white` |
+| Garis pemisah bawah | Putih transparan | `border-white/30` |
+| Teks copyright | Putih | `text-white` |
+
+### B. Tipografi
+- **"Lets CONNECT There"**: "Lets" dan "There" pakai `font-playfair italic`, "CONNECT" pakai `font-spartan font-black`
+- **Label Kolom**: `font-spartan font-bold text-[#e5fc34]`
+- **Link Navigasi**: `font-sans italic underline text-white`
+- **Teks Kontak**: `font-sans text-white`
 
 ---
 
-## 2. Spesifikasi Visual & Kode Warna
+## 3. Strategi Responsif (Mobile ke Desktop)
 
-### A. Palet Gradient Background
-- **Warna Awal (Start / Kiri)**: Biru Elektrik Royal (`#1d59f3` / `#235bf6`)
-- **Warna Tengah (Transition / Middle)**: Indigo Violet (`#4328ec`)
-- **Warna Akhir (End / Kanan)**: Electric Purple (`#5b13ec`)
-- **Tailwind Class**: `bg-gradient-to-r from-[#1d59f3] via-[#4328ec] to-[#5b13ec]`
-
-### B. Skala Tipografi & Elemen
-- **Font EXPER & ENCE**: `font-spartan font-black text-6xl sm:text-8xl md:text-9xl lg:text-[11rem] xl:text-[13rem] tracking-tight leading-none text-[#e5fc34]`
-- **Container Foto Danu**: `h-32 sm:h-48 md:h-64 lg:h-80 xl:h-[22rem] w-auto max-w-[200px] flex items-end justify-center`
-- **Garis Timeline**: `h-[4px] bg-[#e5fc34]` dengan node lingkaran kuning `w-6 h-6 border-[3px]`
-- **Teks Tahun Node**: `text-xl sm:text-2xl md:text-3xl font-bold text-[#e5fc34]`
-- **Teks Periode Node**: `text-xs sm:text-sm italic text-white/90`
-- **Logo Vendor**: `max-h-10 sm:max-h-12 md:max-h-14`
+| Breakpoint | Layout Kolom | Foto Danu | Judul |
+|---|---|---|---|
+| **Mobile (< 768px)** | 1 kolom stack vertikal | Tersembunyi (`hidden`) | `text-3xl` |
+| **Tablet (768px-1023px)** | 2 kolom: Navigasi + Kontak | Tersembunyi (`hidden`) | `text-5xl` |
+| **Desktop (>=1024px)** | 3 kolom: Navigasi + Kontak + Foto | Tampil di kanan | `text-7xl` |
 
 ---
 
-## 3. Blueprint / Rencana Kode Komponen
-
-### File 1: [`src/pages/sections/Experience/Experience.tsx`](file:///d:/data%20rayhan/programs/project-2/portfolio-danu/src/pages/sections/Experience/Experience.tsx)
-Perubahan: Mengganti warna background flat menjadi linear gradient (Biru ke Ungu) pada pembungkus utama halaman.
+## 4. Data Konten Footer
 
 ```tsx
-import ExperienceHero from "./components/ExperienceHero";
-import ExperienceTimelineOverview from "./components/ExperienceTimelineOverview";
-import ExperienceDetailSection from "./components/ExperienceDetailSection";
+const navLinks = [
+  { label: "Home", href: "/" },
+  { label: "Experience", href: "/experience" },
+  { label: "Graphic designer", href: "/graphic-design" },
+  { label: "Motion graphic", href: "/motion-graphic" },
+  { label: "Contact", href: "/contact" },
+];
 
-export default function Experience() {
+const contactList = [
+  {
+    label: "Gmail",
+    value: "Danusatya9@gmail.com",
+    href: "mailto:Danusatya9@gmail.com",
+  },
+  {
+    label: "Instagram",
+    value: "dnustya_",
+    href: "https://instagram.com/dnustya_",
+  },
+  {
+    label: "WhatsApp",
+    value: "+62 881 010 069 341",
+    href: "https://wa.me/62881010069341",
+  },
+];
+```
+
+---
+
+## 5. Blueprint Kode Lengkap `Footer.tsx`
+
+Salin kode ini ke [`src/components/layout/Footer.tsx`](file:///d:/data%20rayhan/programs/project-2/portfolio-danu/src/components/layout/Footer.tsx):
+
+```tsx
+import { Link } from "react-router-dom";
+
+const navLinks = [
+  { label: "Home", href: "/" },
+  { label: "Experience", href: "/experience" },
+  { label: "Graphic designer", href: "/graphic-design" },
+  { label: "Motion graphic", href: "/motion-graphic" },
+  { label: "Contact", href: "/contact" },
+];
+
+const contactList = [
+  {
+    label: "Gmail",
+    value: "Danusatya9@gmail.com",
+    href: "mailto:Danusatya9@gmail.com",
+  },
+  {
+    label: "Instagram",
+    value: "dnustya_",
+    href: "https://instagram.com/dnustya_",
+  },
+  {
+    label: "WhatsApp",
+    value: "+62 881 010 069 341",
+    href: "https://wa.me/62881010069341",
+  },
+];
+
+export default function Footer() {
   return (
-    <section
-      id="experience"
-      className="relative w-full min-h-screen bg-gradient-to-r from-[#1d59f3] via-[#4328ec] to-[#5b13ec] text-white overflow-x-hidden font-sans py-12 px-4 sm:px-8 md:px-12 flex flex-col justify-between"
+    <footer
+      id="footer"
+      className="relative w-full bg-[#2d0fa3] text-white overflow-hidden font-sans select-none"
+      style={{
+        backgroundImage:
+          "repeating-linear-gradient(120deg, transparent, transparent 40px, rgba(255,255,255,0.04) 40px, rgba(255,255,255,0.04) 80px)",
+      }}
     >
-      {/* 1. Hero Section "EXPER I ENCE" (Skala Besar) */}
-      <ExperienceHero />
-
-      {/* 2. Horizontal Timeline Overview (Skala Besar & Luas) */}
-      <ExperienceTimelineOverview />
-
-      {/* 3. Detail Container Krem Pengalaman */}
-      <ExperienceDetailSection />
-    </section>
-  );
-}
-```
-
----
-
-### File 2: [`src/pages/sections/Experience/components/ExperienceHero.tsx`](file:///d:/data%20rayhan/programs/project-2/portfolio-danu/src/pages/sections/Experience/components/ExperienceHero.tsx)
-Perubahan:
-- Menaikkan ukuran font judul raksasa `EXPER I ENCE` agar memenuhi layar secara proporsional.
-- Memperbesar foto Danu sehingga tingginya pas menyatu dari ujung atas huruf hingga ujung bawah huruf.
-- Menambahkan ornamen crop marks `+` di sudut-sudut framing.
-
-```tsx
-export default function ExperienceHero() {
-  return (
-    <div className="relative w-full max-w-7xl mx-auto flex flex-col items-center justify-center pt-8 sm:pt-12 md:pt-16 pb-8 select-none">
-      {/* Ornamen Crop Marks (+) di Sudut-Sudut Luar */}
-      <div className="absolute top-2 left-2 text-white/70 text-xl font-light pointer-events-none">+</div>
-      <div className="absolute top-2 right-2 text-white/70 text-xl font-light pointer-events-none">+</div>
-      <div className="absolute bottom-2 left-2 text-white/50 text-xl font-light pointer-events-none">+</div>
-      <div className="absolute bottom-2 right-2 text-white/50 text-xl font-light pointer-events-none">+</div>
-
-      {/* Container Judul EXPER I ENCE Raksasa */}
-      <div className="relative flex items-center justify-center gap-2 sm:gap-4 md:gap-6 font-spartan font-black text-6xl sm:text-8xl md:text-9xl lg:text-[11rem] xl:text-[13rem] tracking-tight leading-none text-[#e5fc34]">
-        {/* Teks Kiri "EXPER" */}
-        <span className="relative">
-          EXPER
-          <span className="absolute -top-3 -left-3 text-white text-xs sm:text-sm font-normal">+</span>
-          <span className="absolute -bottom-3 -left-3 text-white text-xs sm:text-sm font-normal">+</span>
-        </span>
-
-        {/* Foto Danu di Tengah (Menjadi huruf "I" yang tinggi dan pas) */}
-        <div className="relative h-32 sm:h-48 md:h-64 lg:h-80 xl:h-[22rem] flex items-end justify-center shrink-0">
-          <img
-            src={`${import.meta.env.BASE_URL}img/profile/danu-jas.png`}
-            alt="Danu"
-            className="h-full object-contain drop-shadow-2xl"
-          />
-        </div>
-
-        {/* Teks Kanan "ENCE" */}
-        <span className="relative">
-          ENCE
-          <span className="absolute -top-3 -right-3 text-white text-xs sm:text-sm font-normal">+</span>
-          <span className="absolute -bottom-3 -right-3 text-white text-xs sm:text-sm font-normal">+</span>
-        </span>
+      {/* Judul "Lets CONNECT There" */}
+      <div className="w-full text-center pt-10 sm:pt-14 pb-6 sm:pb-8 px-4">
+        <h2 className="font-spartan tracking-tight leading-tight text-3xl sm:text-5xl md:text-6xl lg:text-7xl">
+          <span className="font-playfair italic font-normal text-white">
+            Lets{" "}
+          </span>
+          <span className="font-black text-[#e5fc34]">CONNECT </span>
+          <span className="font-playfair italic font-normal text-white">
+            There
+          </span>
+        </h2>
       </div>
-    </div>
-  );
-}
-```
 
----
+      {/* Grid 3 Kolom */}
+      <div className="relative w-full max-w-6xl mx-auto px-6 sm:px-10 lg:px-16 pb-8 sm:pb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10 lg:gap-6">
 
-### File 3: [`src/pages/sections/Experience/components/ExperienceTimelineOverview.tsx`](file:///d:/data%20rayhan/programs/project-2/portfolio-danu/src/pages/sections/Experience/components/ExperienceTimelineOverview.tsx)
-Perubahan:
-- Melebarkan kontainer timeline menjadi `max-w-7xl`.
-- Mempertebal garis menjadi `h-[4px]` atau `h-[5px]` dengan warna neon yellow menyala.
-- Memperbesar ukuran lingkaran node titik node (`w-6 h-6 sm:w-7 sm:h-7`).
-- Memperbesar font tahun (`text-xl sm:text-2xl md:text-3xl`) dan memperbesar preview logo vendor.
+          {/* Kolom 1: NAVIGATION */}
+          <div>
+            <h3 className="font-spartan font-bold text-lg sm:text-xl text-[#e5fc34] mb-4 tracking-wide uppercase">
+              Navigation
+            </h3>
+            <ul className="flex flex-col gap-2 sm:gap-2.5">
+              {navLinks.map((link) => (
+                <li key={link.href}>
+                  <Link
+                    to={link.href}
+                    className="font-sans italic underline text-white/90 text-sm sm:text-base hover:text-[#e5fc34] transition-colors duration-200"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
 
-```tsx
-import { timelineOverviewList } from "../data/experienceData";
-
-export default function ExperienceTimelineOverview() {
-  return (
-    <div className="w-full max-w-7xl mx-auto py-12 px-4 sm:px-8 overflow-x-auto">
-      <div className="min-w-[720px] relative flex flex-col items-center">
-        {/* Garis Horizontal Kuning Tebal */}
-        <div className="relative w-full h-[4px] bg-[#e5fc34] flex items-center justify-between my-24 px-12 sm:px-16">
-          {/* Ujung Kiri-Kanan Garis Barbell */}
-          <div className="absolute left-0 w-3 h-3 rounded-full bg-[#e5fc34]" />
-          <div className="absolute right-0 w-3 h-3 rounded-full bg-[#e5fc34]" />
-
-          {/* Node Iterasi 3 Perusahaan */}
-          {timelineOverviewList.map((item) => (
-            <div key={item.id} className="relative flex flex-col items-center">
-              {/* Lingkaran Node Kuning Lebih Besar */}
-              <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-[#e5fc34] border-[3px] border-[#4328ec] shadow-lg z-10 transition-transform hover:scale-125" />
-
-              {/* Element di Atas Garis */}
-              <div className="absolute bottom-10 flex flex-col items-center text-center w-max">
-                {item.position === "top" ? (
-                  <>
-                    <span className="font-spartan font-bold text-xl sm:text-2xl md:text-3xl text-[#e5fc34] tracking-wide">
-                      {item.year}
-                    </span>
-                    <span className="font-sans italic text-xs sm:text-sm text-white/90 mt-0.5">
-                      {item.period}
-                    </span>
-                  </>
-                ) : (
-                  <div className="h-14 flex flex-col items-center justify-center gap-1">
-                    <img
-                      src={item.logo}
-                      alt={item.companyName}
-                      className="max-h-10 sm:max-h-12 object-contain filter brightness-0 invert drop-shadow-md"
-                      onError={(e) => {
-                        e.currentTarget.style.display = "none";
-                        const sibling = e.currentTarget.nextElementSibling as HTMLElement;
-                        if (sibling) sibling.style.display = "block";
-                      }}
-                    />
-                    <span
-                      className="font-bold text-white text-sm hidden"
-                      style={{ display: "none" }}
-                    >
-                      {item.companyName}
-                    </span>
-                  </div>
-                )}
+          {/* Kolom 2: Kontak */}
+          <div className="flex flex-col gap-5 sm:gap-6">
+            {contactList.map((item) => (
+              <div key={item.label}>
+                <h3 className="font-spartan font-bold text-lg sm:text-xl text-[#e5fc34] leading-tight">
+                  {item.label}
+                </h3>
+                <a
+                  href={item.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="font-sans text-sm sm:text-base text-white/90 underline hover:text-[#e5fc34] transition-colors duration-200 break-all"
+                >
+                  {item.value}
+                </a>
               </div>
+            ))}
+          </div>
 
-              {/* Element di Bawah Garis */}
-              <div className="absolute top-10 flex flex-col items-center text-center w-max">
-                {item.position === "top" ? (
-                  <div className="h-14 flex flex-col items-center justify-center gap-1">
-                    <img
-                      src={item.logo}
-                      alt={item.companyName}
-                      className="max-h-10 sm:max-h-12 object-contain filter brightness-0 invert drop-shadow-md"
-                      onError={(e) => {
-                        e.currentTarget.style.display = "none";
-                        const sibling = e.currentTarget.nextElementSibling as HTMLElement;
-                        if (sibling) sibling.style.display = "block";
-                      }}
-                    />
-                    <span
-                      className="font-bold text-white text-sm"
-                      style={{ display: "none" }}
-                    >
-                      {item.companyName}
-                    </span>
-                  </div>
-                ) : (
-                  <>
-                    <span className="font-spartan font-bold text-xl sm:text-2xl md:text-3xl text-[#e5fc34] tracking-wide">
-                      {item.year}
-                    </span>
-                    <span className="font-sans italic text-xs sm:text-sm text-white/90 mt-0.5">
-                      {item.period}
-                    </span>
-                  </>
-                )}
-              </div>
-            </div>
-          ))}
+          {/* Kolom 3: Foto Danu — hanya tampil di desktop (lg+) */}
+          <div className="hidden lg:flex items-end justify-center lg:justify-end">
+            <img
+              src={`${import.meta.env.BASE_URL}img/profile/danu-jas.png`}
+              alt="Danu"
+              className="h-64 xl:h-80 object-contain object-bottom drop-shadow-2xl"
+            />
+          </div>
+
         </div>
       </div>
-    </div>
+
+      {/* Garis Pemisah + Copyright */}
+      <div className="w-full border-t border-white/30 px-6 sm:px-10 lg:px-16 py-4 sm:py-5">
+        <p className="font-spartan text-base sm:text-lg text-white font-normal">
+          © 2026
+        </p>
+      </div>
+    </footer>
   );
 }
 ```
 
 ---
 
-## 4. Checklist Rencana Eksekusi
+## 6. Update RootLayout.tsx
 
-- [ ] **Langkah 1**: Update background gradient di [`Experience.tsx`](file:///d:/data%20rayhan/programs/project-2/portfolio-danu/src/pages/sections/Experience/Experience.tsx).
-- [ ] **Langkah 2**: Update skala judul, foto Danu, dan ornamen crop marks di [`ExperienceHero.tsx`](file:///d:/data%20rayhan/programs/project-2/portfolio-danu/src/pages/sections/Experience/components/ExperienceHero.tsx).
-- [ ] **Langkah 3**: Update skala timeline, node, dan logo di [`ExperienceTimelineOverview.tsx`](file:///d:/data%20rayhan/programs/project-2/portfolio-danu/src/pages/sections/Experience/components/ExperienceTimelineOverview.tsx).
-- [ ] **Langkah 4**: Jalankan `npx tsc --noEmit` untuk validasi tipe TypeScript.
-- [ ] **Langkah 5**: Verifikasi visual di browser pada zoom 100% dan mode responsif.
+Tambahkan `<Footer />` ke [`src/pages/RootLayout.tsx`](file:///d:/data%20rayhan/programs/project-2/portfolio-danu/src/pages/RootLayout.tsx):
 
+```tsx
+import { Outlet } from "react-router-dom";
+import Footer from "../components/layout/Footer";
 
+export default function RootLayout() {
+  return (
+    <>
+      <Outlet />
+      <Footer />
+    </>
+  );
+}
+```
+
+---
+
+## 7. Checklist Implementasi
+
+- [x] **Langkah 1**: Salin kode Footer ke [`src/components/layout/Footer.tsx`](file:///d:/data%20rayhan/programs/project-2/portfolio-danu/src/components/layout/Footer.tsx).
+- [x] **Langkah 2**: Update [`src/pages/RootLayout.tsx`](file:///d:/data%20rayhan/programs/project-2/portfolio-danu/src/pages/RootLayout.tsx) untuk import dan render `<Footer />`.
+- [x] **Langkah 3**: Pastikan `public/img/profile/danu-jas.png` tersedia.
+- [x] **Langkah 4**: Jalankan `npx tsc --noEmit` untuk validasi TypeScript.
+- [x] **Langkah 5**: Uji visual di browser pada lebar 375px (Mobile), 768px (Tablet), dan 1280px (Desktop).

@@ -7,6 +7,15 @@ export interface TimelineOverviewItem {
   position: "top" | "bottom"; // Menentukan logo di atas atau di bawah garis horizontal
 }
 
+export interface TimeLineOverviemItem {
+  id: string;
+  year: string;
+  peroid: string;
+  logo: string;
+  companyName: string;
+  postion: "top" | "bottom";
+}
+
 export interface ExperienceDetailItem {
   id: string;
   companyName: string;

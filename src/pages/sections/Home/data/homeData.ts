@@ -7,6 +7,8 @@ export interface SoftwareItem {
   isCanva: boolean;
 }
 
+
+
 export interface PortfolioCategory {
   id: string;
   title: string;
@@ -56,6 +58,7 @@ export const softwareList: SoftwareItem[] = [
     isCanva: false,
   },
 ];
+
 
 export const portfolioCategories: PortfolioCategory[] = [
   {

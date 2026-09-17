@@ -37,7 +37,8 @@ export default function SoftwareBanner() {
                 onError={(e) => {
                   /* Fallback ke teks jika gambar tidak ada */
                   e.currentTarget.style.display = "none";
-                  const span = e.currentTarget.nextElementSibling as HTMLElement;
+                  const span = e.currentTarget
+                    .nextElementSibling as HTMLElement;
                   if (span) span.style.display = "flex";
                 }}
               />

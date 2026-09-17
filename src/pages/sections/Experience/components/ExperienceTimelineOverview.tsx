@@ -64,7 +64,9 @@ export default function ExperienceTimelineOverview() {
                           .nextElementSibling as HTMLElement;
                         if (sibling) sibling.style.display = "block";
                       }}
+                      
                     />
+
                     <span
                       className="font-bold text-white text-sm"
                       style={{ display: "none" }}

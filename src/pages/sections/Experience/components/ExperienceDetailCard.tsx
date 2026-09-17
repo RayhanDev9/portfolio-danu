@@ -4,6 +4,7 @@ interface ExperienceDetailCardProps {
   item: ExperienceDetailItem;
 }
 
+
 export default function ExperienceDetailCard({
   item,
 }: ExperienceDetailCardProps) {
