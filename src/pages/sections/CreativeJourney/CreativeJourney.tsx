@@ -40,17 +40,17 @@ export default function CreativeJourney() {
         {/* Desktop Layout (lg+) */}
         <div className="hidden lg:flex w-full items-center justify-between gap-6 xl:gap-8 my-auto pt-4 pb-2">
           {/* Left Column: Brand Glass Bubbles */}
-          <div className="w-[30%] flex justify-center items-center">
+          <div className="w-[70%] flex justify-center items-center">
             <CJBrandBubbles brands={brandList} />
           </div>
 
           {/* Center Column: Danu Photo */}
-          <div className="w-[40%] flex justify-center items-end">
+          <div className="w-[30%] flex justify-center items-end">
             <CJDanuPhoto />
           </div>
 
           {/* Right Column: Brand Links */}
-          <div className="w-[30%] flex justify-center items-center">
+          <div className="w-[70%] flex justify-center items-center">
             <CJBrandLinks brands={brandList} />
           </div>
         </div>

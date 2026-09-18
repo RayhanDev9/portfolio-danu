@@ -6,6 +6,7 @@ import { Link, useLocation } from "react-router-dom";
 // =============================================
 const designSubLinks = [
   { label: "Majlis Ta'lim", href: "/graphic-design/majlis" },
+  { label: "Horison Altama", href: "/graphic-design/horison" },
 ];
 
 // =============================================
