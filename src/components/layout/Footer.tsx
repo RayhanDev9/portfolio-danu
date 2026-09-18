@@ -4,7 +4,6 @@ import {
   MessageCircle,
   ArrowUp,
   ArrowUpRight,
-  Sparkles,
   MapPin,
 } from "lucide-react";
 
@@ -61,14 +60,14 @@ const contactList = [
   {
     label: "WhatsApp",
     value: "+62 881 010 069 341",
-    href: "https://wa.me/62881010069341?text=Halo%20Danu,%20saya%20tertarik%20bekerja%20sama%20untuk%20proyek%20desain.",
+    href: "https://wa.me/62881010069341?text=Hello%20Danu,%20I'm%20interested%20in%20working%20together%20on%20a%20design%20project.",
     icon: MessageCircle,
     badge: "Fast Response",
   },
   {
     label: "Email",
     value: "Danusatya9@gmail.com",
-    href: "mailto:Danusatya9@gmail.com?subject=Inquiry%20Project%20Desain",
+    href: "mailto:Danusatya9@gmail.com?subject=Design%20Project%20Inquiry",
     icon: Mail,
     badge: "Official Inquiry",
   },
@@ -132,7 +131,7 @@ export default function Footer() {
           </span>
         </h2>
         <p className="font-sans text-xs sm:text-sm text-purple-200/80 max-w-md mx-auto mt-2">
-          Punya ide proyek, kebutuhan branding, atau motion graphic? Mari diskusikan bersama.
+          Have a project idea, branding need, or motion graphic inquiry? Let's connect and build something extraordinary together.
         </p>
       </div>
 
@@ -143,8 +142,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-8 items-start">
           {/* Kolom 1: NAVIGATION (3 Kolom) */}
           <div className="lg:col-span-3">
-            <h3 className="font-spartan font-bold text-base sm:text-lg text-[#e8fb31] mb-4 tracking-wider uppercase flex items-center gap-2">
-              <Sparkles className="w-4 h-4 text-[#e8fb31]" />
+            <h3 className="font-spartan font-bold text-base sm:text-lg text-[#e8fb31] mb-4 tracking-wider uppercase">
               Navigation
             </h3>
             <ul className="flex flex-col gap-2">
@@ -176,9 +174,8 @@ export default function Footer() {
 
           {/* Kolom 2: GRAPHIC DESIGN SHOWCASE (3 Kolom) */}
           <div className="lg:col-span-3">
-            <h3 className="font-spartan font-bold text-base sm:text-lg text-[#e8fb31] mb-4 tracking-wider uppercase flex items-center gap-2">
-              <Sparkles className="w-4 h-4 text-[#e8fb31]" />
-              Projects
+            <h3 className="font-spartan font-bold text-base sm:text-lg text-[#e8fb31] mb-4 tracking-wider uppercase">
+              Featured Projects
             </h3>
             <ul className="flex flex-col gap-2">
               {designProjects.map((proj) => {
