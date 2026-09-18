@@ -11,15 +11,15 @@ export default function OldStyleSection() {
 
   return (
     <section
-      className="relative w-full py-16 sm:py-24 px-4 sm:px-6 lg:px-12 flex flex-col items-center bg-cover bg-center bg-no-repeat overflow-hidden border-t border-white/20"
+      className="relative w-full py-16 sm:py-24 px-4 sm:px-6 lg:px-12 flex flex-col items-center bg-cover bg-center bg-no-repeat overflow-hidden border-t border-white/20 min-h-[90vh]"
       style={{
         backgroundImage: `url('${oldStyle.bg}')`,
       }}
     >
       {/* Overlay Gelap Halus untuk kontras kartu */}
-      <div className="absolute inset-0 bg-blue-950/30 backdrop-blur-[2px] pointer-events-none" />
+      <div className="absolute inset-0 bg-blue-950/20 backdrop-blur-[1px] pointer-events-none" />
 
-      {/* 1. Judul Section */}
+      {/* 1. Judul Section STYLE DESIGN LAMA */}
       <div className="text-center relative z-10 mb-10 sm:mb-14 select-none">
         <h2
           className="font-spartan font-black text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl uppercase tracking-wider text-[#FFDE00] drop-shadow-[0_10px_20px_rgba(0,0,0,0.8)]"
@@ -33,13 +33,13 @@ export default function OldStyleSection() {
         </h2>
       </div>
 
-      {/* 2. Grid 8 Kartu Postingan Desain Lama */}
+      {/* 2. Grid 8 Kartu Postingan Desain Lama (5 Atas, 3 Bawah Kiri - Menyisakan Area Motor Balap di Kanan Bawah) */}
       <div className="relative z-10 w-full max-w-7xl mx-auto">
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4 lg:gap-5">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4 lg:gap-5 items-start">
           {oldStyle.cards.map((card) => (
             <div
               key={card.id}
-              className="group relative bg-white/10 p-1.5 sm:p-2 rounded-2xl border border-white/30 shadow-2xl overflow-hidden cursor-pointer hover:scale-105 hover:-translate-y-1 transition-all duration-300"
+              className="group relative bg-white/10 p-1.5 sm:p-2 rounded-2xl border border-white/40 shadow-2xl overflow-hidden cursor-pointer hover:scale-105 hover:-translate-y-2 transition-all duration-300"
               onClick={() =>
                 setSelectedImg({ src: card.image, title: card.title })
               }
