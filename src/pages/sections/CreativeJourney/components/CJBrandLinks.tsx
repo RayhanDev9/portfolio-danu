@@ -11,7 +11,7 @@ export const CJBrandLinks = ({ brands }: CJBrandLinksProps) => {
         <button
           key={brand.id}
           type="button"
-          className="group flex items-center justify-between px-3.5 py-2.5 sm:px-4 sm:py-3 rounded-lg sm:rounded-xl bg-[#5b13ec]/90 hover:bg-[#6c22ff] border border-white/20 shadow-lg shadow-purple-950/40 hover:shadow-purple-700/40 hover:border-white/50 hover:scale-[1.03] active:scale-[0.98] transition-all duration-300 cursor-pointer"
+          className=" border-2 border-yellow-200 group flex items-center justify-between px-3.5 py-2.5 sm:px-4 sm:py-3 rounded-lg sm:rounded-xl bg-[#5b13ec]/90 hover:bg-[#6c22ff] border border-white/20 shadow-lg shadow-purple-950/40 hover:shadow-purple-700/40 hover:border-white/50 hover:scale-[1.03] active:scale-[0.98] transition-all duration-300 cursor-pointer"
         >
           <span className="font-sans font-bold text-white text-xs sm:text-sm md:text-base capitalize tracking-wide truncate pr-2 text-left">
             {brand.name}
