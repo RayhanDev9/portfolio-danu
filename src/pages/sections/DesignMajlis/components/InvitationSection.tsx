@@ -1,6 +1,11 @@
 import { majlisData } from "../data/majlisData";
+import type { MajlisImageModalItem } from "../data/majlisData";
 
-export default function InvitationSection() {
+interface InvitationSectionProps {
+  onSelectImage: (item: MajlisImageModalItem) => void;
+}
+
+export default function InvitationSection({ onSelectImage }: InvitationSectionProps) {
   const { invitation, ornaments } = majlisData;
 
   return (
@@ -38,12 +43,20 @@ export default function InvitationSection() {
             {[1, 2, 3, 4].map((idx) => (
               <div
                 key={idx}
-                className="bg-white/5 p-1 sm:p-1.5 rounded-lg border border-white/20 shadow-xl overflow-hidden group hover:scale-[1.02] transition-transform duration-300"
+                onClick={() =>
+                  onSelectImage({
+                    title: `Desain Surat Undangan (Mockup ${idx})`,
+                    image: invitation.image,
+                    alt: "Desain Surat Undangan Majlis Ta'lim Roudotul Jannah",
+                  })
+                }
+                className="bg-white/5 p-1 sm:p-1.5 rounded-lg border border-white/20 shadow-xl overflow-hidden group hover:scale-[1.03] hover:border-[#f5be38] transition-all duration-300 cursor-pointer"
+                title="Klik untuk memperbesar undangan"
               >
                 <img
                   src={invitation.image}
                   alt={`Undangan Mockup ${idx}`}
-                  className="w-full h-auto object-cover rounded"
+                  className="w-full h-auto object-cover rounded group-hover:scale-105 transition-transform duration-500"
                 />
               </div>
             ))}

@@ -1,6 +1,6 @@
 export const CJDanuPhoto = () => {
   return (
-    <div className="relative lg:absolute lg:top-2/3 lg:left-1/2 lg:-translate-x-1/2 lg:-translate-y-1/2 z-10 flex items-end justify-center w-full max-w-[340px] sm:max-w-[420px] md:max-w-[480px] lg:max-w-[620px] xl:max-w-[680px]">
+    <div className="relative lg:absolute lg:top-2/3 lg:left-1/2 lg:-translate-x-1/2 lg:-translate-y-1/2 z-10 flex items-end justify-center w-full max-w-[340px] pointer-events-none sm:max-w-[420px] md:max-w-[480px] lg:max-w-[620px] xl:max-w-[680px]">
       <img
         src={`${import.meta.env.BASE_URL}img/profile/danu-jas.png`}
         alt="Danu"

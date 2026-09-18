@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Sparkles, MessageCircle, ArrowRight, MapPin } from "lucide-react";
+import { Sparkles, ArrowRight, MapPin, Send } from "lucide-react";
 import { PERSONAL_INFO } from "../data/profileData";
 
 export default function ProfileHero() {
@@ -66,7 +66,7 @@ export default function ProfileHero() {
               className="px-6 sm:px-8 py-3.5 rounded-full bg-[#e8fb31] hover:bg-[#d8ea20] text-[#1a1a1a] font-spartan font-black text-sm sm:text-base uppercase tracking-wider shadow-lg hover:shadow-xl hover:scale-105 active:scale-95 transition-all duration-200 flex items-center gap-2 no-underline"
             >
               <span>Hubungi Saya</span>
-              <MessageCircle className="w-4 h-4" />
+              <Send className="w-4 h-4" />
             </Link>
 
             <Link

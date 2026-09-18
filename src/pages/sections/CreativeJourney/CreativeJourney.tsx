@@ -38,19 +38,22 @@ export default function CreativeJourney() {
         <CJHero />
 
         {/* Desktop Layout (lg+) */}
-        <div className="hidden lg:flex w-full items-center justify-between gap-6 xl:gap-8 my-auto pt-4 pb-2">
+        <div className="hidden z-20 lg:flex w-full items-center justify-between gap-6 xl:gap-8 my-auto pt-4 pb-2">
           {/* Left Column: Brand Glass Bubbles */}
-          <div className="w-[70%] flex justify-center items-center">
+          {/* Ubah w-[70%] menjadi flex-1 (supaya membagi sisa ruang secara adil) */}
+          <div className="flex-1 flex justify-center items-center z-30">
             <CJBrandBubbles brands={brandList} />
           </div>
 
           {/* Center Column: Danu Photo */}
-          <div className="w-[30%] flex justify-center items-end">
+          {/* Tambahkan pointer-events-none agar mouse "tembus" melewati area kosong kontainer ini */}
+          <div className="w-[30%] flex justify-center items-end pointer-events-none">
             <CJDanuPhoto />
           </div>
 
           {/* Right Column: Brand Links */}
-          <div className="w-[70%] flex justify-center items-center">
+          {/* Ubah w-[70%] menjadi flex-1 */}
+          <div className="flex-1 flex justify-center items-center z-30 relative">
             <CJBrandLinks brands={brandList} />
           </div>
         </div>

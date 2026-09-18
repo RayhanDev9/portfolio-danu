@@ -1,6 +1,6 @@
 export const CJHero = () => {
   return (
-    <div className="flex flex-col items-center justify-center text-center select-none w-full px-4 mb-4 md:mb-6">
+    <div className="flex flex-col items-center justify-center  text-center select-none w-full px-4 mb-4 md:mb-6">
       {/* Subtitle — putih dengan stroke ungu/biru */}
       <p
         className="font-spartan font-black text-white uppercase mb-1 md:mb-2

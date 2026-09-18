@@ -11,6 +11,7 @@ import DesainGeonerations from "./pages/sections/DesainGeonerations/DesainGeoner
 import DesainViaFabula from "./pages/sections/DesainViaFabula/DesainViaFabula";
 import Contact from "./pages/sections/Contact/Contact";
 import Profile from "./pages/sections/Profile/Profile";
+import GraphicMotion from "./pages/sections/GraphicMotion/GraphicMotion";
 
 const router = createBrowserRouter(
   [
@@ -49,6 +50,10 @@ const router = createBrowserRouter(
         {
           path: "graphic-design/via-fabula",
           element: <DesainViaFabula />,
+        },
+        {
+          path: "graphic-motion",
+          element: <GraphicMotion />,
         },
         {
           path: "creative-journey",

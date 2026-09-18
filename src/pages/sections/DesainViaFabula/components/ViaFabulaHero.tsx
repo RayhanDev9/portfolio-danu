@@ -1,4 +1,3 @@
-
 export default function ViaFabulaHero() {
   return (
     <section className="relative w-full bg-[#5832a8] pt-32 sm:pt-36 md:pt-40 pb-16 px-4 sm:px-8 border-b-4 border-purple-950/40">
@@ -16,9 +15,13 @@ export default function ViaFabulaHero() {
 
             {/* 2. Decorative Divider Line (Diamond Endpoints) */}
             <div className="flex items-center justify-center my-6 sm:my-8 max-w-4xl mx-auto opacity-90">
-              <span className="text-white text-xs sm:text-base select-none">◆</span>
+              <span className="text-white text-xs sm:text-base select-none">
+                ◆
+              </span>
               <div className="flex-1 h-[2px] bg-white mx-2 sm:mx-3" />
-              <span className="text-white text-xs sm:text-base select-none">◆</span>
+              <span className="text-white text-xs sm:text-base select-none">
+                ◆
+              </span>
             </div>
 
             {/* 3. Bottom Row: Description Text & Logo Badge */}
@@ -26,38 +29,28 @@ export default function ViaFabulaHero() {
               {/* Left: Description */}
               <div className="flex-1 max-w-2xl">
                 <p className="text-xs sm:text-sm md:text-base text-purple-100 font-normal leading-relaxed text-justify sm:text-left">
-                  Via Fabula is a creative agency focused on storytelling, and event
-                  organizing. Through compelling narratives, innovative creative
-                  solutions, and memorable experiences, Via Fabula helps brands connect
-                  with their audiences in meaningful and impactful ways.
+                  Via Fabula is a creative agency focused on storytelling, and
+                  event organizing. Through compelling narratives, innovative
+                  creative solutions, and memorable experiences, Via Fabula
+                  helps brands connect with their audiences in meaningful and
+                  impactful ways.
                 </p>
               </div>
 
               {/* Right: Logo Badge (FABULA) */}
               <div className="flex-shrink-0 flex flex-col items-center justify-center text-center select-none">
                 {/* Geometric Logo Icon */}
-                <div className="w-14 h-14 sm:w-16 sm:h-16 flex items-center justify-center text-white mb-1">
-                  <svg
-                    viewBox="0 0 48 48"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="w-full h-full drop-shadow"
-                  >
-                    <path
-                      d="M8 8H40V16H16V24H36V32H16V40H8V8Z"
-                      fill="currentColor"
-                      fillOpacity="0.9"
-                    />
-                    <path
-                      d="M24 16L38 30L30 38L16 24L24 16Z"
-                      fill="currentColor"
-                      fillOpacity="0.6"
-                    />
-                  </svg>
+                <div className="w-14 h-14 sm:w-16 sm:h-16 lg:w-24 lg:h-24 flex items-center justify-center text-white mb-1">
+                  <img
+                    src={`${import.meta.env.BASE_URL}img/vendor-experienc/fabula.png`}
+                    alt="Danu Profile"
+                    className={`w-14 h-14 sm:w-16 sm:h-16 lg:w-24 lg:h-24  rounded-full object-cover object-top transition-all duration-200 
+                     
+                        "ring-2 ring-[#5b13ec] ring-offset-2 ring-offset-[#e8fb31] shadow-md" // Efek border ungu melayang
+                         "border-2 border-transparent hover:border-black/20" // State normal
+                    `}
+                  />
                 </div>
-                <span className="font-black text-sm sm:text-base tracking-widest text-white uppercase">
-                  FABULA
-                </span>
               </div>
             </div>
           </div>

@@ -1,6 +1,11 @@
 import { majlisData } from "../data/majlisData";
+import type { MajlisImageModalItem } from "../data/majlisData";
 
-export default function PosterSection() {
+interface PosterSectionProps {
+  onSelectImage: (item: MajlisImageModalItem) => void;
+}
+
+export default function PosterSection({ onSelectImage }: PosterSectionProps) {
   const { poster, ornaments } = majlisData;
 
   return (
@@ -30,12 +35,20 @@ export default function PosterSection() {
             {[1, 2].map((idx) => (
               <div
                 key={idx}
-                className="bg-white/5 p-1 sm:p-1.5 rounded-lg border border-white/20 shadow-2xl overflow-hidden hover:scale-[1.02] transition-transform duration-300"
+                onClick={() =>
+                  onSelectImage({
+                    title: `Poster Ziarah Wali (Tampilan ${idx})`,
+                    image: poster.image,
+                    alt: "Poster Ziarah Wali Majlis Ta'lim Roudotul Jannah",
+                  })
+                }
+                className="bg-white/5 p-1 sm:p-1.5 rounded-lg border border-white/20 shadow-2xl overflow-hidden group hover:scale-[1.03] hover:border-[#f5be38] transition-all duration-300 cursor-pointer"
+                title="Klik untuk memperbesar poster"
               >
                 <img
                   src={poster.image}
                   alt={`Poster Ziarah Wali ${idx}`}
-                  className="w-full h-auto object-cover rounded"
+                  className="w-full h-auto object-cover rounded group-hover:scale-105 transition-transform duration-500"
                 />
               </div>
             ))}

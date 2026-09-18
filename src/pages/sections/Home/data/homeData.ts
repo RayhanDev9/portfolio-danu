@@ -64,19 +64,19 @@ export const portfolioCategories: PortfolioCategory[] = [
   {
     id: "experience",
     title: "Experience",
-    image: `${import.meta.env.BASE_URL}img/profile/danu-salinan.png`,
-    link: "#experience",
+    image: `${import.meta.env.BASE_URL}img/category/experience.jpg`,
+    link: "/experience",
   },
   {
     id: "graphic-designer",
     title: "Graphic Designer",
-    image: `${import.meta.env.BASE_URL}img/profile/danu-jas.png`,
-    link: "#graphic-design",
+    image: `${import.meta.env.BASE_URL}img/category/graphic-designer.jpg`,
+    link: "/graphic-design/majlis",
   },
   {
     id: "motion-graphic",
     title: "motion graphic",
-    image: `${import.meta.env.BASE_URL}img/profile/danu.png`,
-    link: "#motion-graphic",
+    image: `${import.meta.env.BASE_URL}img/category/motion-graphic.jpg`,
+    link: "/motion-graphic",
   },
 ];

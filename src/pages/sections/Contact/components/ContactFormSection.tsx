@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Send, MapPin, CheckCircle, Sparkles, Clock } from "lucide-react";
+import { Send, MapPin, CheckCircle, Clock } from "lucide-react";
 import { PROFILE_INFO, SERVICE_CATEGORIES } from "../data/contactData";
 
 export default function ContactFormSection() {
@@ -63,7 +63,8 @@ export default function ContactFormSection() {
 
           <div className="p-4 rounded-2xl bg-[#e8fb31]/10 border border-[#e8fb31]/30 text-center">
             <p className="text-xs text-[#e8fb31] font-bold">
-              💡 Siap membantu proyek branding, feed medsos, hingga motion graphic!
+              💡 Siap membantu proyek branding, feed medsos, hingga motion
+              graphic!
             </p>
           </div>
         </div>
@@ -72,13 +73,25 @@ export default function ContactFormSection() {
         <div className="lg:col-span-7 bg-white text-slate-900 rounded-3xl p-6 sm:p-10 shadow-2xl flex flex-col justify-between">
           <div>
             <div className="flex items-center gap-2 mb-2">
-              <Sparkles className="w-5 h-5 text-[#5b13ec]" />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="#5b13ec"
+                className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-gray-900 flex-shrink-0"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z"
+                  clipRule="evenodd"
+                />
+              </svg>
               <h2 className="font-spartan font-black text-2xl sm:text-3xl text-slate-900">
                 Kirim Brief Proyek
               </h2>
             </div>
             <p className="text-xs sm:text-sm text-slate-600 mb-6">
-              Isi formulir singkat di bawah ini untuk memulai obrolan langsung via WhatsApp.
+              Isi formulir singkat di bawah ini untuk memulai obrolan langsung
+              via WhatsApp.
             </p>
 
             <form onSubmit={handleSubmit} className="space-y-5">

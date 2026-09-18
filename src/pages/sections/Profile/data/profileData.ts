@@ -29,7 +29,7 @@ export const PERSONAL_INFO = {
     "Saya adalah seorang Graphic Designer dan Motion Graphic Enthusiast yang berfokus pada pembuatan identitas visual yang kuat, konten media sosial yang berdampak, dan desain berorientasi pada cerita (story-driven design). Dengan pengalaman menangani berbagai brand dari skala lokal hingga nasional, saya selalu memadukan estetika modern dengan strategi komunikasi visual yang relevan bagi audiens.",
   location: "Jawa Timur, Indonesia",
   experienceYears: "5+ Tahun",
-  avatar: `${BASE}img/profile/danu.png`,
+  avatar: `${BASE}img/profile/danu-duduk.png`,
   formalAvatar: `${BASE}img/profile/danu-jas.png`,
 };
 

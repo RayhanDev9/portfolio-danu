@@ -1,6 +1,11 @@
 import { majlisData } from "../data/majlisData";
+import type { MajlisImageModalItem } from "../data/majlisData";
 
-export default function MajlisHero() {
+interface MajlisHeroProps {
+  onSelectImage: (item: MajlisImageModalItem) => void;
+}
+
+export default function MajlisHero({ onSelectImage }: MajlisHeroProps) {
   const { hero } = majlisData;
 
   return (
@@ -31,7 +36,17 @@ export default function MajlisHero() {
           {/* Garis Pemisah Vertikal (hanya desktop) */}
           <div className="hidden md:block w-px h-28 bg-white/40 self-stretch my-auto" />
 
-          <div className="flex-shrink-0 flex items-center justify-center">
+          <div
+            onClick={() =>
+              onSelectImage({
+                title: "Logo Majlis Ta'lim Roudotul Jannah",
+                image: hero.logo,
+                alt: "Logo Majlis Ta'lim Roudotul Jannah",
+              })
+            }
+            className="flex-shrink-0 flex items-center justify-center cursor-pointer hover:scale-105 transition-transform"
+            title="Klik untuk memperbesar logo"
+          >
             <img
               src={hero.logo}
               alt="Logo Majlis Ta'lim Roudotul Jannah"
@@ -43,16 +58,26 @@ export default function MajlisHero() {
 
       {/* Display Banner Zikir */}
       <div className="relative w-full max-w-5xl flex flex-col items-center">
-        <div className="w-full rounded-lg overflow-hidden shadow-2xl border-4 border-amber-400/30">
+        <div
+          onClick={() =>
+            onSelectImage({
+              title: "Banner Dzikro Maulid Nabi Muhammad SAW",
+              image: hero.banner,
+              alt: "Banner Dzikro Maulid Nabi Muhammad SAW",
+            })
+          }
+          className="w-full rounded-lg overflow-hidden shadow-2xl border-4 border-amber-400/30 cursor-pointer group"
+          title="Klik untuk memperbesar banner"
+        >
           <img
             src={hero.banner}
             alt="Banner Dzikro Maulid Nabi Muhammad SAW"
-            className="w-full h-auto object-cover"
+            className="w-full h-auto object-cover group-hover:scale-[1.02] transition-transform duration-500"
           />
         </div>
 
         {/* Efek Panggung / Karpet Merah */}
-        <div className="w-[110%] h-8 sm:h-12 bg-gradient-to-t from-[#9a0808] to-[#600505] rounded-[50%] -mt-3 sm:-mt-5 shadow-2xl opacity-90 border-t border-red-400/40" />
+        <div className="w-[110%] h-8 sm:h-12 bg-gradient-to-t from-[#9a0808] to-[#600505] rounded-[50%] -mt-3 sm:-mt-5 shadow-2xl opacity-90 border-t border-red-400/40 pointer-events-none" />
       </div>
     </section>
   );

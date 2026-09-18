@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import type { PortfolioCategory } from "../data/homeData";
 
 interface PortfolioCardProps {
@@ -6,9 +7,9 @@ interface PortfolioCardProps {
 
 export default function PortfolioCard({ item }: PortfolioCardProps) {
   return (
-    <a
-      href={item.link}
-      className="group relative flex flex-col overflow-hidden shadow-lg border-2 border-black/10 transition-transform duration-300 hover:-translate-y-1.5 bg-white"
+    <Link
+      to={item.link}
+      className="group relative flex flex-col overflow-hidden shadow-lg border-2 border-black/10 transition-transform duration-300 hover:-translate-y-1.5 bg-black no-underline"
     >
       {/* Header Hitam Kartu */}
       <div className="bg-black text-white text-center py-2.5 sm:py-3 px-4 font-sans font-bold text-sm sm:text-base tracking-wide select-none">
@@ -16,7 +17,7 @@ export default function PortfolioCard({ item }: PortfolioCardProps) {
       </div>
 
       {/* Thumbnail Proyek */}
-      <div className="relative w-full aspect-[4/5] sm:aspect-[3/4] overflow-hidden bg-slate-900">
+      <div className="relative w-full aspect-[4/5] sm:aspect-[3/4] overflow-hidden bg-[#0e1322]">
         <img
           src={item.image}
           alt={item.title}
@@ -24,7 +25,7 @@ export default function PortfolioCard({ item }: PortfolioCardProps) {
         />
 
         {/* Ikon Panah Lengkung Ungu di Pojok Kanan Bawah */}
-        <div className="absolute bottom-3 right-3 w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center drop-shadow-md">
+        <div className="absolute bottom-3 right-3 w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center drop-shadow-md pointer-events-none">
           <svg
             viewBox="0 0 48 48"
             fill="none"
@@ -49,6 +50,6 @@ export default function PortfolioCard({ item }: PortfolioCardProps) {
           </svg>
         </div>
       </div>
-    </a>
+    </Link>
   );
 }

@@ -1,6 +1,11 @@
 import { majlisData } from "../data/majlisData";
+import type { MajlisImageModalItem } from "../data/majlisData";
 
-export default function CertificateSection() {
+interface CertificateSectionProps {
+  onSelectImage: (item: MajlisImageModalItem) => void;
+}
+
+export default function CertificateSection({ onSelectImage }: CertificateSectionProps) {
   const { certificate, ornaments } = majlisData;
 
   return (
@@ -18,29 +23,49 @@ export default function CertificateSection() {
           {/* Kolom Kiri: 2 Sertifikat (Belakang & Depan) */}
           <div className="lg:col-span-7 grid grid-cols-2 gap-4 sm:gap-6">
             {/* Sertifikat Belakang */}
-            <div className="flex flex-col items-center">
-              <div className="bg-white/10 p-1 sm:p-2 rounded-lg border border-white/20 shadow-xl w-full">
+            <div
+              className="flex flex-col items-center cursor-pointer group"
+              onClick={() =>
+                onSelectImage({
+                  title: "Desain Sertifikat (Halaman Belakang)",
+                  image: certificate.belakang,
+                  alt: "Sertifikat Bagian Belakang",
+                })
+              }
+              title="Klik untuk memperbesar sertifikat belakang"
+            >
+              <div className="bg-white/10 p-1 sm:p-2 rounded-lg border border-white/20 shadow-xl w-full group-hover:scale-[1.03] group-hover:border-[#f5be38] transition-all duration-300 overflow-hidden">
                 <img
                   src={certificate.belakang}
                   alt="Sertifikat Bagian Belakang"
-                  className="w-full h-auto object-cover rounded"
+                  className="w-full h-auto object-cover rounded group-hover:scale-105 transition-transform duration-500"
                 />
               </div>
-              <span className="font-spartan font-bold text-white text-base sm:text-xl mt-3 tracking-wide">
+              <span className="font-spartan font-bold text-white text-base sm:text-xl mt-3 tracking-wide group-hover:text-[#f5be38] transition-colors">
                 Belakang
               </span>
             </div>
 
             {/* Sertifikat Depan */}
-            <div className="flex flex-col items-center">
-              <div className="bg-white/10 p-1 sm:p-2 rounded-lg border-2 border-[#7b2cbf] shadow-[0_0_20px_rgba(123,44,191,0.5)] w-full">
+            <div
+              className="flex flex-col items-center cursor-pointer group"
+              onClick={() =>
+                onSelectImage({
+                  title: "Desain Sertifikat (Halaman Depan)",
+                  image: certificate.depan,
+                  alt: "Sertifikat Bagian Depan",
+                })
+              }
+              title="Klik untuk memperbesar sertifikat depan"
+            >
+              <div className="bg-white/10 p-1 sm:p-2 rounded-lg border-2 border-[#7b2cbf] shadow-[0_0_20px_rgba(123,44,191,0.5)] w-full group-hover:scale-[1.03] group-hover:border-[#f5be38] transition-all duration-300 overflow-hidden">
                 <img
                   src={certificate.depan}
                   alt="Sertifikat Bagian Depan"
-                  className="w-full h-auto object-cover rounded"
+                  className="w-full h-auto object-cover rounded group-hover:scale-105 transition-transform duration-500"
                 />
               </div>
-              <span className="font-spartan font-bold text-white text-base sm:text-xl mt-3 tracking-wide">
+              <span className="font-spartan font-bold text-white text-base sm:text-xl mt-3 tracking-wide group-hover:text-[#f5be38] transition-colors">
                 Depan
               </span>
             </div>

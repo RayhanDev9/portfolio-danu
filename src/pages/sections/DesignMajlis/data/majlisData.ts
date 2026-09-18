@@ -1,3 +1,9 @@
+export interface MajlisImageModalItem {
+  title: string;
+  image: string;
+  alt: string;
+}
+
 export const majlisData = {
   hero: {
     titleGold: "MAJLIS TA'LIM",
