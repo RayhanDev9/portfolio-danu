@@ -8,18 +8,32 @@ export default function CreativeJourney() {
   return (
     <section
       id="creative-journey"
-      className="relative w-full min-h-screen bg-[url('../../../../../public/other/jalan.png')] text-white flex flex-col justify-between overflow-hidden py-8 sm:py-12 lg:py-16 px-4 sm:px-6 lg:px-12 select-none"
+      className="relative w-full min-h-screen text-white flex flex-col justify-between overflow-hidden
+        pt-24 pb-8 sm:pt-28 sm:pb-12 lg:pt-32 lg:pb-16
+        px-4 sm:px-6 lg:px-12 select-none"
     >
-      {/* Background Decorative Gradients & Ambience */}
-      <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0f] via-[#12101e] to-[#0a0a0f] pointer-events-none" />
-      <div className="absolute top-0 right-0 w-[50vw] h-[100%] bg-gradient-to-l from-[#5b13ec]/25 via-[#7c3aff]/10 to-transparent blur-3xl pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-[40vw] h-[50vh] bg-radial from-[#5b13ec]/15 to-transparent blur-3xl pointer-events-none" />
+      {/* === BACKGROUND: foto jalan aspal === */}
+      <div
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{
+          backgroundImage: `url('${import.meta.env.BASE_URL}img/other/jalan.jpg')`,
+        }}
+      />
 
-      {/* Subtle Road / Texture overlay */}
-      <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-black/80 via-black/40 to-transparent pointer-events-none" />
+      {/* Dark overlay agar teks tetap terbaca */}
+      <div className="absolute inset-0 bg-black/60 pointer-events-none" />
+
+      {/* Gradient purple overlay dari kanan */}
+      <div className="absolute top-0 right-0 w-[55vw] h-full bg-gradient-to-l from-[#5b13ec]/50 via-[#7c3aff]/20 to-transparent blur-2xl pointer-events-none" />
+
+      {/* Gradient gelap dari bawah */}
+      <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-black/90 via-black/40 to-transparent pointer-events-none" />
+
+      {/* Gradient gelap dari atas (blend dengan navbar) */}
+      <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-black/70 to-transparent pointer-events-none" />
 
       {/* Content Container */}
-      <div className="relative z-10 max-w-7xl mx-auto w-full flex flex-col items-center justify-between min-h-[calc(100vh-6rem)]">
+      <div className="relative z-10 max-w-7xl mx-auto w-full flex flex-col items-center justify-between min-h-[calc(100vh-8rem)]">
         {/* Top Header */}
         <CJHero />
 
