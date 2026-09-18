@@ -5,6 +5,7 @@ import Experience from "./pages/sections/Experience/Experience";
 import DesignMajlis from "./pages/sections/DesignMajlis/DesignMajlis";
 import CreativeJourney from "./pages/sections/CreativeJourney/CreativeJourney";
 import DesignHorison from "./pages/sections/DesignHorison/DesignHorison";
+import DesainAstraotoshop from "./pages/sections/DesainAstraotoshop/DesainAstraotoshop";
 
 const router = createBrowserRouter(
   [
@@ -29,7 +30,11 @@ const router = createBrowserRouter(
           element: <DesignHorison />,
         },
         {
-          path: "creativejourney",
+          path: "graphic-design/astraotoshop",
+          element: <DesainAstraotoshop />,
+        },
+        {
+          path: "creative-journey",
           element: <CreativeJourney />,
         },
       ],

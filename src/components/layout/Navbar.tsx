@@ -7,6 +7,7 @@ import { Link, useLocation } from "react-router-dom";
 const designSubLinks = [
   { label: "Majlis Ta'lim", href: "/graphic-design/majlis" },
   { label: "Horison Altama", href: "/graphic-design/horison" },
+  { label: "Astra Otoshop", href: "/graphic-design/astraotoshop" },
 ];
 
 // =============================================
@@ -145,6 +146,18 @@ export default function Navbar() {
             Motion Graphic
           </Link>
 
+          {/* Link: Brands */}
+          <Link
+            to="/creative-journey"
+            className={`font-spartan font-bold text-sm lg:text-base px-3 lg:px-5 py-1.5 rounded-full transition-all duration-200 no-underline ${
+              isActive(currentPath, "/contact")
+                ? "bg-[#5b13ec] text-white shadow-md"
+                : "text-[#1a1a1a] hover:bg-black/10"
+            }`}
+          >
+            Brands
+          </Link>
+
           {/* Link: Contact */}
           <Link
             to="/contact"
@@ -160,7 +173,7 @@ export default function Navbar() {
           {/* Foto Profil — pojok kanan pill */}
           <div className="ml-2 flex-shrink-0">
             <img
-              src={`${import.meta.env.BASE_URL}img/profile/danu.png`}
+              src={`${import.meta.env.BASE_URL}img/profile/danu-jas.png`}
               alt="Danu Profile"
               className="w-8 h-8 lg:w-9 lg:h-9 rounded-full object-cover object-top border-2 border-[#5b13ec] shadow-md"
             />

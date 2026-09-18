@@ -1,81 +1,129 @@
-# Plan: DesignHorison Section
+# 🚀 Plan Implementasi: Desain Astra Otoshop Section
 
-> Dibuat: 2026-09-18
-> File utama: `src/pages/sections/DesignHorison/DesignHorison.tsx`
-> Referensi desain: 4 screenshot (Hero, Meeting Room, Wedding, Hotel Room)
-
----
-
-## Analisis 4 Desain dari Screenshot
-
-| No | Section | Isi Utama | Warna |
-|----|---------|-----------|-------|
-| 1 | HorisonHero | Judul HORISON besar, subtitle ALTAMA PANDEGLANG, deskripsi+logo, 3 preview gambar bawah | Biru `#1a90d9` |
-| 2 | MeetingRoomSection | Judul DESIGN MEETING ROOM, grid 5 kartu gambar meeting | Biru + putih |
-| 3 | WeddingSection | Judul DESIGN WEDDING, 2 thumbnail kiri + 1 poster besar kanan | Biru |
-| 4 | HotelRoomSection | Judul DESIGN HOTEL ROOM, gambar sosmed kiri + kartu promo kamar | Biru |
+> **Dibuat:** 2026-09-18  
+> **File Utama:** `src/pages/sections/DesainAstraotoshop/DesainAstraotoshop.tsx`  
+> **Folder Aset:** `public/img/desain-astraotoshop/` (bg, design-lama, design-baru, ads-design, design-thumbnail)  
+> **Target Audience:** Junior Developer / AI Assistant  
 
 ---
 
-## Struktur File yang Dibuat
+## 📸 Analisis 5 Bagian Desain (Dari Atas ke Bawah)
+
+| No | Section | Judul / Komponen | Elemen Visual & Konten | Background |
+|:---|:---|:---|:---|:---|
+| **1** | **Hero Section** | `AstraHero.tsx` | • Judul besar **ASTRA OTOSHOP** (biru muda + outline putih tebal)<br>• Card deskripsi biru berlogo `ASTRAOtoshop.com`<br>• Toko Aspira Motoquick & jalan raya | `public/img/desain-astraotoshop/bg/bg-1.jpg` |
+| **2** | **Section 2: Style Lama** | `OldStyleSection.tsx` | • Judul **STYLE DESIGN LAMA** (kuning bold + stroke biru tua)<br>• Grid kartu postingan sosial media lama (8 kartu)<br>• Motor balap Moto GP berkecepatan tinggi di trek aspal | `public/img/desain-astraotoshop/bg/bg-2.jpg` (atau `bg-6.jpg`) |
+| **3** | **Section 3: Style Baru** | `NewStyleSection.tsx` | • Judul **STYLE DESIGN VERSI BARU** (putih miring 3D + pita confetti emas)<br>• Mobil putih Honda Brio di jalan pegunungan<br>• Podium bulat berisi oli Aspira, aki GS Astra, ban & shockbreaker | `public/img/desain-astraotoshop/bg/bg-3.jpg` |
+| **4** | **Section 4: Ads Design** | `AdsDesignSection.tsx` | • Judul **ADS DESIGN** (putih miring 3D + confetti emas)<br>• Grid 8 kartu banner iklan promo e-voucher, ban, oli, dan aki<br>• Aki GS, shockbreaker merah & ban motor di foreground | `public/img/desain-astraotoshop/bg/bg-4.jpg` |
+| **5** | **Section 5: Feed Design** | `FeedDesignSection.tsx` | • Judul **FEED DESIGN** (putih miring 3D bold)<br>• Grid 10 kartu konten feed Instagram (2 baris x 5 kolom)<br>• Mobil putih Brio + meja kayu pajangan aki & oli di pemandangan perbukitan | `public/img/desain-astraotoshop/bg/bg-5.jpg` |
+
+---
+
+## 📁 Struktur File & Arsitektur
 
 ```
-src/pages/sections/DesignHorison/
-├── DesignHorison.tsx               [MODIFY] Root component — rakit semua section
-├── components/
-│   ├── HorisonHero.tsx             [NEW] Section 1: Judul + deskripsi + logo + 3 preview
-│   ├── MeetingRoomSection.tsx      [NEW] Section 2: Judul + grid 5 gambar meeting
-│   ├── WeddingSection.tsx          [NEW] Section 3: Thumbnail kiri + poster besar kanan
-│   └── HotelRoomSection.tsx        [NEW] Section 4: Judul + grid gambar promo kamar
-└── data/
-    └── horisonData.ts              [NEW] Semua data: teks, path gambar, alt-text
+src/pages/sections/DesainAstraotoshop/
+├── DesainAstraotoshop.tsx           # [ROOT] Menyatukan ke-5 section dengan urutan rapi
+├── data/
+│   └── astraData.ts                 # [DATA] Objek data path gambar, judul, dan deskripsi
+└── components/
+    ├── AstraHero.tsx                # [1] Section Hero + Jarak Navbar
+    ├── OldStyleSection.tsx          # [2] Section Style Design Lama
+    ├── NewStyleSection.tsx          # [3] Section Style Design Versi Baru
+    ├── AdsDesignSection.tsx         # [4] Section Ads Design
+    ├── FeedDesignSection.tsx        # [5] Section Feed Design
+    └── ImageModal.tsx               # [MODAL] Lightbox zoom interaktif untuk semua kartu
 ```
 
 ---
 
-## STEP 1 — horisonData.ts
+## 🎨 Design Tokens & Style Guide
+
+- **Warna Utama:**
+  - Astra Blue: `#0084ff` / `#0066cc` / `#0050a0`
+  - Astra Red: `#ED1C24`
+  - Accent Gold / Yellow: `#FFD700` / `#FFE600`
+  - White: `#FFFFFF`
+  - Dark Slate: `#0f172a`
+- **Tipografi:**
+  - Font Heading Utama: `font-spartan font-black` / `font-sans font-black italic tracking-wide`
+  - Text Stroke: `WebkitTextStroke: "3px #ffffff"` / `WebkitTextStroke: "3px #003399"`
+  - Text Shadow: `drop-shadow-[0_8px_16px_rgba(0,0,0,0.4)]`
+- **Jarak Navbar (Wajib):**
+  - Section pertama (Hero) diberi padding atas aman: `pt-28 sm:pt-32 md:pt-36 lg:pt-40` agar tidak tertutup floating navbar kuning.
+- **Interaktivitas:**
+  - Hover zoom `hover:scale-105 transition-transform duration-300`
+  - Klik kartu untuk membuka modal zoom resolusi penuh (Image Lightbox).
+
+---
+
+## 🛠️ Rincian Implementasi Langkah Demi Langkah (Step-by-Step)
+
+### STEP 1: Buat Data File (`src/pages/sections/DesainAstraotoshop/data/astraData.ts`)
 
 ```ts
 const BASE = import.meta.env.BASE_URL;
-const DIR = BASE + 'img/desain-horison-altama-pandeglang';
-const VENDOR = BASE + 'img/vendor-experienc';
+const DIR = `${BASE}img/desain-astraotoshop`;
+const BG = `${DIR}/bg`;
+const LAMA = `${DIR}/design-lama`;
+const BARU = `${DIR}/design-baru`;
+const ADS = `${DIR}/ads-design`;
 
-export const horisonData = {
+export const astraData = {
   hero: {
-    title1: 'HORISON',
-    title2: 'ALTAMA PANDEGLANG',
+    title: "ASTRA OTOSHOP",
+    bg: `${BG}/bg-1.jpg`,
+    logo: "ASTRAOtoshop.com",
     description:
-      "Hotel Horison Altama Pandeglang is a hotel located in Pandeglang, Banten, " +
-      "offering comfortable accommodation and facilities to meet guests' needs for " +
-      "leisure, business, and other activities. The hotel provides a modern atmosphere, " +
-      "friendly service, and a comfortable environment for visitors.",
-    logo: VENDOR + '/horison.png',
-    previewImages: [
-      DIR + '/meeting-room/meeting-room-2.png',
-      DIR + '/weeding/weeding-1.png',
-      DIR + '/weeding/weeding-3.png',
+      "Astra Otoshop is an official automotive e-commerce platform by PT Astra Otoparts Tbk that provides a wide range of spare parts, automotive products, and maintenance solutions for motorcycles and cars. It offers quality products from trusted brands along with convenient online purchasing and professional workshop services.",
+  },
+  oldStyle: {
+    title: "STYLE DESIGN LAMA",
+    bg: `${BG}/bg-2.jpg`,
+    cards: [
+      { id: 1, title: "Kualitas Yang Terjaga", image: `${LAMA}/KUALITAS YANG TERJAGA, HASIL YANG TERASA.jpg` },
+      { id: 2, title: "Promo Spesial Ramadhan", image: `${LAMA}/Gemini_Generated_Image_58m35v58m35v58m3 (1).png` },
+      { id: 3, title: "Di Astra Otoshop Pasti Otomatis ORI", image: `${LAMA}/Gemini_Generated_Image_m9y7ydm9y7ydm9y7.png` },
+      { id: 4, title: "Filter Oli Andal Mesin Optimal", image: `${LAMA}/3011311.png` },
+      { id: 5, title: "Selamat Memperingati Jumat Agung", image: `${LAMA}/juqmat agung.jpg` },
+      { id: 6, title: "Spare Part Otomatis ORI", image: `${LAMA}/slide 10.jpg` },
+      { id: 7, title: "Penyebab Sakit Kepala", image: `${LAMA}/penyebab sakit keapala.jpg` },
+      { id: 8, title: "Lebih Susah Nahan Lapar Atau Belanja", image: `${LAMA}/slide2 spare part kw bikin pusing.png` },
     ],
   },
-  meetingRoom: {
-    images: [
-      DIR + '/meeting-room/metting-room-1.png',
-      DIR + '/meeting-room/meeting-room-2.png',
-      DIR + '/meeting-room/meetingroom-3.png',
-      DIR + '/meeting-room/meeting-room-4.png',
-      DIR + '/meeting-room/metting-room-5.png',
+  newStyle: {
+    title: "STYLE DESIGN VERSI BARU",
+    bg: `${BG}/bg-3.jpg`,
+    carImage: `${DIR}/design-thumbnail/kata otoshob.png`, // atau ilustrasi mobil Brio
+  },
+  adsDesign: {
+    title: "ADS DESIGN",
+    bg: `${BG}/bg-4.jpg`,
+    cards: [
+      { id: 1, title: "Beli E-Voucher Aki Mobil", image: `${ADS}/beli E-voucher aki mobil.png` },
+      { id: 2, title: "Beli E-Voucher Lebih Hemat 15%", image: `${ADS}/BELI E-VOUCHER.png` },
+      { id: 3, title: "Ganti Ban Tanpa Ribet", image: `${ADS}/ganti ban.png` },
+      { id: 4, title: "Pilih Ban Yang Pasti Awet", image: `${ADS}/pilih ban yang pasti.png` },
+      { id: 5, title: "Pilihan Lengkap Ban Mobil & Motor", image: `${ADS}/PILIHAN LENGKAP.png` },
+      { id: 6, title: "Promo Terbatas Oli Shell", image: `${ADS}/promo oli terbatas.png` },
+      { id: 7, title: "Promo Oli Beli 4 Lebih Hemat", image: `${ADS}/promo oli hanya bulan ini.png` },
+      { id: 8, title: "Starter Gacor GS Astra", image: `${ADS}/starter gacor.png` },
     ],
   },
-  wedding: {
-    thumbnails: [
-      DIR + '/weeding/weeding-1.png',
-      DIR + '/weeding/weeding-3.png',
-    ],
-    mainImage: DIR + '/weeding/weeding-2.png',
-  },
-  hotelRoom: {
-    images: [
-      DIR + '/hotel-room/hotel-room-1.jpg',
-      DIR + '/hotel-room/hotel-room-2.jpg',
+  feedDesign: {
+    title: "FEED DESIGN",
+    bg: `${BG}/bg-5.jpg`,
+    cards: [
+      { id: 1, title: "Ban Andalan Di Jalan", image: `${BARU}/Ban Andalan di Jalan.png` },
+      { id: 2, title: "Top Quality Best Deal", image: `${BARU}/Best Deal revisi.png` },
+      { id: 3, title: "Millenial vs Gen Z Marketing", image: `${BARU}/Millenial vs Gen Z Marketing slide1.png` },
+      { id: 4, title: "Motor Makin Joget Di Jalan", image: `${BARU}/motor makin lama makin goyang dijalan-Recovered.jpg` },
+      { id: 5, title: "Piala Dunia 2026", image: `${BARU}/piala dunia.png` },
+      { id: 6, title: "Rawat Mesin Sekarang Beli 2 Gratis 2", image: `${BARU}/spanyol angkat piala berkat main yang maksimal opsi sparepart.png` },
+      { id: 7, title: "Selamat Untuk Aki GS Astra", image: `${BARU}/Selamat untuk aki gs astra.png` },
+      { id: 8, title: "Ada Yang Bisa Tebak Nama Spare Part?", image: `${BARU}/ADA YANG BISA TEBAK NAMA SPARE PART INI.jpg` },
+      { id: 9, title: "Spanyol Angkat Piala", image: `${BARU}/spanyol angkat piala berkat main yang maksimal opsi sparepart.png` },
+      { id: 10, title: "Sedia Jas Hujan Sebelum Hujan", image: `${BARU}/SEDIA JAS HUJAN.jpg` },
     ],
   },
 };
@@ -83,254 +131,139 @@ export const horisonData = {
 
 ---
 
-## STEP 2 — HorisonHero.tsx (Section 1 — Paling Atas)
+### STEP 2: Hero Section (`components/AstraHero.tsx`)
 
-Layout:
-```
-[HORISON]                               <- kuning gold besar, stroke biru
-[ALTAMA PANDEGLANG]                     <- kuning kecil, tracking lebar
-[Deskripsi teks]   |   [Logo Horison]   <- card 2 kolom (md+)
-[Gambar1]  [Gambar2]  [Gambar3]         <- 3 preview grid 3 kolom
-```
-
-Kode penting:
-```tsx
-// JARAK NAVBAR: pt-24 sm:pt-28 lg:pt-32 di section ini
-
-// Judul HORISON — kuning besar dengan stroke biru
-<h1
-  className="font-spartan font-black text-[#FFD700] text-center leading-none
-    text-[15vw] sm:text-[12vw] md:text-[10vw] lg:text-[9vw] xl:text-[10rem]"
-  style={{ WebkitTextStroke: '3px #1565c0' }}
->
-  HORISON
-</h1>
-
-// Subtitle
-<h2
-  className="font-spartan font-black text-[#FFD700] text-center tracking-[0.12em]
-    text-[5vw] sm:text-[3.5vw] xl:text-[2.8rem]"
->
-  ALTAMA PANDEGLANG
-</h2>
-
-// Card deskripsi + logo
-<div className="flex flex-col md:flex-row gap-6 max-w-4xl mx-auto
-  bg-black/20 rounded-2xl p-6 border border-white/10 mt-8">
-  <p className="text-white/90 text-sm md:text-base leading-relaxed flex-1 text-justify">
-    {hero.description}
-  </p>
-  <div className="hidden md:block w-px bg-white/30 self-stretch" />
-  <img src={hero.logo} alt="Logo Horison" className="w-28 h-auto self-center object-contain" />
-</div>
-
-// 3 preview gambar bawah
-<div className="grid grid-cols-3 gap-3 sm:gap-4 max-w-4xl mx-auto mt-8">
-  {hero.previewImages.map((img, i) => (
-    <div key={i} className="rounded-xl overflow-hidden shadow-2xl border-2 border-white/20">
-      <img src={img} alt="" className="w-full h-full object-cover" />
-    </div>
-  ))}
-</div>
-```
-
----
-
-## STEP 3 — MeetingRoomSection.tsx (Section 2)
-
-Layout:
-```
-[DESIGN]         <- putih, besar
-[MEETING ROOM]   <- putih + stroke biru, lebih besar
-Grid gambar: 2 kolom (mobile) -> 3 kolom (desktop), 5 gambar
-```
-
-Kode penting:
-```tsx
-// Judul section
-<h2 className="font-spartan font-black text-white text-center">
-  <span className="block text-[8vw] sm:text-[6vw] lg:text-[5rem]">DESIGN</span>
-  <span
-    className="block text-[11vw] sm:text-[8vw] lg:text-[7rem]"
-    style={{ WebkitTextStroke: '3px #1565c0' }}
+- **Jarak Navbar:** `pt-28 sm:pt-32 md:pt-36 lg:pt-40 pb-16`
+- **Background:** `bg-cover bg-center` menggunakan `bg-1.jpg`.
+- **Judul Utama:**
+  ```tsx
+  <h1
+    className="font-spartan font-black text-center text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl uppercase tracking-wider text-[#0084ff] drop-shadow-[0_10px_20px_rgba(0,0,0,0.5)]"
+    style={{
+      WebkitTextStroke: "4px #ffffff",
+      paintOrder: "stroke fill",
+    }}
   >
-    MEETING ROOM
-  </span>
-</h2>
-
-// Grid gambar 5 kartu
-<div className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4 mt-8 max-w-5xl mx-auto">
-  {images.map((img, i) => (
-    <div key={i} className="rounded-xl overflow-hidden shadow-xl aspect-[3/4]">
-      <img
-        src={img}
-        alt=""
-        className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
-      />
-    </div>
-  ))}
-</div>
-```
+    ASTRA OTOSHOP
+  </h1>
+  ```
+- **Card Deskripsi (Kiri Bawah):**
+  - Kotak biru cerah `#007bff` dengan sudut `rounded-2xl`
+  - Badge logo `ASTRAOtoshop.com` (icon kursor tap + teks Astra merah & Otoshop hitam)
+  - Paragraf deskripsi resmi berbahasa Inggris dengan teks putih yang mudah dibaca.
 
 ---
 
-## STEP 4 — WeddingSection.tsx (Section 3)
+### STEP 3: Section 2 (`components/OldStyleSection.tsx`)
 
-Layout Desktop (lg+):
-```
-[Kiri: Judul DESIGN WEDDING + 2 thumbnail] | [Kanan: poster besar weeding-2]
-```
-
-Layout Mobile: Stack — judul -> 2 thumbnail -> gambar besar
-
-Kode penting:
-```tsx
-<div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-start max-w-6xl mx-auto">
-
-  {/* Kiri — judul + 2 thumbnail */}
-  <div className="flex flex-col gap-4">
-    <h2 className="font-spartan font-black text-white">
-      <span className="block text-[8vw] lg:text-[4rem]">DESIGN</span>
-      <span
-        className="block text-[10vw] lg:text-[6rem]"
-        style={{ WebkitTextStroke: '3px #1565c0' }}
-      >
-        WEDDING
-      </span>
-    </h2>
-    {thumbnails.map((img, i) => (
-      <div key={i} className="rounded-xl overflow-hidden shadow-xl border-2 border-white/20">
-        <img src={img} alt="" className="w-full h-auto object-cover" />
-      </div>
-    ))}
-  </div>
-
-  {/* Kanan — poster besar */}
-  <div className="rounded-2xl overflow-hidden shadow-2xl border-2 border-white/20">
-    <img src={mainImage} alt="" className="w-full h-auto object-contain" />
-  </div>
-</div>
-```
-
----
-
-## STEP 5 — HotelRoomSection.tsx (Section 4 — Paling Bawah)
-
-Layout:
-```
-[DESIGN]       <- putih besar
-[HOTEL ROOM]   <- putih + stroke biru
-[2 gambar kiri: grid 2 kolom]  |  [2 gambar kanan: stack landscape]
-```
-
-Kode penting:
-```tsx
-<h2 className="font-spartan font-black text-white text-center">
-  <span className="block text-[8vw] lg:text-[5rem]">DESIGN</span>
-  <span
-    className="block text-[10vw] lg:text-[7rem]"
-    style={{ WebkitTextStroke: '3px #1565c0' }}
+- **Background:** `bg-2.jpg` (Trek balap aspal dengan latar laut & bukit).
+- **Judul:**
+  ```tsx
+  <h2
+    className="font-spartan font-black text-center text-3xl sm:text-5xl md:text-6xl lg:text-7xl uppercase tracking-wider text-[#FFDE00] drop-shadow-[0_8px_16px_rgba(0,0,0,0.6)]"
+    style={{
+      WebkitTextStroke: "3px #003399",
+      paintOrder: "stroke fill",
+    }}
   >
-    HOTEL ROOM
-  </span>
-</h2>
-
-<div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-8 max-w-5xl mx-auto">
-  {/* Kiri: 2 gambar grid kecil */}
-  <div className="grid grid-cols-2 gap-3">
-    {images.map((img, i) => (
-      <div key={i} className="rounded-xl overflow-hidden shadow-xl">
-        <img src={img} alt="" className="w-full h-full object-cover" />
-      </div>
-    ))}
-  </div>
-  {/* Kanan: 2 gambar stacked */}
-  <div className="flex flex-col gap-3">
-    {images.map((img, i) => (
-      <div key={i} className="rounded-xl overflow-hidden shadow-xl">
-        <img src={img} alt="" className="w-full h-auto object-cover" />
-      </div>
-    ))}
-  </div>
-</div>
-```
+    STYLE DESIGN LAMA
+  </h2>
+  ```
+- **Grid Postingan:**
+  - Layout responsive: `grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4`
+  - Efek hover kartu: `hover:scale-105 hover:shadow-2xl transition-all duration-300 rounded-xl overflow-hidden`
+  - Klik kartu membuka modal lightbox untuk melihat detail.
 
 ---
 
-## STEP 6 — DesignHorison.tsx (Root — Rakit Semua)
+### STEP 4: Section 3 (`components/NewStyleSection.tsx`)
 
-```tsx
-import HorisonHero from "./components/HorisonHero";
-import MeetingRoomSection from "./components/MeetingRoomSection";
-import WeddingSection from "./components/WeddingSection";
-import HotelRoomSection from "./components/HotelRoomSection";
-
-export default function DesignHorison() {
-  return (
-    <main
-      className="w-full min-h-screen bg-[#1a90d9] text-white overflow-hidden
-        selection:bg-yellow-300 selection:text-blue-900"
-    >
-      <HorisonHero />
-      <MeetingRoomSection />
-      <WeddingSection />
-      <HotelRoomSection />
-    </main>
-  );
-}
-```
+- **Background:** `bg-3.jpg` (Jalan pegunungan aspal mulus + langit biru).
+- **Judul:**
+  - Teks miring/italic tebal `STYLE DESIGN VERSI BARU` putih dengan bayangan 3D.
+  - Ornamen partikel pita confetti emas mengambang di sekitar judul.
+- **Komposisi Visual:**
+  - Sisi Kiri: Mobil putih Honda Brio di atas aspal.
+  - Sisi Kanan: Podium 3D bulat putih dengan aneka produk spare parts (Oli Aspira, Aki GS Astra, Badge Garansi ORI, Ban & Shockbreaker).
 
 ---
 
-## Design Tokens
+### STEP 5: Section 4 (`components/AdsDesignSection.tsx`)
 
-| Token | Value |
-|-------|-------|
-| Background | `#1a90d9` (biru terang) |
-| Judul utama HORISON | `#FFD700` (kuning gold) |
-| Judul section lain | `#ffffff` (putih) |
-| Text stroke outline | `#1565c0` (biru tua) |
-| Font semua heading | `font-spartan font-black` |
-| Section padding | `py-12 sm:py-16 px-4 sm:px-6 lg:px-12` |
-| Card border | `border-white/20` |
-| Card background | `bg-black/20 backdrop-blur-sm` |
+- **Background:** `bg-4.jpg` (Lintasan atletik merah + langit biru).
+- **Judul:** `ADS DESIGN` putih tebal miring + pita confetti emas.
+- **Grid Banner Iklan:**
+  - Grid responsif: 8 kartu banner ads (voucher aki, ganti ban, promo oli 4L, dll).
+  - Di bagian bawah: Display produk aki GS Astra, shockbreaker merah, dan ban motor di atas trek merah.
 
 ---
 
-## Responsive Breakpoints
+### STEP 6: Section 5 (`components/FeedDesignSection.tsx`)
 
-| Elemen | Mobile (< lg) | Desktop (lg+) |
-|--------|--------------|---------------|
-| Jarak navbar (Hero) | `pt-24` | `pt-32` |
-| Judul HORISON | `15vw` | `10rem` |
-| Grid meeting room | 2 kolom | 3 kolom |
-| Layout wedding | Stack vertikal | 2 kolom |
-| Layout hotel room | Stack vertikal | 2 kolom |
-
----
-
-## Aset Gambar yang Dipakai
-
-| Section | File | Status |
-|---------|------|--------|
-| Hero logo | `img/vendor-experienc/horison.png` | ada |
-| Hero preview 1 | `meeting-room/meeting-room-2.png` | ada |
-| Hero preview 2 | `weeding/weeding-1.png` | ada |
-| Hero preview 3 | `weeding/weeding-3.png` | ada |
-| Meeting Room (5 gambar) | `metting-room-1` s/d `metting-room-5` | ada |
-| Wedding thumbnail | `weeding-1.png`, `weeding-3.png` | ada |
-| Wedding poster besar | `weeding-2.png` | ada |
-| Hotel Room | `hotel-room-1.jpg`, `hotel-room-2.jpg` | ada |
+- **Background:** `bg-5.jpg` (Pemandangan alam perbukitan hijau).
+- **Judul:** `FEED DESIGN` putih bold miring.
+- **Grid 10 Feed Instagram:**
+  - 2 Baris x 5 Kolom di desktop (`grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3 sm:gap-4`).
+  - Efek hover kartu halus dan klik untuk zoom preview.
+- **Foreground Bawah:** Meja kayu rustic panjang dengan mobil Brio dan produk suku cadang Astra Otoparts.
 
 ---
 
-## Checklist Eksekusi
+### STEP 7: Modal Lightbox (`components/ImageModal.tsx`)
 
-1. - [ ] Buat `data/horisonData.ts`
-2. - [ ] Buat `components/HorisonHero.tsx` (Section 1 + jarak navbar)
-3. - [ ] Buat `components/MeetingRoomSection.tsx` (Section 2)
-4. - [ ] Buat `components/WeddingSection.tsx` (Section 3)
-5. - [ ] Buat `components/HotelRoomSection.tsx` (Section 4)
-6. - [ ] Rakit semua di `DesignHorison.tsx`
-7. - [ ] Test responsif 375px, 768px, 1024px, 1280px
-8. - [ ] Commit dan push ke GitHub
+- Lightbox modal pop-up yang responsif untuk memperbesar kartu desain saat diklik oleh pengunjung, dilengkapi tombol close `✕` dan event listener `Escape`.
+
+---
+
+### STEP 8: Root Component & Routing
+
+1. **Rakit di `DesainAstraotoshop.tsx`:**
+   ```tsx
+   import AstraHero from "./components/AstraHero";
+   import OldStyleSection from "./components/OldStyleSection";
+   import NewStyleSection from "./components/NewStyleSection";
+   import AdsDesignSection from "./components/AdsDesignSection";
+   import FeedDesignSection from "./components/FeedDesignSection";
+
+   export default function DesainAstraotoshop() {
+     return (
+       <main className="w-full min-h-screen bg-slate-900 text-white overflow-hidden">
+         <AstraHero />
+         <OldStyleSection />
+         <NewStyleSection />
+         <AdsDesignSection />
+         <FeedDesignSection />
+       </main>
+     );
+   }
+   ```
+2. **Tambahkan rute di `App.tsx`:**
+   - Path: `graphic-design/astraotoshop` (mengarah ke `DesainAstraotoshop`)
+3. **Tambahkan dropdown menu di `Navbar.tsx`:**
+   - Label: `"Astra Otoshop"` -> Link: `"/graphic-design/astraotoshop"`
+
+---
+
+## 📱 Responsiveness Matrix
+
+| Breakpoint | Lebar Layar | Layout Hero | Grid Style Lama | Grid Ads | Grid Feed |
+|:---|:---|:---|:---|:---|:---|
+| **Mobile (xs/sm)** | 320px – 640px | Judul 2.5rem, Card full-width | 2 kolom | 2 kolom | 2 kolom |
+| **Tablet (md)** | 768px – 1024px | Judul 4.5rem, Card 2 kolom | 3 - 4 kolom | 3 - 4 kolom | 3 - 4 kolom |
+| **Desktop (lg/xl)** | 1024px – 1440px+ | Judul 7rem - 9rem, Card max-w-xl | 4 - 5 kolom | 4 kolom | 5 kolom (2 baris) |
+
+---
+
+## 📋 Checklist Eksekusi untuk Developer
+
+- [ ] 1. Buat file data `src/pages/sections/DesainAstraotoshop/data/astraData.ts`
+- [ ] 2. Buat komponen `ImageModal.tsx`
+- [ ] 3. Buat `components/AstraHero.tsx` (Lengkap jarak navbar `pt-32` & deskripsi card)
+- [ ] 4. Buat `components/OldStyleSection.tsx` (Grid 8 kartu + background trek balap)
+- [ ] 5. Buat `components/NewStyleSection.tsx` (Komposisi mobil Brio & podium produk)
+- [ ] 6. Buat `components/AdsDesignSection.tsx` (Grid 8 banner ads promo)
+- [ ] 7. Buat `components/FeedDesignSection.tsx` (Grid 10 feed Instagram + meja kayu produk)
+- [ ] 8. Rakit semua section di `DesainAstraotoshop.tsx`
+- [ ] 9. Daftarkan rute di `src/App.tsx` & link di `src/components/layout/Navbar.tsx`
+- [ ] 10. Uji responsif dan build `npm run build`
+- [ ] 11. Git commit & push ke repository GitHub
