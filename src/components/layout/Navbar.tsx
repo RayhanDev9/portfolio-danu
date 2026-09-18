@@ -8,6 +8,7 @@ const designSubLinks = [
   { label: "Majlis Ta'lim", href: "/graphic-design/majlis" },
   { label: "Horison Altama", href: "/graphic-design/horison" },
   { label: "Astra Otoshop", href: "/graphic-design/astraotoshop" },
+  { label: "Mister Klinner", href: "/graphic-design/mister-klinner" },
 ];
 
 // =============================================
