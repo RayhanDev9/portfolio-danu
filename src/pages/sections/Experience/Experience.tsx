@@ -1,6 +1,9 @@
 import ExperienceHero from "./components/ExperienceHero";
 import ExperienceTimelineOverview from "./components/ExperienceTimelineOverview";
 import ExperienceDetailSection from "./components/ExperienceDetailSection";
+import EducationHero from "./components/EducationHero";
+import EducationTimeline from "./components/EducationTimeline";
+import EducationDetailSection from "./components/EducationDetailSection";
 
 export default function Experience() {
   return (
@@ -16,6 +19,16 @@ export default function Experience() {
 
       {/* 3. Detail Container Krem Pengalaman */}
       <ExperienceDetailSection />
+
+      {/* 4. Section EDUCATION: Hero Title */}
+      <EducationHero />
+
+      {/* 5. Section EDUCATION: Horizontal Timeline 3 Sekolah */}
+      <EducationTimeline />
+
+      {/* 6. Section EDUCATION: Detail Card Sekolah (Alternating) */}
+      <EducationDetailSection />
     </section>
   );
 }
+

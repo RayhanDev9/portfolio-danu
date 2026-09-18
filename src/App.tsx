@@ -3,6 +3,7 @@ import RootLayout from "./pages/RootLayout";
 import Home from "./pages/sections/Home/Home";
 import Experience from "./pages/sections/Experience/Experience";
 import DesignMajlis from "./pages/sections/DesignMajlis/DesignMajlis";
+import CreativeJourney from "./pages/sections/CreativeJourney/CreativeJourney";
 
 const router = createBrowserRouter(
   [
@@ -21,6 +22,10 @@ const router = createBrowserRouter(
         {
           path: "graphic-design/majlis",
           element: <DesignMajlis />,
+        },
+        {
+          path: "creativejourney",
+          element: <CreativeJourney />,
         },
       ],
     },
