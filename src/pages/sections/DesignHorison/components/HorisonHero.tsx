@@ -73,38 +73,29 @@ export default function HorisonHero() {
                 setSelectedImg({ src: banner.image, title: banner.title })
               }
             >
-              {/* Poster Body */}
-              <div className="relative w-44 sm:w-52 md:w-56 bg-white rounded-lg p-2 shadow-[0_20px_40px_rgba(0,0,0,0.4)] border-2 border-white/40 group-hover:scale-105 transition-all duration-300">
-                {/* Header Banner */}
-                <div className="bg-[#0077c8] text-white p-2 text-center rounded-t">
-                  <div className="text-[10px] font-bold text-yellow-300 uppercase">
-                    Horison Altama
-                  </div>
-                  <div className="font-spartan font-black text-xs sm:text-sm leading-tight uppercase">
-                    {banner.title}
-                  </div>
-                  <div className="text-[9px] text-white/90 mt-0.5 font-semibold">
-                    START FROM
-                  </div>
-                  <div className="font-bold text-[11px] text-yellow-300">
-                    {banner.price}
-                  </div>
-                </div>
-
-                {/* Banner Image Content */}
-                <div className="aspect-[3/4] overflow-hidden rounded-b mt-1 bg-gray-100">
+              {/* Poster Body (Full Genuine Artwork inside X-Banner Frame) */}
+              <div className="relative w-44 sm:w-52 md:w-56 bg-white rounded-xl p-2 shadow-[0_20px_40px_rgba(0,0,0,0.4)] border-2 border-white/40 group-hover:scale-105 transition-all duration-300">
+                {/* Banner Image Content (Showing exact real poster) */}
+                <div className="w-full aspect-[3/4] sm:aspect-[4/5] overflow-hidden rounded-lg bg-gray-900">
                   <img
                     src={banner.image}
                     alt={banner.title}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                 </div>
 
                 {/* Corner Grommets (Eyelets) */}
-                <div className="absolute top-3 left-3 w-2 h-2 rounded-full bg-gray-400 border border-black/40" />
-                <div className="absolute top-3 right-3 w-2 h-2 rounded-full bg-gray-400 border border-black/40" />
-                <div className="absolute bottom-3 left-3 w-2 h-2 rounded-full bg-gray-400 border border-black/40" />
-                <div className="absolute bottom-3 right-3 w-2 h-2 rounded-full bg-gray-400 border border-black/40" />
+                <div className="absolute top-3.5 left-3.5 w-2.5 h-2.5 rounded-full bg-slate-300 border border-black/40 shadow-inner" />
+                <div className="absolute top-3.5 right-3.5 w-2.5 h-2.5 rounded-full bg-slate-300 border border-black/40 shadow-inner" />
+                <div className="absolute bottom-3.5 left-3.5 w-2.5 h-2.5 rounded-full bg-slate-300 border border-black/40 shadow-inner" />
+                <div className="absolute bottom-3.5 right-3.5 w-2.5 h-2.5 rounded-full bg-slate-300 border border-black/40 shadow-inner" />
+
+                {/* Hover Overlay */}
+                <div className="absolute inset-2 rounded-lg bg-blue-950/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                  <span className="bg-white text-blue-950 px-3 py-1.5 rounded-full text-xs font-spartan font-bold shadow-lg">
+                    🔍 Zoom
+                  </span>
+                </div>
               </div>
 
               {/* X-Stand / Tripod Mockup Base */}
@@ -128,7 +119,7 @@ export default function HorisonHero() {
               </div>
 
               <span className="text-white/85 text-xs font-spartan font-bold mt-1 group-hover:text-yellow-300 transition-colors">
-                🔍 Klik untuk Zoom
+                🔍 {banner.title}
               </span>
             </div>
           ))}

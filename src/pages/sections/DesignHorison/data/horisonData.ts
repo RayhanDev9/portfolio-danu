@@ -14,16 +14,16 @@ export const horisonData = {
     personImage: `${PROFILE}/danu.png`,
     previewBanners: [
       {
-        title: "BIRTHDAY PARTY",
-        price: "IDR 1.400.000 nett",
+        title: "Meeting Room Package",
+        price: "IDR 300.000",
         image: `${DIR}/meeting-room/meeting-room-2.png`,
-        tag: "BIRTHDAY PARTY",
+        tag: "MEETING ROOM",
       },
       {
-        title: "BIRTHDAY KIDS",
-        price: "IDR 2.800.000 nett",
+        title: "Marry Me - Wedding Package",
+        price: "IDR 14.800.000",
         image: `${DIR}/weeding/weeding-1.png`,
-        tag: "BIRTHDAY KIDS",
+        tag: "WEDDING",
       },
     ],
   },
