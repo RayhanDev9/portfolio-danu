@@ -46,7 +46,7 @@ export default function ProfileHero() {
 
           {/* Nama & Tagline */}
           <h1 className="font-spartan font-black text-4xl sm:text-6xl md:text-7xl text-white uppercase tracking-tight leading-none mb-3">
-            DANU <span className="text-[#e8fb31]">RAYHAN</span>
+            DANU <span className="text-[#e8fb31]">PRASETYO</span>
           </h1>
 
           <div className="flex items-center justify-center lg:justify-start gap-2 text-purple-200 text-sm font-semibold mb-6">

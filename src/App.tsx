@@ -56,6 +56,10 @@ const router = createBrowserRouter(
           element: <GraphicMotion />,
         },
         {
+          path: "motion-graphic",
+          element: <GraphicMotion />,
+        },
+        {
           path: "creative-journey",
           element: <CreativeJourney />,
         },

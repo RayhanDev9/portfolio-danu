@@ -289,10 +289,10 @@ export default function Navbar() {
             </div>
             <div className="flex flex-col">
               <span className="font-spartan font-black text-sm tracking-wide text-white drop-shadow">
-                DANU.DEV
+                Danu Prasetyo
               </span>
               <span className="font-sans text-[10px] text-[#e8fb31] font-semibold -mt-1">
-                Portfolio
+              Graphic & Motion Designer
               </span>
             </div>
           </Link>
