@@ -7,6 +7,10 @@ import CreativeJourney from "./pages/sections/CreativeJourney/CreativeJourney";
 import DesignHorison from "./pages/sections/DesignHorison/DesignHorison";
 import DesainAstraotoshop from "./pages/sections/DesainAstraotoshop/DesainAstraotoshop";
 import DesignMisterKlinner from "./pages/sections/DesignMisterKlinner/DesignMisterKlinner";
+import DesainGeonerations from "./pages/sections/DesainGeonerations/DesainGeonerations";
+import DesainViaFabula from "./pages/sections/DesainViaFabula/DesainViaFabula";
+import Contact from "./pages/sections/Contact/Contact";
+import Profile from "./pages/sections/Profile/Profile";
 
 const router = createBrowserRouter(
   [
@@ -39,8 +43,24 @@ const router = createBrowserRouter(
           element: <DesignMisterKlinner />,
         },
         {
+          path: "graphic-design/geonerations",
+          element: <DesainGeonerations />,
+        },
+        {
+          path: "graphic-design/via-fabula",
+          element: <DesainViaFabula />,
+        },
+        {
           path: "creative-journey",
           element: <CreativeJourney />,
+        },
+        {
+          path: "contact",
+          element: <Contact />,
+        },
+        {
+          path: "profile",
+          element: <Profile />,
         },
       ],
     },
