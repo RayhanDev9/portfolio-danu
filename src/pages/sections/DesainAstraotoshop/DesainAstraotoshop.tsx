@@ -3,6 +3,7 @@ import OldStyleSection from "./components/OldStyleSection";
 import NewStyleSection from "./components/NewStyleSection";
 import AdsDesignSection from "./components/AdsDesignSection";
 import FeedDesignSection from "./components/FeedDesignSection";
+import ThumbnailDesignSection from "./components/ThumbnailDesignSection";
 
 export default function DesainAstraotoshop() {
   return (
@@ -19,8 +20,11 @@ export default function DesainAstraotoshop() {
       {/* 4. Section Ads Design */}
       <AdsDesignSection />
 
-      {/* 5. Section Feed Design (Paling Bawah) */}
+      {/* 5. Section Feed Design */}
       <FeedDesignSection />
+
+      {/* 6. Section Thumbnail Design (Paling Bawah) */}
+      <ThumbnailDesignSection />
     </main>
   );
 }

@@ -168,4 +168,30 @@ export const astraData = {
       },
     ],
   },
+  thumbnailDesign: {
+    title: "THUMBNAIL DESIGN",
+    bg: `${BG}/bg-6.jpg`,
+    cards: [
+      {
+        id: 1,
+        title: "Kena Prank!! Gaikindo Auto Show",
+        image: `${THUMB}/Kena Prank!!.png`,
+      },
+      {
+        id: 2,
+        title: "Lagi Enak-Enak Makan Tiba-Tiba Ada Yang Nyium",
+        image: `${THUMB}/TIBA-TIBA ADA YANG NYIUM.png`,
+      },
+      {
+        id: 3,
+        title: "Gak Sadar Gara-Gara Beli Spare Part KW",
+        image: `${THUMB}/GAK SADAR.png`,
+      },
+      {
+        id: 4,
+        title: "Kata Otosob Tentang Astra Otoshop",
+        image: `${THUMB}/kata otoshob.png`,
+      },
+    ],
+  },
 };

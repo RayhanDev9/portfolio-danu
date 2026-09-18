@@ -6,6 +6,7 @@ import DesignMajlis from "./pages/sections/DesignMajlis/DesignMajlis";
 import CreativeJourney from "./pages/sections/CreativeJourney/CreativeJourney";
 import DesignHorison from "./pages/sections/DesignHorison/DesignHorison";
 import DesainAstraotoshop from "./pages/sections/DesainAstraotoshop/DesainAstraotoshop";
+import DesignMisterKlinner from "./pages/sections/DesignMisterKlinner/DesignMisterKlinner";
 
 const router = createBrowserRouter(
   [
@@ -32,6 +33,10 @@ const router = createBrowserRouter(
         {
           path: "graphic-design/astraotoshop",
           element: <DesainAstraotoshop />,
+        },
+        {
+          path: "graphic-design/mister-klinner",
+          element: <DesignMisterKlinner />,
         },
         {
           path: "creative-journey",
