@@ -8,7 +8,7 @@ export default function CreativeJourney() {
   return (
     <section
       id="creative-journey"
-      className="relative w-full min-h-screen bg-[#0d0c13] text-white flex flex-col justify-between overflow-hidden py-8 sm:py-12 lg:py-16 px-4 sm:px-6 lg:px-12 select-none"
+      className="relative w-full min-h-screen bg-[url('../../../../../public/other/jalan.png')] text-white flex flex-col justify-between overflow-hidden py-8 sm:py-12 lg:py-16 px-4 sm:px-6 lg:px-12 select-none"
     >
       {/* Background Decorative Gradients & Ambience */}
       <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0f] via-[#12101e] to-[#0a0a0f] pointer-events-none" />

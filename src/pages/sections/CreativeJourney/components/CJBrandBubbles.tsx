@@ -4,35 +4,125 @@ interface CJBrandBubblesProps {
   brands: BrandItem[];
 }
 
+/**
+ * Splits a brand name into two lines for display inside the bubble.
+ * Example: "via fabula" → ["via", "fabula"]
+ *          "mr klinner" → ["Mr", "Klinner"]
+ *          "astra otoshop" → ["Astra", "Otoshop"]
+ */
+function splitBrandName(name: string): [string, string] {
+  const words = name.trim().split(" ");
+  if (words.length === 1) return [words[0], ""];
+  const mid = Math.ceil(words.length / 2);
+  return [words.slice(0, mid).join(" "), words.slice(mid).join(" ")];
+}
+
 export const CJBrandBubbles = ({ brands }: CJBrandBubblesProps) => {
   return (
-    <div className="grid grid-cols-3 gap-3 sm:gap-4 md:gap-5 lg:gap-6 items-center justify-items-center">
-      {brands.map((brand) => (
-        <div
-          key={brand.id}
-          className="group relative flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-24 lg:h-24 xl:w-28 xl:h-28 rounded-full bg-white/10 backdrop-blur-md border border-white/30 shadow-[inset_0_2px_8px_rgba(255,255,255,0.35),0_8px_24px_rgba(0,0,0,0.45)] hover:border-white/60 hover:bg-white/15 hover:scale-110 transition-all duration-300 overflow-hidden cursor-pointer"
-          title={brand.name}
-        >
-          {brand.logo ? (
-            <img
-              src={brand.logo}
-              alt={brand.name}
-              className="w-[70%] h-[70%] object-contain filter drop-shadow-sm transition-transform duration-300 group-hover:scale-105"
-            />
-          ) : (
+    <div className="grid grid-cols-3 gap-3  sm:gap-4 md:gap-5 lg:gap-6 items-center justify-items-center lg:justify-evenly">
+      {brands.map((brand) => {
+        const [line1, line2] = splitBrandName(brand.name);
+        return (
+          <div
+            key={brand.id}
+            className="group  relative flex items-center justify-center
+              w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-28 lg:h-28 
+              rounded-full
+              hover:scale-110 transition-all duration-300 cursor-pointer"
+            title={brand.name}
+          >
+            {/* === REALISTIC GLASS BUBBLE === */}
             <div
-              className="w-full h-full flex items-center justify-center rounded-full"
+              className="absolute inset-0 rounded-full overflow-hidden"
               style={{
-                background: `radial-gradient(circle at 30% 30%, ${brand.color}cc, #0b071a)`,
+                /* Base glass body: semi-transparent with slight colour tint */
+                background: `radial-gradient(circle at 38% 38%,
+                  rgba(255,255,255,0.55) 0%,
+                  rgba(200,220,255,0.18) 30%,
+                  rgba(160,180,240,0.08) 55%,
+                  rgba(80,80,140,0.28) 80%,
+                  rgba(30,30,80,0.55) 100%)`,
+                boxShadow: `
+                  inset 0 2px 12px rgba(255,255,255,0.55),
+                  inset 0 -4px 16px rgba(0,0,0,0.35),
+                  0 8px 32px rgba(0,0,0,0.55),
+                  0 2px 8px rgba(255,255,255,0.10)
+                `,
+                border: "1.5px solid rgba(255,255,255,0.45)",
+                backdropFilter: "blur(6px)",
               }}
-            >
-              <span className="font-spartan font-black text-white text-base sm:text-lg md:text-xl lg:text-2xl tracking-wider drop-shadow-md">
-                {brand.initials}
-              </span>
+            />
+
+            {/* Top-left glare — the main specular highlight */}
+            <div
+              className="absolute rounded-full pointer-events-none"
+              style={{
+                top: "10%",
+                left: "14%",
+                width: "36%",
+                height: "28%",
+                background:
+                  "radial-gradient(ellipse at 40% 40%, rgba(255,255,255,0.90) 0%, rgba(255,255,255,0.30) 50%, transparent 100%)",
+                transform: "rotate(-30deg)",
+                filter: "blur(1px)",
+              }}
+            />
+
+            {/* Bottom-right subtle counter-shine */}
+            <div
+              className="absolute rounded-full pointer-events-none"
+              style={{
+                bottom: "10%",
+                right: "12%",
+                width: "22%",
+                height: "14%",
+                background:
+                  "radial-gradient(ellipse, rgba(255,255,255,0.40) 0%, transparent 100%)",
+                filter: "blur(2px)",
+              }}
+            />
+
+            {/* Brand content — logo or styled text */}
+            <div className="relative z-10 flex flex-col items-center justify-center text-center px-1">
+              {brand.logo ? (
+                <img
+                  src={brand.logo}
+                  alt={brand.name}
+                  className="w-[58%] h-[58%] object-contain drop-shadow-[0_1px_3px_rgba(0,0,0,0.6)] transition-transform duration-300 group-hover:scale-105"
+                />
+              ) : (
+                <>
+                  {/* First word — slightly larger, accent colour */}
+                  <span
+                    className="font-spartan font-black leading-tight tracking-wide capitalize
+                      text-[0.55rem] sm:text-[0.6rem] md:text-[0.65rem] lg:text-[0.7rem] xl:text-[0.75rem]"
+                    style={{
+                      color: "#e23232",
+                      textShadow:
+                        "0 1px 4px rgba(0,0,0,0.7), 0 0 8px rgba(255,80,80,0.4)",
+                    }}
+                  >
+                    {line1}
+                  </span>
+                  {line2 && (
+                    <span
+                      className="font-spartan font-black leading-tight tracking-wide capitalize
+                        text-[0.55rem] sm:text-[0.6rem] md:text-[0.65rem] lg:text-[0.7rem] xl:text-[0.75rem]"
+                      style={{
+                        color: "#3272e2",
+                        textShadow:
+                          "0 1px 4px rgba(0,0,0,0.7), 0 0 8px rgba(50,100,255,0.4)",
+                      }}
+                    >
+                      {line2}
+                    </span>
+                  )}
+                </>
+              )}
             </div>
-          )}
-        </div>
-      ))}
+          </div>
+        );
+      })}
     </div>
   );
 };
