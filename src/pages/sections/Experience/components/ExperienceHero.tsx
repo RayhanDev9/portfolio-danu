@@ -16,7 +16,7 @@ export default function ExperienceHero() {
       </div>
 
       {/* Container Judul EXPER I ENCE (Responsif dengan satuan fluid vw) */}
-      <div className="relative flex items-center justify-center gap-[0.08em] font-spartan font-black text-[12.5vw] sm:text-[11vw] md:text-[8rem] lg:text-[9.5rem] xl:text-[10rem] tracking-tight leading-none text-[#e5fc34]">
+      <div className="relative flex items-center justify-center gap-[0.04em] xs:gap-[0.05em] sm:gap-[0.06em] md:gap-[0.07em] lg:gap-[0.08em] font-spartan font-black text-[13vw] xs:text-[11.5vw] sm:text-[10vw] md:text-[8.5vw] lg:text-[7.5vw] xl:text-[8rem] 2xl:text-[9.5rem] tracking-tight leading-none text-[#e5fc34]">
         {/* Teks Kiri "EXPER" */}
         <span className="relative">
           EXPER
@@ -29,7 +29,7 @@ export default function ExperienceHero() {
         </span>
 
         {/* Foto Danu di Tengah (Otomatis membesar proporsional mengikuti font) */}
-        <div className="relative h-[1.18em] w-[0.6em] flex items-end justify-center shrink-0">
+        <div className="relative h-[1.05em] w-[0.52em] xs:h-[1.1em] xs:w-[0.55em] sm:h-[1.15em] sm:w-[0.58em] md:h-[1.18em] md:w-[0.6em] flex items-end justify-center shrink-0">
           <img
             src={`${import.meta.env.BASE_URL}img/profile/danu-jas.png`}
             alt="Danu"
