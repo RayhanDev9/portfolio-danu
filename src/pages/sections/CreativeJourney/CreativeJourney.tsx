@@ -20,17 +20,17 @@ export default function CreativeJourney() {
         }}
       />
 
-      {/* Dark overlay agar teks tetap terbaca */}
-      <div className="absolute inset-0 bg-black/60 pointer-events-none" />
+      {/* Dark overlay agar teks tetap terbaca — lebih terang */}
+      <div className="absolute inset-0 bg-black/30 pointer-events-none" />
 
       {/* Gradient purple overlay dari kanan */}
       <div className="absolute top-0 right-0 w-[55vw] h-full bg-gradient-to-l from-[#5b13ec]/50 via-[#7c3aff]/20 to-transparent blur-2xl pointer-events-none" />
 
       {/* Gradient gelap dari bawah */}
-      <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-black/90 via-black/40 to-transparent pointer-events-none" />
+      <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-black/70 via-black/20 to-transparent pointer-events-none" />
 
       {/* Gradient gelap dari atas (blend dengan navbar) */}
-      <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-black/70 to-transparent pointer-events-none" />
+      <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-black/50 to-transparent pointer-events-none" />
 
       {/* Content Container */}
       <div className="relative z-10 max-w-7xl mx-auto w-full flex flex-col items-center justify-between min-h-[calc(100vh-8rem)]">
