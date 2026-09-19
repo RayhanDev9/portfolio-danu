@@ -63,8 +63,11 @@ export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileAccordionOpen, setMobileAccordionOpen] = useState(true);
   const [desktopDesignOpen, setDesktopDesignOpen] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const lastScrollY = useRef(0);
 
   // Kunci scroll body saat menu mobile terbuka (menggunakan custom hook)
   useScrollLock(mobileOpen);
@@ -73,11 +76,48 @@ export default function Navbar() {
   const closeDropdown = useCallback(() => setDesktopDesignOpen(false), []);
   useClickOutside(dropdownRef, closeDropdown, desktopDesignOpen);
 
-  // Tutup menu saat rute berpindah
+  // Tutup menu saat rute berpindah & reset navbar visibility
   useEffect(() => {
     setMobileOpen(false);
     setDesktopDesignOpen(false);
+    setIsVisible(true);
   }, [location.pathname]);
+
+  // Smart scroll effect: Auto-hide saat scroll ke bawah, auto-reveal saat scroll ke atas
+  useEffect(() => {
+    let ticking = false;
+
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const currentScrollY = window.scrollY;
+
+          // Backdrop blur trigger saat mulai scroll
+          setIsScrolled(currentScrollY > 20);
+
+          // Top of page: selalu terlihat
+          if (currentScrollY < 60) {
+            setIsVisible(true);
+          } else if (currentScrollY > lastScrollY.current + 8) {
+            // Scroll down: sembunyikan navbar ke atas jika dropdown tidak terbuka
+            if (!desktopDesignOpen) {
+              setIsVisible(false);
+            }
+          } else if (currentScrollY < lastScrollY.current - 8) {
+            // Scroll up: munculkan navbar ke bawah
+            setIsVisible(true);
+          }
+
+          lastScrollY.current = currentScrollY;
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [desktopDesignOpen]);
 
   const isDesignActive = currentPath.startsWith("/graphic-design");
   const avatarUrl = getAssetUrl("img/profile/danu-duduk.avif");
@@ -89,7 +129,13 @@ export default function Navbar() {
           ============================ */}
       <nav
         id="main-navbar"
-        className="fixed  top-0 left-0 right-0 z-40 w-full px-4 sm:px-6 py-4 sm:py-6 bg-transparent border-none"
+        className={`fixed top-0 left-0 right-0 z-40 w-full transition-all duration-300 ease-in-out px-4 sm:px-6 ${
+          isVisible ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0 pointer-events-none"
+        } ${
+          isScrolled
+            ? "py-2.5 sm:py-3 bg-[#0f0728]/75 backdrop-blur-xl border-b border-white/10 shadow-lg shadow-black/20"
+            : "py-4 sm:py-6 bg-transparent border-none"
+        }`}
       >
         {/* ============================
             DESKTOP NAVBAR (md ke atas)
