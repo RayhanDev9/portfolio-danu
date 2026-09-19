@@ -254,7 +254,7 @@ export default function Navbar() {
               className="ml-2 flex-shrink-0 transition-transform duration-200 hover:scale-110 active:scale-95"
             >
               <img
-                src={`${import.meta.env.BASE_URL}img/profile/danu-duduk.png`}
+                src={`${import.meta.env.BASE_URL}img/profile/danu-duduk.avif`}
                 alt="Danu Profile"
                 className={`w-8 h-8 lg:w-9 lg:h-9 rounded-full object-cover object-top transition-all duration-200 ${
                   currentPath === "/profile"
@@ -277,7 +277,7 @@ export default function Navbar() {
           >
             <div className="relative">
               <img
-                src={`${import.meta.env.BASE_URL}img/profile/danu-duduk.png`}
+                src={`${import.meta.env.BASE_URL}img/profile/danu-duduk.avif`}
                 alt="Danu Profile"
                 className={`w-9 h-9 rounded-full object-cover object-top transition-all duration-200 ${
                   currentPath === "/profile"
@@ -329,7 +329,7 @@ export default function Navbar() {
             >
               <div className="relative">
                 <img
-                  src={`${import.meta.env.BASE_URL}img/profile/danu-duduk.png`}
+                  src={`${import.meta.env.BASE_URL}img/profile/danu-duduk.avif`}
                   alt="Danu Profile"
                   className="w-10 h-10 rounded-full object-cover object-top ring-2 ring-[#e8fb31] group-hover:scale-105 transition-transform"
                 />

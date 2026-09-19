@@ -19,7 +19,7 @@ export interface PortfolioCategory {
 export const softwareList: SoftwareItem[] = [
   {
     name: "Photoshop",
-    icon: `${import.meta.env.BASE_URL}img/tools-skills/ps.png`,
+    icon: `${import.meta.env.BASE_URL}img/tools-skills/ps.avif`,
     code: "Ps",
     bg: "bg-[#001e36]",
     text: "text-[#31a8ff]",
@@ -27,7 +27,7 @@ export const softwareList: SoftwareItem[] = [
   },
   {
     name: "Illustrator",
-    icon: `${import.meta.env.BASE_URL}img/tools-skills/ai.png`,
+    icon: `${import.meta.env.BASE_URL}img/tools-skills/ai.avif`,
     code: "Ai",
     bg: "bg-[#330000]",
     text: "text-[#ff9a00]",
@@ -35,7 +35,7 @@ export const softwareList: SoftwareItem[] = [
   },
   {
     name: "After Effects",
-    icon: `${import.meta.env.BASE_URL}img/tools-skills/ae.png`,
+    icon: `${import.meta.env.BASE_URL}img/tools-skills/ae.avif`,
     code: "Ae",
     bg: "bg-[#00005b]",
     text: "text-[#9999ff]",
@@ -43,7 +43,7 @@ export const softwareList: SoftwareItem[] = [
   },
   {
     name: "Canva",
-    icon: `${import.meta.env.BASE_URL}img/tools-skills/canva.png`,
+    icon: `${import.meta.env.BASE_URL}img/tools-skills/canva.avif`,
     code: "Canva",
     bg: "",
     text: "",
@@ -51,7 +51,7 @@ export const softwareList: SoftwareItem[] = [
   },
   {
     name: "Premiere Pro",
-    icon: `${import.meta.env.BASE_URL}img/tools-skills/pr.png`,
+    icon: `${import.meta.env.BASE_URL}img/tools-skills/pr.avif`,
     code: "Pr",
     bg: "bg-[#00005b]",
     text: "text-[#ea77ff]",
@@ -64,19 +64,19 @@ export const portfolioCategories: PortfolioCategory[] = [
   {
     id: "experience",
     title: "Experience",
-    image: `${import.meta.env.BASE_URL}img/category/experience.jpg`,
+    image: `${import.meta.env.BASE_URL}img/category/experience.avif`,
     link: "/experience",
   },
   {
     id: "graphic-designer",
     title: "Graphic Designer",
-    image: `${import.meta.env.BASE_URL}img/category/graphic-designer.jpg`,
+    image: `${import.meta.env.BASE_URL}img/category/graphic-designer.avif`,
     link: "/graphic-design/majlis",
   },
   {
     id: "motion-graphic",
     title: "motion graphic",
-    image: `${import.meta.env.BASE_URL}img/category/motion-graphic.jpg`,
+    image: `${import.meta.env.BASE_URL}img/category/motion-graphic.avif`,
     link: "/motion-graphic",
   },
 ];

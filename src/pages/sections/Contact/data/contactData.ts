@@ -106,5 +106,5 @@ export const PROFILE_INFO = {
   role: "Graphic Designer & Creative Director",
   location: "Rangkasbitung, Indonesia (Open to Remote)",
   status: "Available for Freelance & Full-Time Projects",
-  avatar: `${BASE}img/profile/danu-duduk.png`,
+  avatar: `${BASE}img/profile/danu-duduk.avif`,
 };

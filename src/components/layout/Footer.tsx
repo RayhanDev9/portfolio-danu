@@ -250,7 +250,7 @@ export default function Footer() {
             <div className="relative group">
               <div className="absolute -inset-2 bg-[#5b13ec]/40 rounded-full blur-xl opacity-50 group-hover:opacity-80 transition duration-300" />
               <img
-                src={`${import.meta.env.BASE_URL}img/profile/danu-jas.png`}
+                src={`${import.meta.env.BASE_URL}img/profile/danu-jas.avif`}
                 alt="Danu Prasetyo"
                 className="relative h-60 xl:h-72 object-contain object-bottom drop-shadow-[0_20px_35px_rgba(0,0,0,0.7)] group-hover:scale-105 transition-transform duration-300"
               />

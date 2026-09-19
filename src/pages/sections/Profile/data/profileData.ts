@@ -29,8 +29,8 @@ export const PERSONAL_INFO = {
     "Saya adalah seorang Graphic Designer dan Motion Graphic Enthusiast yang berfokus pada pembuatan identitas visual yang kuat, konten media sosial yang berdampak, dan desain berorientasi pada cerita (story-driven design). Dengan pengalaman menangani berbagai brand dari skala lokal hingga nasional, saya selalu memadukan estetika modern dengan strategi komunikasi visual yang relevan bagi audiens.",
   location: "Rangkasbitung, Indonesia",
   experienceYears: "1-2 Tahun",
-  avatar: `${BASE}img/profile/danu-duduk.png`,
-  formalAvatar: `${BASE}img/profile/danu-jas.png`,
+  avatar: `${BASE}img/profile/danu-duduk.avif`,
+  formalAvatar: `${BASE}img/profile/danu-jas.avif`,
 };
 
 // 2. Data Statistik Karir
@@ -66,31 +66,31 @@ export const SOFTWARE_SKILLS: SkillItem[] = [
   {
     name: "Adobe Photoshop",
     level: 80,
-    icon: `${BASE}img/tools-skills/ps.png`,
+    icon: `${BASE}img/tools-skills/ps.avif`,
     description: "Photo manipulation, social media feed, & composite editing.",
   },
   {
     name: "Adobe Illustrator",
     level: 50,
-    icon: `${BASE}img/tools-skills/ai.png`,
+    icon: `${BASE}img/tools-skills/ai.avif`,
     description: "Vector illustration, logo branding, & vector assets.",
   },
   {
     name: "Adobe Premiere Pro",
     level: 30,
-    icon: `${BASE}img/tools-skills/pr.png`,
+    icon: `${BASE}img/tools-skills/pr.avif`,
     description: "Video editing, color grading, & pacing storytelling.",
   },
   {
     name: "Adobe After Effects",
     level: 40,
-    icon: `${BASE}img/tools-skills/ae.png`,
+    icon: `${BASE}img/tools-skills/ae.avif`,
     description: "Motion graphics, title animation, & visual effects.",
   },
   {
     name: "Canva Pro",
     level: 92,
-    icon: `${BASE}img/tools-skills/canva.png`,
+    icon: `${BASE}img/tools-skills/canva.avif`,
     description: "Rapid social media templates & collaborative client designs.",
   },
 ];

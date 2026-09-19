@@ -6,7 +6,7 @@ export default function ExperienceHero() {
         {/* Foto Danu sebagai Huruf 'I' */}
         <span className="inline-flex items-center justify-center h-[1.12em] w-[0.52em] sm:w-[0.56em] mx-0.5 sm:mx-1 shrink-0 overflow-visible">
           <img
-            src={`${import.meta.env.BASE_URL}img/profile/danu-jas.png`}
+            src={`${import.meta.env.BASE_URL}img/profile/danu-jas.avif`}
             alt="Danu"
             className="h-full w-auto object-contain object-bottom drop-shadow-[0_10px_20px_rgba(0,0,0,0.5)] pointer-events-none"
           />

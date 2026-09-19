@@ -7,7 +7,7 @@ interface AstraOtoshopMotionProps {
 }
 
 export default function AstraOtoshopMotion({ onSelect }: AstraOtoshopMotionProps) {
-  const bgRaceTrack = `${import.meta.env.BASE_URL}img/motion/bg/bg-1.jpg`;
+  const bgRaceTrack = `${import.meta.env.BASE_URL}img/motion/bg/bg-1.avif`;
 
   return (
     <section className="relative w-full select-none font-sans">

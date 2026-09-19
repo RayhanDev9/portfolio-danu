@@ -87,7 +87,7 @@ export const ASTRA_FEED_CARDS: MotionItem[] = [
     title: "5 Hari Lagi Di GIIAS 2026",
     subtitle: "Countdown Final Post",
     videoUrl: `${BASE}vidio/motion/carousel motion/4.mp4`,
-    poster: `${BASE}vidio/motion/carousel motion/4.png`,
+    poster: `${BASE}vidio/motion/carousel motion/4.avif`,
     aspectRatio: "1:1",
     brand: "astra",
   },

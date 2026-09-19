@@ -35,9 +35,9 @@ export default function RootLayout() {
     document.title = newTitle;
   }, [pathname]);
 
-  // 2. Set Favicon ke danu-duduk.png
+  // 2. Set Favicon ke danu-duduk.avif
   useEffect(() => {
-    const faviconUrl = `${import.meta.env.BASE_URL}img/profile/danu-duduk.png`;
+    const faviconUrl = `${import.meta.env.BASE_URL}img/profile/danu-duduk.avif`;
     let link: HTMLLinkElement | null =
       document.querySelector("link[rel~='icon']");
     if (!link) {

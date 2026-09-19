@@ -8,11 +8,11 @@ export default function PhoneMockup({
   tilt = "straight",
 }: PhoneMockupProps) {
   const BASE = import.meta.env.BASE_URL;
-  const logo = `${BASE}img/vendor-experienc/horison.png`;
-  const imgMeeting = `${BASE}img/desain-horison-altama-pandeglang/meeting-room/meeting-room-2.png`;
-  const imgWedding = `${BASE}img/desain-horison-altama-pandeglang/weeding/weeding-1.png`;
-  const imgHotel = `${BASE}img/desain-horison-altama-pandeglang/hotel-room/hotel-room-1.jpg`;
-  const imgHotel2 = `${BASE}img/desain-horison-altama-pandeglang/hotel-room/hotel-room-2.jpg`;
+  const logo = `${BASE}img/vendor-experienc/horison.avif`;
+  const imgMeeting = `${BASE}img/desain-horison-altama-pandeglang/meeting-room/meeting-room-2.avif`;
+  const imgWedding = `${BASE}img/desain-horison-altama-pandeglang/weeding/weeding-1.avif`;
+  const imgHotel = `${BASE}img/desain-horison-altama-pandeglang/hotel-room/hotel-room-1.avif`;
+  const imgHotel2 = `${BASE}img/desain-horison-altama-pandeglang/hotel-room/hotel-room-2.avif`;
 
   const tiltClasses = {
     left: "-rotate-6 hover:rotate-0 transition-transform duration-500",

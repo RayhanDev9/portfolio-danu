@@ -42,7 +42,7 @@ export default function ViaFabulaHero() {
                 {/* Geometric Logo Icon */}
                 <div className="w-14 h-14 sm:w-16 sm:h-16 lg:w-24 lg:h-24 flex items-center justify-center text-white mb-1">
                   <img
-                    src={`${import.meta.env.BASE_URL}img/vendor-experienc/fabula.png`}
+                    src={`${import.meta.env.BASE_URL}img/vendor-experienc/fabula.avif`}
                     alt="Danu Profile"
                     className={`w-14 h-14 sm:w-16 sm:h-16 lg:w-24 lg:h-24  rounded-full object-cover object-top transition-all duration-200 
                      

@@ -7,7 +7,7 @@ interface MisterKlinnerMotionProps {
 }
 
 export default function MisterKlinnerMotion({ onSelect }: MisterKlinnerMotionProps) {
-  const bgGarden = `${import.meta.env.BASE_URL}img/motion/bg/bg-2.jpg`;
+  const bgGarden = `${import.meta.env.BASE_URL}img/motion/bg/bg-2.avif`;
 
   // Pisahkan 4 HP atas dan 3 HP tengah
   const topRow = MISTER_KLINNER_ITEMS.slice(0, 4);

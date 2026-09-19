@@ -16,7 +16,7 @@ export default function CreativeJourney() {
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: `url('${import.meta.env.BASE_URL}img/other/jalan.jpg')`,
+          backgroundImage: `url('${import.meta.env.BASE_URL}img/other/jalan.avif')`,
         }}
       />
 

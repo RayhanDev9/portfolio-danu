@@ -10,14 +10,14 @@ export const brandList: BrandItem[] = [
   {
     id: "fabula",
     name: "via fabula",
-    logo: `${import.meta.env.BASE_URL}img/vendor-experienc/fabula.png`,
+    logo: `${import.meta.env.BASE_URL}img/vendor-experienc/fabula.avif`,
     initials: "VF",
     color: "#2a1a6e",
   },
   {
     id: "horison",
     name: "horison",
-    logo: `${import.meta.env.BASE_URL}img/vendor-experienc/horison.png`,
+    logo: `${import.meta.env.BASE_URL}img/vendor-experienc/horison.avif`,
     initials: "HO",
     color: "#1a3a6e",
   },
@@ -38,7 +38,7 @@ export const brandList: BrandItem[] = [
   {
     id: "geo",
     name: "geonerations",
-    logo: `${import.meta.env.BASE_URL}img/vendor-experienc/neo-digital.png`,
+    logo: `${import.meta.env.BASE_URL}img/vendor-experienc/neo-digital.avif`,
     initials: "GN",
     color: "#3a1a6e",
   },
