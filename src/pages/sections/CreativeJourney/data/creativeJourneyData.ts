@@ -27,7 +27,7 @@ export const brandList: BrandItem[] = [
   {
     id: "klinner",
     name: "mr klinner",
-    logo: `${import.meta.env.BASE_URL}img/vendor-experienc/horison.avif`,
+    logo: `${import.meta.env.BASE_URL}img/vendor-experienc/mr-klinner.avif`,
     initials: "MK",
     color: "#6e1a1a",
     path: "/graphic-design/mister-klinner",
@@ -57,4 +57,3 @@ export const brandList: BrandItem[] = [
     path: "/graphic-design/majlis",
   },
 ];
-

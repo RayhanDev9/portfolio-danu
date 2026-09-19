@@ -90,7 +90,7 @@ export const CJBrandBubbles = ({ brands }: CJBrandBubblesProps) => {
                 <img
                   src={brand.logo}
                   alt={brand.name}
-                  className="w-[58%] h-[58%] object-contain drop-shadow-[0_1px_3px_rgba(0,0,0,0.6)] transition-transform duration-300 group-hover:scale-105"
+                  className="w-[58%] md:w-[63%] md:h-[63%] h-[58%] object-contain drop-shadow-[0_1px_3px_rgba(0,0,0,0.6)] transition-transform duration-300 group-hover:scale-105"
                 />
               ) : (
                 <>

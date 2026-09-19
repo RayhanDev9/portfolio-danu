@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Send, MapPin, CheckCircle, Clock } from "lucide-react";
+import { Send, MapPin, CheckCircle, Clock, MessageCircle } from "lucide-react";
 import { PROFILE_INFO, SERVICE_CATEGORIES } from "../data/contactData";
 
 export default function ContactFormSection() {
@@ -154,7 +154,7 @@ export default function ContactFormSection() {
                 className="w-full py-4 rounded-2xl bg-[#e8fb31] hover:bg-[#d8ea20] text-[#1a1a1a] font-spartan font-black text-base sm:text-lg uppercase tracking-wider shadow-lg hover:shadow-xl transition-all duration-200 flex items-center justify-center gap-2 group cursor-pointer border-none"
               >
                 <span>Kirim Pesan ke WhatsApp</span>
-                <Send className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                <MessageCircle />
               </button>
             </form>
           </div>
