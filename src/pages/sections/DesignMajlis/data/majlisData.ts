@@ -24,7 +24,7 @@ export const majlisData = {
     title: "Certificate Design",
     description:
       "For this project, I was responsible for designing a certificate for a student who had successfully completed the assessment process. The certificate design focused on layout, color selection, and typography to create a clean, clear, formal, and professional appearance.",
-    depan: `${import.meta.env.BASE_URL}img/desain-majlis-ta'alim/setifikat-belakang.avif`,
+    depan: `${import.meta.env.BASE_URL}img/desain-majlis-ta'alim/sertifikat-depan.avif`,
     belakang: `${import.meta.env.BASE_URL}img/desain-majlis-ta'alim/sertifikat-belakang.avif`,
   },
   poster: {
