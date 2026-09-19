@@ -83,32 +83,14 @@ export default function Navbar() {
     setIsVisible(true);
   }, [location.pathname]);
 
-  // Smart scroll effect: Auto-hide saat scroll ke bawah, auto-reveal saat scroll ke atas
+  // Efek deteksi scroll untuk efek glassmorphism & shadow dinamis (navbar tetap selalu terlihat)
   useEffect(() => {
     let ticking = false;
 
     const handleScroll = () => {
       if (!ticking) {
         window.requestAnimationFrame(() => {
-          const currentScrollY = window.scrollY;
-
-          // Backdrop blur trigger saat mulai scroll
-          setIsScrolled(currentScrollY > 20);
-
-          // Top of page: selalu terlihat
-          if (currentScrollY < 60) {
-            setIsVisible(true);
-          } else if (currentScrollY > lastScrollY.current + 8) {
-            // Scroll down: sembunyikan navbar ke atas jika dropdown tidak terbuka
-            if (!desktopDesignOpen) {
-              setIsVisible(false);
-            }
-          } else if (currentScrollY < lastScrollY.current - 8) {
-            // Scroll up: munculkan navbar ke bawah
-            setIsVisible(true);
-          }
-
-          lastScrollY.current = currentScrollY;
+          setIsScrolled(window.scrollY > 20);
           ticking = false;
         });
         ticking = true;
@@ -117,7 +99,7 @@ export default function Navbar() {
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [desktopDesignOpen]);
+  }, []);
 
   const isDesignActive = currentPath.startsWith("/graphic-design");
   const avatarUrl = getAssetUrl("img/profile/danu-duduk.avif");
@@ -125,24 +107,24 @@ export default function Navbar() {
   return (
     <>
       {/* ============================
-          TOP NAVBAR HEADER BAR
+          TOP NAVBAR HEADER BAR (Always Visible & Floating)
           ============================ */}
       <nav
         id="main-navbar"
-        className={`fixed top-0 left-0 right-0 z-40 w-full transition-all duration-300 ease-in-out px-4 sm:px-6 ${
-          isVisible ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0 pointer-events-none"
-        } ${
-          isScrolled
-            ? "py-2.5 sm:py-3 bg-[#0f0728]/75 backdrop-blur-xl border-b border-white/10 shadow-lg shadow-black/20"
-            : "py-4 sm:py-6 bg-transparent border-none"
-        }`}
+        className="fixed top-0 left-0 right-0 z-40 w-full transition-all duration-300 px-4 sm:px-6 py-3 sm:py-4 pointer-events-none"
       >
         {/* ============================
             DESKTOP NAVBAR (md ke atas)
             ============================ */}
-        <div className="hidden md:flex items-center justify-center">
-          {/* Pill kuning melayang */}
-          <div className="flex items-center gap-1 lg:gap-2 bg-[#e8fb31] rounded-full px-4 lg:px-6 py-2 shadow-xl border border-black/5">
+        <div className="hidden md:flex items-center justify-center pointer-events-auto">
+          {/* Pill kuning melayang dengan backdrop blur halus saat di-scroll */}
+          <div
+            className={`flex items-center gap-1 lg:gap-2 bg-[#e8fb31] rounded-full px-4 lg:px-6 py-2 transition-all duration-300 ${
+              isScrolled
+                ? "shadow-2xl shadow-black/40 ring-1 ring-black/10 scale-[0.98]"
+                : "shadow-xl border border-black/5"
+            }`}
+          >
             {/* Link: Home */}
             <Link
               to="/"
@@ -268,11 +250,15 @@ export default function Navbar() {
         {/* ============================
             MOBILE NAVBAR TRIGGER (< md)
             ============================ */}
-        <div className="flex md:hidden items-center justify-between">
+        <div className="flex md:hidden items-center justify-between pointer-events-auto">
           <Link
             to="/profile"
             title="Lihat Profil Danu"
-            className="flex items-center gap-2.5 transition-transform duration-200 hover:scale-105 active:scale-95 no-underline group"
+            className={`flex items-center gap-2.5 transition-all duration-200 hover:scale-105 active:scale-95 no-underline group px-3 py-1.5 rounded-2xl ${
+              isScrolled
+                ? "bg-[#0f0728]/80 backdrop-blur-md border border-white/15 shadow-xl"
+                : ""
+            }`}
           >
             <div className="relative">
               <img
