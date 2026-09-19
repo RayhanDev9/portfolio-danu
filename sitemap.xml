@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+
+  <!-- 1. Home Page -->
+  <url>
+    <loc>https://rayhandev9.github.io/portfolio-danu/</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- 2. Experience -->
+  <url>
+    <loc>https://rayhandev9.github.io/portfolio-danu/experience</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- 3. Graphic Design - Majlis Ta'lim -->
+  <url>
+    <loc>https://rayhandev9.github.io/portfolio-danu/graphic-design/majlis</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- 4. Graphic Design - Horison Altama -->
+  <url>
+    <loc>https://rayhandev9.github.io/portfolio-danu/graphic-design/horison</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- 5. Graphic Design - Astra Otoshop -->
+  <url>
+    <loc>https://rayhandev9.github.io/portfolio-danu/graphic-design/astraotoshop</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- 6. Graphic Design - Mister Klinner -->
+  <url>
+    <loc>https://rayhandev9.github.io/portfolio-danu/graphic-design/mister-klinner</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- 7. Graphic Design - Geonerations -->
+  <url>
+    <loc>https://rayhandev9.github.io/portfolio-danu/graphic-design/geonerations</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- 8. Graphic Design - Via Fabula -->
+  <url>
+    <loc>https://rayhandev9.github.io/portfolio-danu/graphic-design/via-fabula</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- 9. Motion Graphic -->
+  <url>
+    <loc>https://rayhandev9.github.io/portfolio-danu/motion-graphic</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- 10. Brands & Creative Journey -->
+  <url>
+    <loc>https://rayhandev9.github.io/portfolio-danu/creative-journey</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- 11. Profile -->
+  <url>
+    <loc>https://rayhandev9.github.io/portfolio-danu/profile</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- 12. Contact -->
+  <url>
+    <loc>https://rayhandev9.github.io/portfolio-danu/contact</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+</urlset>

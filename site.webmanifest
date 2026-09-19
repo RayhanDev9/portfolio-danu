@@ -1,0 +1,21 @@
+{
+  "name": "Danu Satya | Graphic & Motion Designer Portfolio",
+  "short_name": "Danu Satya",
+  "description": "Portofolio profesional Danu Satya, spesialis Graphic Design, Visual Branding, dan Motion Graphics.",
+  "start_url": "/portfolio-danu/",
+  "display": "standalone",
+  "background_color": "#0f0728",
+  "theme_color": "#5b13ec",
+  "icons": [
+    {
+      "src": "/portfolio-danu/img/profile/danu-duduk.avif",
+      "sizes": "192x192",
+      "type": "image/avif"
+    },
+    {
+      "src": "/portfolio-danu/img/profile/danu-duduk.avif",
+      "sizes": "512x512",
+      "type": "image/avif"
+    }
+  ]
+}
