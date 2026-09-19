@@ -4,7 +4,6 @@ import Navbar from "../components/layout/Navbar";
 import Footer from "../components/layout/Footer";
 import PageLoader from "../components/common/PageLoader";
 import { ROUTE_SEO_CONFIGS, DEFAULT_SEO, SEO_BASE_URL } from "../constants/seo";
-import { getAssetUrl } from "../utils/asset";
 
 function setMetaTag(
   selector: string,
@@ -100,19 +99,7 @@ export default function RootLayout() {
     });
   }, [pathname]);
 
-  // 2. Set Favicon dynamically
-  useEffect(() => {
-    const faviconUrl = getAssetUrl("favicon-48x48.png");
-    let link: HTMLLinkElement | null =
-      document.querySelector("link[rel~='icon']");
-    if (!link) {
-      link = document.createElement("link");
-      link.rel = "icon";
-      document.head.appendChild(link);
-    }
-    link.type = "image/png";
-    link.href = faviconUrl;
-  }, []);
+
 
   return (
     <>
