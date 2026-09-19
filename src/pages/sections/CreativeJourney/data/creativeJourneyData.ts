@@ -24,29 +24,31 @@ export const brandList: BrandItem[] = [
   {
     id: "klinner",
     name: "mr klinner",
-    logo: "",
+    logo: `${import.meta.env.BASE_URL}img/vendor-experienc/horison.avif`,
     initials: "MK",
     color: "#6e1a1a",
   },
   {
     id: "astra",
-    name: "astra otoshop",
-    logo: "",
+    name: `Astastoshop`,
+    logo: `${import.meta.env.BASE_URL}img/vendor-experienc/astastoshop.avif`,
     initials: "AO",
     color: "#1a5a1a",
   },
   {
     id: "geo",
     name: "geonerations",
-    logo: `${import.meta.env.BASE_URL}img/vendor-experienc/neo-digital.avif`,
+    logo: `${import.meta.env.BASE_URL}img/vendor-experienc/geonerations.avif`,
     initials: "GN",
     color: "#3a1a6e",
   },
   {
     id: "roudotul",
     name: "roudotul janah",
-    logo: "",
+    logo: `${import.meta.env.BASE_URL}img/vendor-experienc/majlis-ta'lim.avif`,
     initials: "RJ",
     color: "#6e3a1a",
   },
 ];
+
+astastoshop;
