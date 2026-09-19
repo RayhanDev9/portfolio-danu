@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { MapPin, CheckCircle, Clock, MessageCircle } from "lucide-react";
 import { PROFILE_INFO, SERVICE_CATEGORIES } from "../data/contactData";
+import { SOCIAL_LINKS } from "../../../../constants/socialMedia";
 
 export default function ContactFormSection() {
   const [name, setName] = useState("");
@@ -10,7 +11,9 @@ export default function ContactFormSection() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const text = `Halo Danu, nama saya ${name || "Klien"}.\n\nSaya tertarik dengan layanan: *${selectedService}*.\n\nDetail Pesan:\n${message || "Mohon info lebih lanjut mengenai kerja sama proyek."}`;
-    const url = `https://wa.me/62881010069341?text=${encodeURIComponent(text)}`;
+    const phoneRaw = SOCIAL_LINKS.whatsapp.value.replace(/[^0-9]/g, "");
+    const phoneFormatted = phoneRaw.startsWith("0") ? `62${phoneRaw.slice(1)}` : phoneRaw;
+    const url = `https://wa.me/${phoneFormatted}?text=${encodeURIComponent(text)}`;
     window.open(url, "_blank");
   };
 

@@ -1,18 +1,17 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import { Link, useLocation } from "react-router-dom";
 import {
   ChevronDown,
   X,
-  BookOpen,
-  Building2,
-  ShoppingBag,
-  Sparkles,
-  Flame,
-  Layers,
   MessageCircle,
   Mail,
   ArrowUpRight,
 } from "lucide-react";
+import { DESIGN_SUB_LINKS } from "../../constants/navigation";
+import { SOCIAL_LINKS } from "../../constants/socialMedia";
+import { useClickOutside } from "../../hooks/useClickOutside";
+import { useScrollLock } from "../../hooks/useScrollLock";
+import { getAssetUrl } from "../../utils/asset";
 
 // =============================================
 // Ikon Instagram SVG
@@ -47,48 +46,6 @@ function LinkedInIcon({ className = "w-3.5 h-3.5" }: { className?: string }) {
 }
 
 // =============================================
-// DATA: Sub-link Graphic Design with Icons & Desc
-// =============================================
-const designSubLinks = [
-  {
-    label: "Majlis Ta'lim",
-    description: "Islamic community branding & event materials",
-    href: "/graphic-design/majlis",
-    icon: BookOpen,
-  },
-  {
-    label: "Horison Altama",
-    description: "Hotel & hospitality promotional branding",
-    href: "/graphic-design/horison",
-    icon: Building2,
-  },
-  {
-    label: "Astra Otoshop",
-    description: "Automotive e-commerce & spare parts promo",
-    href: "/graphic-design/astraotoshop",
-    icon: ShoppingBag,
-  },
-  {
-    label: "Mister Klinner",
-    description: "Household cleaning products & lifestyle",
-    href: "/graphic-design/mister-klinner",
-    icon: Sparkles,
-  },
-  {
-    label: "Geonerations",
-    description: "Youth pop culture & East Javanese meme content",
-    href: "/graphic-design/geonerations",
-    icon: Flame,
-  },
-  {
-    label: "Via Fabula",
-    description: "Creative storytelling & event organizing",
-    href: "/graphic-design/via-fabula",
-    icon: Layers,
-  },
-];
-
-// =============================================
 // HELPER: Cek link aktif
 // =============================================
 function isActive(currentPath: string, href: string): boolean {
@@ -109,31 +66,12 @@ export default function Navbar() {
 
   const dropdownRef = useRef<HTMLDivElement>(null);
 
-  // Kunci scroll body saat menu mobile terbuka
-  useEffect(() => {
-    if (mobileOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [mobileOpen]);
+  // Kunci scroll body saat menu mobile terbuka (menggunakan custom hook)
+  useScrollLock(mobileOpen);
 
-  // Tutup dropdown desktop jika klik di luar
-  useEffect(() => {
-    function handleClickOutside(e: MouseEvent) {
-      if (
-        dropdownRef.current &&
-        !dropdownRef.current.contains(e.target as Node)
-      ) {
-        setDesktopDesignOpen(false);
-      }
-    }
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
+  // Tutup dropdown desktop jika klik di luar (menggunakan custom hook)
+  const closeDropdown = useCallback(() => setDesktopDesignOpen(false), []);
+  useClickOutside(dropdownRef, closeDropdown, desktopDesignOpen);
 
   // Tutup menu saat rute berpindah
   useEffect(() => {
@@ -142,6 +80,7 @@ export default function Navbar() {
   }, [location.pathname]);
 
   const isDesignActive = currentPath.startsWith("/graphic-design");
+  const avatarUrl = getAssetUrl("img/profile/danu-duduk.avif");
 
   return (
     <>
@@ -204,20 +143,23 @@ export default function Navbar() {
               {/* Dropdown Panel Desktop */}
               {desktopDesignOpen && (
                 <div className="absolute top-full left-0 mt-2 bg-white rounded-2xl shadow-2xl border border-black/10 overflow-hidden min-w-[240px] z-50 py-2 animate-in fade-in slide-in-from-top-2 duration-200">
-                  {designSubLinks.map((sub) => (
-                    <Link
-                      key={sub.href}
-                      to={sub.href}
-                      className={`flex items-center gap-3 px-4 py-2.5 font-spartan font-bold text-sm no-underline transition-colors duration-150 ${
-                        isActive(currentPath, sub.href)
-                          ? "bg-[#5b13ec] text-white"
-                          : "text-[#1a1a1a] hover:bg-[#e8fb31]"
-                      }`}
-                    >
-                      <sub.icon className="w-4 h-4 opacity-80" />
-                      <span>{sub.label}</span>
-                    </Link>
-                  ))}
+                  {DESIGN_SUB_LINKS.map((sub) => {
+                    const Icon = sub.icon;
+                    return (
+                      <Link
+                        key={sub.href}
+                        to={sub.href}
+                        className={`flex items-center gap-3 px-4 py-2.5 font-spartan font-bold text-sm no-underline transition-colors duration-150 ${
+                          isActive(currentPath, sub.href)
+                            ? "bg-[#5b13ec] text-white"
+                            : "text-[#1a1a1a] hover:bg-[#e8fb31]"
+                        }`}
+                      >
+                        {Icon && <Icon className="w-4 h-4 opacity-80" />}
+                        <span>{sub.label}</span>
+                      </Link>
+                    );
+                  })}
                 </div>
               )}
             </div>
@@ -265,7 +207,7 @@ export default function Navbar() {
               className="ml-2 flex-shrink-0 transition-transform duration-200 hover:scale-110 active:scale-95"
             >
               <img
-                src={`${import.meta.env.BASE_URL}img/profile/danu-duduk.avif`}
+                src={avatarUrl}
                 alt="Danu Profile"
                 className={`w-8 h-8 lg:w-9 lg:h-9 rounded-full object-cover object-top transition-all duration-200 ${
                   currentPath === "/profile"
@@ -288,7 +230,7 @@ export default function Navbar() {
           >
             <div className="relative">
               <img
-                src={`${import.meta.env.BASE_URL}img/profile/danu-duduk.avif`}
+                src={avatarUrl}
                 alt="Danu Profile"
                 className={`w-9 h-9 rounded-full object-cover object-top transition-all duration-200 ${
                   currentPath === "/profile"
@@ -348,7 +290,7 @@ export default function Navbar() {
             >
               <div className="relative">
                 <img
-                  src={`${import.meta.env.BASE_URL}img/profile/danu-duduk.avif`}
+                  src={avatarUrl}
                   alt="Danu Profile"
                   className={`w-10 h-10 rounded-full object-cover object-top transition-all duration-200 group-hover:scale-105 ${
                     currentPath === "/profile"
@@ -456,7 +398,7 @@ export default function Navbar() {
                     : "max-h-0 opacity-0 pointer-events-none"
                 }`}
               >
-                {designSubLinks.map((sub) => {
+                {DESIGN_SUB_LINKS.map((sub) => {
                   const active = isActive(currentPath, sub.href);
                   const Icon = sub.icon;
                   return (
@@ -478,7 +420,7 @@ export default function Navbar() {
                             : "bg-white/5 border border-white/10 text-white/80 group-hover:bg-[#5b13ec] group-hover:border-[#5b13ec] group-hover:text-white"
                         }`}
                       >
-                        <Icon className="w-5 h-5" />
+                        {Icon && <Icon className="w-5 h-5" />}
                       </div>
 
                       {/* Content: Title & Subtitle */}
@@ -578,7 +520,7 @@ export default function Navbar() {
           {/* Bottom Action / CTA Section */}
           <div className="p-6 border-t border-white/10 bg-[#0a041c]/60 flex flex-col gap-3">
             <a
-              href="https://wa.me/62881010069341"
+              href={SOCIAL_LINKS.whatsapp.href}
               target="_blank"
               rel="noreferrer"
               className="w-full py-3.5 px-4 bg-[#e8fb31] text-[#1a1a1a] font-spartan font-black text-sm sm:text-base rounded-xl flex items-center justify-center gap-2 hover:bg-yellow-300 transition-all shadow-lg shadow-[#e8fb31]/10 active:scale-[0.98] no-underline"
@@ -591,7 +533,7 @@ export default function Navbar() {
             {/* Quick Contact Row */}
             <div className="flex items-center justify-center gap-4 sm:gap-6 pt-2 text-xs text-white/60">
               <a
-                href="mailto:danusatya9@gmail.com"
+                href={SOCIAL_LINKS.email.href}
                 className="flex items-center gap-1.5 hover:text-[#e8fb31] transition-colors no-underline text-white/70"
               >
                 <Mail className="w-3.5 h-3.5" />
@@ -599,7 +541,7 @@ export default function Navbar() {
               </a>
               <span className="text-white/20">•</span>
               <a
-                href="https://instagram.com/dnustya_"
+                href={SOCIAL_LINKS.instagram.href}
                 target="_blank"
                 rel="noreferrer"
                 className="flex items-center gap-1.5 hover:text-[#e8fb31] transition-colors no-underline text-white/70"
@@ -609,7 +551,7 @@ export default function Navbar() {
               </a>
               <span className="text-white/20">•</span>
               <a
-                href="https://www.linkedin.com/in/danu-satya"
+                href={SOCIAL_LINKS.linkedin.href}
                 target="_blank"
                 rel="noreferrer"
                 className="flex items-center gap-1.5 hover:text-[#e8fb31] transition-colors no-underline text-white/70"

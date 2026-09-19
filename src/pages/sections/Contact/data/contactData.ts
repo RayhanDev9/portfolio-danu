@@ -1,73 +1,15 @@
-const BASE = import.meta.env.BASE_URL;
+import { CONTACT_CHANNELS } from "../../../../constants/socialMedia";
+import type { ContactChannel } from "../../../../types/social";
+import { getAssetUrl } from "../../../../utils/asset";
 
-export interface ContactChannel {
-  id: string;
-  name: string;
-  label: string;
-  value: string;
-  href: string;
-  badge: string;
-  bgColor: string;
-  textColor: string;
-  iconType: "whatsapp" | "email" | "instagram" | "linkedin";
-  isCopyable?: boolean;
-}
+export type { ContactChannel };
+export { CONTACT_CHANNELS };
 
 export interface FAQItem {
   id: string;
   question: string;
   answer: string;
 }
-
-// 1. Data Channel Kontak
-export const CONTACT_CHANNELS: ContactChannel[] = [
-  {
-    id: "whatsapp",
-    name: "WhatsApp",
-    label: "Fast Response (Chat Langsung)",
-    value: "0881-0100-69341",
-    href: "https://wa.me/62881010069341?text=Halo%20Danu,%20saya%20tertarik%20bekerja%20sama%20untuk%20proyek%20desain.",
-    badge: "Online • < 15 Menit",
-    bgColor: "bg-[#24d058] hover:bg-[#1fb84d]",
-    textColor: "text-white",
-    iconType: "whatsapp",
-  },
-  {
-    id: "email",
-    name: "Email Resmi",
-    label: "Kirim Brief Proyek / Penawaran",
-    value: "danusatya9@gmail.com",
-    href: "mailto:danusatya9@gmail.com?subject=Inquiry%20Project%20Desain",
-    badge: "Respon < 24 Jam",
-    bgColor: "bg-white hover:bg-slate-100",
-    textColor: "text-slate-900",
-    iconType: "email",
-    isCopyable: true,
-  },
-  {
-    id: "instagram",
-    name: "Instagram",
-    label: "Direct Message & Portofolio",
-    value: "@dnustya_",
-    href: "https://instagram.com/dnustya_",
-    badge: "Daily Active",
-    bgColor:
-      "bg-gradient-to-r from-[#f09433] via-[#dc2743] to-[#bc1888] hover:opacity-95",
-    textColor: "text-white",
-    iconType: "instagram",
-  },
-  {
-    id: "linkedin",
-    name: "LinkedIn",
-    label: "Professional Profile",
-    value: "Danu Satya",
-    href: "https://www.linkedin.com/in/danu-satya",
-    badge: "Connect",
-    bgColor: "bg-[#0077b5] hover:bg-[#00669c]",
-    textColor: "text-white",
-    iconType: "linkedin",
-  },
-];
 
 // 2. Kategori Layanan untuk Form
 export const SERVICE_CATEGORIES = [
@@ -106,5 +48,5 @@ export const PROFILE_INFO = {
   role: "Graphic Designer & Creative Director",
   location: "Rangkasbitung, Indonesia (Open to Remote)",
   status: "Available for Freelance & Full-Time Projects",
-  avatar: `${BASE}img/profile/danu-duduk.avif`,
+  avatar: getAssetUrl("img/profile/danu-duduk.avif"),
 };

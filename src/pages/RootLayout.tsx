@@ -1,43 +1,108 @@
-import { useEffect } from "react";
+import { useEffect, Suspense } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import Navbar from "../components/layout/Navbar";
 import Footer from "../components/layout/Footer";
+import PageLoader from "../components/common/PageLoader";
+import { ROUTE_SEO_CONFIGS, DEFAULT_SEO, SEO_BASE_URL } from "../constants/seo";
+import { getAssetUrl } from "../utils/asset";
 
-// =============================================
-// MAPPING TITLE HALAMAN BERDASARKAN RUTE
-// =============================================
-const PAGE_TITLES: Record<string, string> = {
-  "/": "Home | Danu Satya - Graphic & Motion Designer",
-  "/experience": "Experience | Danu Satya",
-  "/graphic-design/majlis": "Majlis Ta'lim - Graphic Design | Danu Satya",
-  "/graphic-design/horison": "Horison Altama - Graphic Design | Danu Satya",
-  "/graphic-design/astraotoshop": "Astra Otoshop - Graphic Design | Danu Satya",
-  "/graphic-design/mister-klinner": "Mister Klinner - Graphic Design | Danu Satya",
-  "/graphic-design/geonerations": "Geonerations - Graphic Design | Danu Satya",
-  "/graphic-design/via-fabula": "Via Fabula - Graphic Design | Danu Satya",
-  "/motion-graphic": "Motion Graphic | Danu Satya",
-  "/graphic-motion": "Motion Graphic | Danu Satya",
-  "/creative-journey": "Brands & Creative Journey | Danu Satya",
-  "/contact": "Contact & Inquiry | Danu Satya",
-  "/profile": "About Danu Satya | Profile",
-};
+function setMetaTag(
+  selector: string,
+  attribute: string,
+  value: string,
+  createTag: () => HTMLElement
+) {
+  let element = document.querySelector(selector);
+  if (!element) {
+    element = createTag();
+    document.head.appendChild(element);
+  }
+  element.setAttribute(attribute, value);
+}
 
 export default function RootLayout() {
   const { pathname } = useLocation();
 
-  // 1. Update Document Title & Scroll to Top saat rute berganti
+  // 1. Dynamic SEO, Title, Meta Tags & Scroll to Top saat rute berganti
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
 
-    // Set dynamic browser tab title
-    const newTitle =
-      PAGE_TITLES[pathname] || "Danu Satya | Graphic & Motion Designer";
-    document.title = newTitle;
+    const seo = ROUTE_SEO_CONFIGS[pathname] || DEFAULT_SEO;
+    const fullCanonical = `${SEO_BASE_URL}${seo.canonicalPath === "/" ? "" : seo.canonicalPath}/`;
+
+    // Title
+    document.title = seo.title;
+
+    // Meta Description & Keywords
+    setMetaTag('meta[name="description"]', "content", seo.description, () => {
+      const meta = document.createElement("meta");
+      meta.name = "description";
+      return meta;
+    });
+
+    setMetaTag('meta[name="keywords"]', "content", seo.keywords, () => {
+      const meta = document.createElement("meta");
+      meta.name = "keywords";
+      return meta;
+    });
+
+    // Canonical Link
+    setMetaTag('link[rel="canonical"]', "href", fullCanonical, () => {
+      const link = document.createElement("link");
+      link.rel = "canonical";
+      return link;
+    });
+
+    // Open Graph
+    setMetaTag('meta[property="og:title"]', "content", seo.title, () => {
+      const meta = document.createElement("meta");
+      meta.setAttribute("property", "og:title");
+      return meta;
+    });
+
+    setMetaTag('meta[property="og:description"]', "content", seo.description, () => {
+      const meta = document.createElement("meta");
+      meta.setAttribute("property", "og:description");
+      return meta;
+    });
+
+    setMetaTag('meta[property="og:url"]', "content", fullCanonical, () => {
+      const meta = document.createElement("meta");
+      meta.setAttribute("property", "og:url");
+      return meta;
+    });
+
+    if (seo.ogType) {
+      setMetaTag('meta[property="og:type"]', "content", seo.ogType, () => {
+        const meta = document.createElement("meta");
+        meta.setAttribute("property", "og:type");
+        return meta;
+      });
+    }
+
+    // Twitter
+    setMetaTag('meta[name="twitter:title"]', "content", seo.title, () => {
+      const meta = document.createElement("meta");
+      meta.name = "twitter:title";
+      return meta;
+    });
+
+    setMetaTag('meta[name="twitter:description"]', "content", seo.description, () => {
+      const meta = document.createElement("meta");
+      meta.name = "twitter:description";
+      return meta;
+    });
+
+    setMetaTag('meta[name="twitter:url"]', "content", fullCanonical, () => {
+      const meta = document.createElement("meta");
+      meta.name = "twitter:url";
+      return meta;
+    });
   }, [pathname]);
 
   // 2. Set Favicon ke danu-duduk.avif
   useEffect(() => {
-    const faviconUrl = `${import.meta.env.BASE_URL}img/profile/danu-duduk.avif`;
+    const faviconUrl = getAssetUrl("img/profile/danu-duduk.avif");
     let link: HTMLLinkElement | null =
       document.querySelector("link[rel~='icon']");
     if (!link) {
@@ -52,7 +117,9 @@ export default function RootLayout() {
   return (
     <>
       <Navbar />
-      <Outlet />
+      <Suspense fallback={<PageLoader />}>
+        <Outlet />
+      </Suspense>
       <Footer />
     </>
   );

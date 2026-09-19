@@ -6,6 +6,9 @@ import {
   ArrowUpRight,
   MapPin,
 } from "lucide-react";
+import { FOOTER_NAV_LINKS, DESIGN_SUB_LINKS } from "../../constants/navigation";
+import { SOCIAL_LINKS } from "../../constants/socialMedia";
+import { getAssetUrl } from "../../utils/asset";
 
 // =============================================
 // Ikon Instagram SVG
@@ -40,61 +43,24 @@ function LinkedInIcon({ className = "w-4 h-4" }: { className?: string }) {
 }
 
 // =============================================
-// DATA: Navigasi Utama
-// =============================================
-const mainNavLinks = [
-  { label: "Home", href: "/" },
-  { label: "Experience", href: "/experience" },
-  { label: "Graphic Design", href: "/graphic-design/majlis" },
-  { label: "Motion Graphic", href: "/motion-graphic" },
-  { label: "Brands & Journey", href: "/creative-journey" },
-  { label: "Profile", href: "/profile" },
-  { label: "Contact", href: "/contact" },
-];
-
-// =============================================
-// DATA: Showcase Graphic Design Projects
-// =============================================
-const designProjects = [
-  { label: "Majlis Ta'lim", href: "/graphic-design/majlis" },
-  { label: "Horison Altama", href: "/graphic-design/horison" },
-  { label: "Astra Otoshop", href: "/graphic-design/astraotoshop" },
-  { label: "Mister Klinner", href: "/graphic-design/mister-klinner" },
-  { label: "Geonerations", href: "/graphic-design/geonerations" },
-  { label: "Via Fabula", href: "/graphic-design/via-fabula" },
-];
-
-// =============================================
-// DATA: Kontak Langsung
+// DATA: Kontak Langsung (dari Single Source of Truth)
 // =============================================
 const contactList = [
   {
-    label: "WhatsApp",
-    value: "0881-0100-69341",
-    href: "https://wa.me/62881010069341?text=Hello%20Danu,%20I'm%20interested%20in%20working%20together%20on%20a%20design%20project.",
+    ...SOCIAL_LINKS.whatsapp,
     icon: MessageCircle,
-    badge: "Fast Response",
   },
   {
-    label: "Email",
-    value: "danusatya9@gmail.com",
-    href: "mailto:danusatya9@gmail.com?subject=Design%20Project%20Inquiry",
+    ...SOCIAL_LINKS.email,
     icon: Mail,
-    badge: "Official Inquiry",
   },
   {
-    label: "Instagram",
-    value: "@dnustya_",
-    href: "https://instagram.com/dnustya_",
+    ...SOCIAL_LINKS.instagram,
     icon: InstagramIcon,
-    badge: "Daily Portfolio",
   },
   {
-    label: "LinkedIn",
-    value: "Danu Satya",
-    href: "https://www.linkedin.com/in/danu-satya",
+    ...SOCIAL_LINKS.linkedin,
     icon: LinkedInIcon,
-    badge: "Professional Profile",
   },
 ];
 
@@ -164,7 +130,7 @@ export default function Footer() {
               Navigation
             </h3>
             <ul className="flex flex-col gap-2">
-              {mainNavLinks.map((link) => {
+              {FOOTER_NAV_LINKS.map((link) => {
                 const active = isLinkActive(currentPath, link.href);
                 return (
                   <li key={link.href}>
@@ -196,7 +162,7 @@ export default function Footer() {
               Featured Projects
             </h3>
             <ul className="flex flex-col gap-2">
-              {designProjects.map((proj) => {
+              {DESIGN_SUB_LINKS.map((proj) => {
                 const active = currentPath === proj.href;
                 return (
                   <li key={proj.href}>
@@ -268,7 +234,7 @@ export default function Footer() {
             <div className="relative group">
               <div className="absolute -inset-2 bg-[#5b13ec]/40 rounded-full blur-xl opacity-50 group-hover:opacity-80 transition duration-300" />
               <img
-                src={`${import.meta.env.BASE_URL}img/profile/danu-jas.avif`}
+                src={getAssetUrl("img/profile/danu-jas.avif")}
                 alt="Danu Satya"
                 className="relative h-60 xl:h-72 object-contain object-bottom drop-shadow-[0_20px_35px_rgba(0,0,0,0.7)] group-hover:scale-105 transition-transform duration-300"
               />

@@ -1,0 +1,9 @@
+# robots.txt for Danu Satya Portfolio
+# Allow all search engine crawlers
+
+User-agent: *
+Allow: /
+Disallow: /dist/
+
+# Sitemap location
+Sitemap: https://rayhandev9.github.io/portfolio-danu/sitemap.xml

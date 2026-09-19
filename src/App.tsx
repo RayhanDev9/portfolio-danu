@@ -1,17 +1,20 @@
+import { lazy } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import RootLayout from "./pages/RootLayout";
-import Home from "./pages/sections/Home/Home";
-import Experience from "./pages/sections/Experience/Experience";
-import DesignMajlis from "./pages/sections/DesignMajlis/DesignMajlis";
-import CreativeJourney from "./pages/sections/CreativeJourney/CreativeJourney";
-import DesignHorison from "./pages/sections/DesignHorison/DesignHorison";
-import DesainAstraotoshop from "./pages/sections/DesainAstraotoshop/DesainAstraotoshop";
-import DesignMisterKlinner from "./pages/sections/DesignMisterKlinner/DesignMisterKlinner";
-import DesainGeonerations from "./pages/sections/DesainGeonerations/DesainGeonerations";
-import DesainViaFabula from "./pages/sections/DesainViaFabula/DesainViaFabula";
-import Contact from "./pages/sections/Contact/Contact";
-import Profile from "./pages/sections/Profile/Profile";
-import GraphicMotion from "./pages/sections/GraphicMotion/GraphicMotion";
+
+// Code splitting / Lazy-loaded route components for optimal bundle performance
+const Home = lazy(() => import("./pages/sections/Home/Home"));
+const Experience = lazy(() => import("./pages/sections/Experience/Experience"));
+const DesignMajlis = lazy(() => import("./pages/sections/DesignMajlis/DesignMajlis"));
+const DesignHorison = lazy(() => import("./pages/sections/DesignHorison/DesignHorison"));
+const DesainAstraotoshop = lazy(() => import("./pages/sections/DesainAstraotoshop/DesainAstraotoshop"));
+const DesignMisterKlinner = lazy(() => import("./pages/sections/DesignMisterKlinner/DesignMisterKlinner"));
+const DesainGeonerations = lazy(() => import("./pages/sections/DesainGeonerations/DesainGeonerations"));
+const DesainViaFabula = lazy(() => import("./pages/sections/DesainViaFabula/DesainViaFabula"));
+const GraphicMotion = lazy(() => import("./pages/sections/GraphicMotion/GraphicMotion"));
+const CreativeJourney = lazy(() => import("./pages/sections/CreativeJourney/CreativeJourney"));
+const Contact = lazy(() => import("./pages/sections/Contact/Contact"));
+const Profile = lazy(() => import("./pages/sections/Profile/Profile"));
 
 const router = createBrowserRouter(
   [
