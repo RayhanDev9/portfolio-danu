@@ -26,7 +26,7 @@ export default function ProfileHero() {
               <Sparkles className="w-5 h-5 fill-current" />
               <div>
                 <span className="block font-spartan font-black text-sm sm:text-base leading-none">
-                  5+ Tahun
+                  1-2 Tahun
                 </span>
                 <span className="text-[10px] font-bold uppercase tracking-wider block">
                   Pengalaman

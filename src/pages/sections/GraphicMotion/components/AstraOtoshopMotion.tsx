@@ -1,4 +1,3 @@
-import { Play } from "lucide-react";
 import SmartphoneMockup from "./SmartphoneMockup";
 import { ASTRA_SMARTPHONES, ASTRA_FEED_CARDS } from "../data/motionData";
 import type { MotionItem } from "../data/motionData";
@@ -65,6 +64,7 @@ export default function AstraOtoshopMotion({ onSelect }: AstraOtoshopMotionProps
                   src={card.videoUrl}
                   poster={card.poster}
                   muted
+                  autoPlay
                   loop
                   playsInline
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
@@ -74,11 +74,11 @@ export default function AstraOtoshopMotion({ onSelect }: AstraOtoshopMotionProps
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/30" />
 
                 {/* Center Play Button */}
-                <div className="absolute inset-0 flex items-center justify-center">
+                {/* <div className="absolute inset-0 flex items-center justify-center">
                   <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-black/60 backdrop-blur-md text-white border border-white/40 flex items-center justify-center shadow-lg group-hover:bg-[#5b13ec] group-hover:text-[#e8fb31] group-hover:scale-110 transition-all">
                     <Play className="w-5 h-5 sm:w-6 sm:h-6 fill-current ml-0.5" />
                   </div>
-                </div>
+                </div> */}
 
                 {/* Bottom Title Label */}
                 <div className="absolute bottom-2.5 inset-x-2.5 text-center">

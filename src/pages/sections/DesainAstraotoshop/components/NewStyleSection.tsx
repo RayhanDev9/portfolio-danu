@@ -53,7 +53,7 @@ export default function NewStyleSection() {
 
         {/* Subtitle Badge Keterangan Desain Baru */}
         <div className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 via-sky-500 to-blue-600 text-white font-spartan font-black text-xs sm:text-sm md:text-base px-5 py-2 rounded-full mt-4 shadow-2xl border border-white/40 uppercase tracking-wider">
-          <span>✨ 3D Render Realistic</span>
+          <span>✨ Hierarky</span>
           <span>•</span>
           <span>Vibrant Colors</span>
           <span>•</span>

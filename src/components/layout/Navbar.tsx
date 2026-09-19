@@ -139,7 +139,7 @@ export default function Navbar() {
           ============================ */}
       <nav
         id="main-navbar"
-        className="absolute top-0 left-0 right-0 z-40 w-full px-4 sm:px-6 py-4 sm:py-6 bg-transparent border-none"
+        className="fixed  top-0 left-0 right-0 z-40 w-full px-4 sm:px-6 py-4 sm:py-6 bg-transparent border-none"
       >
         {/* ============================
             DESKTOP NAVBAR (md ke atas)

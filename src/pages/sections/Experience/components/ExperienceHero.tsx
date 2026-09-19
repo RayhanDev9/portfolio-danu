@@ -1,53 +1,18 @@
 export default function ExperienceHero() {
   return (
-    <div className="relative w-full max-w-7xl mx-auto flex flex-col items-center justify-center pt-16 sm:pt-20 md:pt-24 pb-6 px-3 select-none overflow-hidden">
-      {/* Ornamen Crop Marks (+) di Sudut-Sudut Luar */}
-      <div className="absolute top-2 left-2 sm:top-4 sm:left-4 text-white/70 text-base sm:text-xl font-light pointer-events-none">
-        +
-      </div>
-      <div className="absolute top-2 right-2 sm:top-4 sm:right-4 text-white/70 text-base sm:text-xl font-light pointer-events-none">
-        +
-      </div>
-      <div className="absolute bottom-2 left-2 sm:bottom-4 sm:left-4 text-white/50 text-base sm:text-xl font-light pointer-events-none">
-        +
-      </div>
-      <div className="absolute bottom-2 right-2 sm:bottom-4 sm:right-4 text-white/50 text-base sm:text-xl font-light pointer-events-none">
-        +
-      </div>
-
-      {/* Container Judul EXPER I ENCE (Responsif dengan satuan fluid vw) */}
-      <div className="relative flex items-end justify-center gap-[0.04em] xs:gap-[0.05em] sm:gap-[0.06em] md:gap-[0.07em] lg:gap-[0.08em] font-spartan font-black text-[13vw] xs:text-[11.5vw] sm:text-[10vw] md:text-[8.5vw] lg:text-[7.5vw] xl:text-[8rem] 2xl:text-[9.5rem] tracking-tight leading-none text-[#e5fc34]">
-        {/* Teks Kiri "EXPER" */}
-        <span className="relative">
-          EXPER
-          <span className="absolute -top-2 -left-2 sm:-top-3 sm:-left-3 text-white text-[10px] sm:text-xs md:text-sm font-normal">
-            +
-          </span>
-          <span className="absolute -bottom-2 -left-2 sm:-bottom-3 sm:-left-3 text-white text-[10px] sm:text-xs md:text-sm font-normal">
-            +
-          </span>
-        </span>
-
-        {/* Foto Danu di Tengah (Otomatis membesar proporsional mengikuti font) */}
-        <div className="relative h-[1em] w-[0.52em] xs:w-[0.55em] sm:w-[0.58em] md:w-[0.6em] overflow-visible flex items-end justify-center shrink-0">
+    <div className="relative w-full max-w-7xl mx-auto flex flex-col items-center justify-center pt-28 sm:pt-32 md:pt-36 lg:pt-40 pb-6 sm:pb-8 px-2 sm:px-4 select-none">
+      <h1 className="flex items-center justify-center font-spartan font-black text-3xl xs:text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl 2xl:text-[9.5rem] tracking-wider leading-none text-[#e8fb31] text-center drop-shadow-[0_8px_20px_rgba(0,0,0,0.3)] whitespace-nowrap">
+        <span>EXPER</span>
+        {/* Foto Danu sebagai Huruf 'I' */}
+        <span className="inline-flex items-center justify-center h-[1.12em] w-[0.52em] sm:w-[0.56em] mx-0.5 sm:mx-1 shrink-0 overflow-visible">
           <img
             src={`${import.meta.env.BASE_URL}img/profile/danu-jas.png`}
             alt="Danu"
-            className="h-full object-contain drop-shadow-2xl"
+            className="h-full w-auto object-contain object-bottom drop-shadow-[0_10px_20px_rgba(0,0,0,0.5)] pointer-events-none"
           />
-        </div>
-
-        {/* Teks Kanan "ENCE" */}
-        <span className="relative">
-          ENCE
-          <span className="absolute -top-2 -right-2 sm:-top-3 sm:-right-3 text-white text-[10px] sm:text-xs md:text-sm font-normal">
-            +
-          </span>
-          <span className="absolute -bottom-2 -right-2 sm:-bottom-3 sm:-right-3 text-white text-[10px] sm:text-xs md:text-sm font-normal">
-            +
-          </span>
         </span>
-      </div>
+        <span>ENCE</span>
+      </h1>
     </div>
   );
 }

@@ -27,8 +27,8 @@ export const PERSONAL_INFO = {
   tagline: "Graphic Designer & Creative Visual Specialist",
   about:
     "Saya adalah seorang Graphic Designer dan Motion Graphic Enthusiast yang berfokus pada pembuatan identitas visual yang kuat, konten media sosial yang berdampak, dan desain berorientasi pada cerita (story-driven design). Dengan pengalaman menangani berbagai brand dari skala lokal hingga nasional, saya selalu memadukan estetika modern dengan strategi komunikasi visual yang relevan bagi audiens.",
-  location: "Jawa Timur, Indonesia",
-  experienceYears: "5+ Tahun",
+  location: "Rangkasbitung, Indonesia",
+  experienceYears: "1-2 Tahun",
   avatar: `${BASE}img/profile/danu-duduk.png`,
   formalAvatar: `${BASE}img/profile/danu-jas.png`,
 };
@@ -37,7 +37,7 @@ export const PERSONAL_INFO = {
 export const PROFILE_STATS: StatItem[] = [
   {
     id: "stat-1",
-    value: "5+",
+    value: "1-2",
     label: "Tahun Pengalaman",
     sublabel: "Di industri kreatif & desain",
   },
@@ -49,7 +49,7 @@ export const PROFILE_STATS: StatItem[] = [
   },
   {
     id: "stat-3",
-    value: "15+",
+    value: "6+",
     label: "Brand Partner",
     sublabel: "Kolaborasi agensi & UMKM",
   },
@@ -65,25 +65,25 @@ export const PROFILE_STATS: StatItem[] = [
 export const SOFTWARE_SKILLS: SkillItem[] = [
   {
     name: "Adobe Photoshop",
-    level: 95,
+    level: 80,
     icon: `${BASE}img/tools-skills/ps.png`,
     description: "Photo manipulation, social media feed, & composite editing.",
   },
   {
     name: "Adobe Illustrator",
-    level: 90,
+    level: 50,
     icon: `${BASE}img/tools-skills/ai.png`,
     description: "Vector illustration, logo branding, & vector assets.",
   },
   {
     name: "Adobe Premiere Pro",
-    level: 85,
+    level: 30,
     icon: `${BASE}img/tools-skills/pr.png`,
     description: "Video editing, color grading, & pacing storytelling.",
   },
   {
     name: "Adobe After Effects",
-    level: 80,
+    level: 40,
     icon: `${BASE}img/tools-skills/ae.png`,
     description: "Motion graphics, title animation, & visual effects.",
   },
@@ -99,10 +99,8 @@ export const SOFTWARE_SKILLS: SkillItem[] = [
 export const CORE_CAPABILITIES = [
   "Social Media Feed & Carousel Design",
   "Visual Branding & Identity Guidelines",
-  "Motion Graphics & Micro-Animations",
+  "Simpale Motion Graphics",
   "Event & Promotional Posters",
-  "Packaging & Merchandise Design",
-  "Creative Direction & Concept Development",
 ];
 
 // 5. Nilai & Prinsip Kerja

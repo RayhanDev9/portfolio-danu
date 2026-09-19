@@ -16,9 +16,9 @@ export default function AstraHero() {
       {/* 1. Judul Utama ASTRA OTOSHOP */}
       <div className="text-center relative z-10 select-none">
         <h1
-          className="font-spartan font-black text-5xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[10rem] tracking-tight sm:tracking-wider leading-none text-[#0084ff] drop-shadow-[0_12px_24px_rgba(0,0,0,0.6)]"
+          className="font-spartan font-black text-5xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[10rem] tracking-tight sm:tracking-wider leading-none text-white drop-shadow-[0_12px_24px_rgba(0,0,0,0.6)]"
           style={{
-            WebkitTextStroke: "4px #ffffff",
+            WebkitTextStroke: "30px #0084ff",
             paintOrder: "stroke fill",
             textShadow: "0 8px 24px rgba(0, 0, 0, 0.4)",
           }}

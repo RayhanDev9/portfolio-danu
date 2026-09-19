@@ -51,7 +51,8 @@ export const CONTACT_CHANNELS: ContactChannel[] = [
     value: "@danurayhan",
     href: "https://instagram.com",
     badge: "Daily Active",
-    bgColor: "bg-gradient-to-r from-[#f09433] via-[#dc2743] to-[#bc1888] hover:opacity-95",
+    bgColor:
+      "bg-gradient-to-r from-[#f09433] via-[#dc2743] to-[#bc1888] hover:opacity-95",
     textColor: "text-white",
     iconType: "instagram",
   },
@@ -72,8 +73,8 @@ export const CONTACT_CHANNELS: ContactChannel[] = [
 export const SERVICE_CATEGORIES = [
   "Graphic Design & Social Media Feed",
   "Branding & Visual Identity",
-  "Motion Graphic & Animation",
-  "Packaging & Poster Design",
+  "Simpale Motion Graphic",
+  "Poster Design",
   "Full-time / Contract Hiring",
   "Lainnya",
 ];
@@ -84,7 +85,7 @@ export const FAQ_LIST: FAQItem[] = [
     id: "faq-1",
     question: "Berapa lama estimasi waktu pengerjaan desain?",
     answer:
-      "Waktu pengerjaan bervariasi tergantung kompleksitas proyek. Untuk desain feed sosial media atau poster biasanya 1-3 hari kerja. Untuk branding komprehensif atau motion graphic membutuhkan 5-14 hari kerja.",
+      "Waktu pengerjaan bervariasi tergantung kompleksitas proyek. Untuk desain feed sosial media atau poster biasanya 1-2 jam. Untuk branding komprehensif atau motion graphic membutuhkan 1 hari kerja.",
   },
   {
     id: "faq-2",
@@ -103,7 +104,7 @@ export const FAQ_LIST: FAQItem[] = [
 export const PROFILE_INFO = {
   name: "Danu Rayhan",
   role: "Graphic Designer & Creative Director",
-  location: "Jawa Timur, Indonesia (Open to Remote Worldwide)",
+  location: "Rangkasbitung, Indonesia (Open to Remote)",
   status: "Available for Freelance & Full-Time Projects",
-  avatar: `${BASE}img/profile/danu.png`,
+  avatar: `${BASE}img/profile/danu-duduk.png`,
 };
