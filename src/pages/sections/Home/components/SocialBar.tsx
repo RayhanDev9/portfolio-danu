@@ -1,4 +1,9 @@
 import { SOCIAL_LINKS } from "../../../../constants/socialMedia";
+import {
+  trackWhatsAppClick,
+  trackSocialClick,
+  trackEmailClick,
+} from "../../../../utils/analytics";
 
 export default function SocialBar() {
   return (
@@ -10,6 +15,7 @@ export default function SocialBar() {
           href={SOCIAL_LINKS.whatsapp.href}
           target="_blank"
           rel="noreferrer"
+          onClick={() => trackWhatsAppClick("home_social_bar")}
           className="flex items-center justify-between px-5 sm:px-6 py-3 sm:py-3.5 bg-[#24d058] hover:bg-[#20bd50] text-white rounded-2xl font-semibold shadow-md transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
         >
           <div className="flex items-center gap-3">
@@ -34,6 +40,7 @@ export default function SocialBar() {
           href={SOCIAL_LINKS.instagram.href}
           target="_blank"
           rel="noreferrer"
+          onClick={() => trackSocialClick("Instagram", SOCIAL_LINKS.instagram.href)}
           className="flex items-center justify-between px-5 sm:px-6 py-3 sm:py-3.5 bg-gradient-to-r from-[#f09433] via-[#dc2743] to-[#bc1888] hover:opacity-95 text-white rounded-2xl font-semibold shadow-md transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
         >
           <div className="flex items-center gap-3">
@@ -56,6 +63,7 @@ export default function SocialBar() {
         <a
           id="btn-gmail"
           href={SOCIAL_LINKS.email.href}
+          onClick={() => trackEmailClick("click", "home_social_bar")}
           className="flex items-center justify-between px-5 sm:px-6 py-3 sm:py-3.5 bg-white hover:bg-slate-100 text-slate-900 rounded-2xl font-semibold shadow-md transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
         >
           <div className="flex items-center gap-3">
