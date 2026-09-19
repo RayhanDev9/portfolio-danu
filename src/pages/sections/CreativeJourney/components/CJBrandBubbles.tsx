@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import type { BrandItem } from "../data/creativeJourneyData";
 
 interface CJBrandBubblesProps {
@@ -23,12 +24,13 @@ export const CJBrandBubbles = ({ brands }: CJBrandBubblesProps) => {
       {brands.map((brand) => {
         const [line1, line2] = splitBrandName(brand.name);
         return (
-          <div
+          <Link
             key={brand.id}
-            className="group  relative flex items-center justify-center
+            to={brand.path}
+            className="group relative flex items-center justify-center
               w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-28 lg:h-28 
               rounded-full
-              hover:scale-110 transition-all duration-300 cursor-pointer"
+              hover:scale-110 transition-all duration-300 cursor-pointer no-underline"
             title={brand.name}
           >
             {/* === REALISTIC GLASS BUBBLE === */}
@@ -120,7 +122,7 @@ export const CJBrandBubbles = ({ brands }: CJBrandBubblesProps) => {
                 </>
               )}
             </div>
-          </div>
+          </Link>
         );
       })}
     </div>

@@ -10,7 +10,7 @@ export default function ContactFormSection() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const text = `Halo Danu, nama saya ${name || "Klien"}.\n\nSaya tertarik dengan layanan: *${selectedService}*.\n\nDetail Pesan:\n${message || "Mohon info lebih lanjut mengenai kerja sama proyek."}`;
-    const url = `https://wa.me/6281234567890?text=${encodeURIComponent(text)}`;
+    const url = `https://wa.me/62881010069341?text=${encodeURIComponent(text)}`;
     window.open(url, "_blank");
   };
 

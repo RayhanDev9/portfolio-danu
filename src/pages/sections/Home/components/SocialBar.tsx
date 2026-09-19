@@ -5,7 +5,7 @@ export default function SocialBar() {
         {/* WhatsApp */}
         <a
           id="btn-whatsapp"
-          href="https://wa.me/6281234567890"
+          href="https://wa.me/62881010069341"
           target="_blank"
           rel="noreferrer"
           className="flex items-center justify-between px-5 sm:px-6 py-3 sm:py-3.5 bg-[#24d058] hover:bg-[#20bd50] text-white rounded-2xl font-semibold shadow-md transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
@@ -29,7 +29,7 @@ export default function SocialBar() {
         {/* Instagram */}
         <a
           id="btn-instagram"
-          href="https://instagram.com/danu"
+          href="https://instagram.com/dnustya_"
           target="_blank"
           rel="noreferrer"
           className="flex items-center justify-between px-5 sm:px-6 py-3 sm:py-3.5 bg-gradient-to-r from-[#f09433] via-[#dc2743] to-[#bc1888] hover:opacity-95 text-white rounded-2xl font-semibold shadow-md transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
@@ -53,7 +53,7 @@ export default function SocialBar() {
         {/* Gmail */}
         <a
           id="btn-gmail"
-          href="mailto:danu@example.com"
+          href="mailto:danusatya9@gmail.com"
           className="flex items-center justify-between px-5 sm:px-6 py-3 sm:py-3.5 bg-white hover:bg-slate-100 text-slate-900 rounded-2xl font-semibold shadow-md transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
         >
           <div className="flex items-center gap-3">

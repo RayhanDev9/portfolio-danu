@@ -23,7 +23,7 @@ export interface ValueItem {
 
 // 1. Data Personal Danu
 export const PERSONAL_INFO = {
-  name: "Danu Rayhan",
+  name: "Danu Satya",
   tagline: "Graphic Designer & Creative Visual Specialist",
   about:
     "Saya adalah seorang Graphic Designer dan Motion Graphic Enthusiast yang berfokus pada pembuatan identitas visual yang kuat, konten media sosial yang berdampak, dan desain berorientasi pada cerita (story-driven design). Dengan pengalaman menangani berbagai brand dari skala lokal hingga nasional, saya selalu memadukan estetika modern dengan strategi komunikasi visual yang relevan bagi audiens.",

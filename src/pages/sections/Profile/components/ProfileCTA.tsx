@@ -10,7 +10,7 @@ export default function ProfileCTA() {
             Tertarik Berkolaborasi?
           </h2>
           <p className="text-xs sm:text-sm md:text-base text-slate-800 font-medium max-w-xl">
-            Mari diskusikan kebutuhan desain, branding, atau motion graphic Anda bersama Danu Rayhan.
+            Mari diskusikan kebutuhan desain, branding, atau motion graphic Anda bersama Danu Satya.
           </p>
         </div>
 

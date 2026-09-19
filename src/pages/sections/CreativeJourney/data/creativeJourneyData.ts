@@ -4,6 +4,7 @@ export interface BrandItem {
   logo: string;
   initials: string;
   color: string;
+  path: string;
 }
 
 export const brandList: BrandItem[] = [
@@ -13,6 +14,7 @@ export const brandList: BrandItem[] = [
     logo: `${import.meta.env.BASE_URL}img/vendor-experienc/fabula.avif`,
     initials: "VF",
     color: "#2a1a6e",
+    path: "/graphic-design/via-fabula",
   },
   {
     id: "horison",
@@ -20,6 +22,7 @@ export const brandList: BrandItem[] = [
     logo: `${import.meta.env.BASE_URL}img/vendor-experienc/horison.avif`,
     initials: "HO",
     color: "#1a3a6e",
+    path: "/graphic-design/horison",
   },
   {
     id: "klinner",
@@ -27,6 +30,7 @@ export const brandList: BrandItem[] = [
     logo: `${import.meta.env.BASE_URL}img/vendor-experienc/horison.avif`,
     initials: "MK",
     color: "#6e1a1a",
+    path: "/graphic-design/mister-klinner",
   },
   {
     id: "astra",
@@ -34,6 +38,7 @@ export const brandList: BrandItem[] = [
     logo: `${import.meta.env.BASE_URL}img/vendor-experienc/astastoshop.avif`,
     initials: "AO",
     color: "#1a5a1a",
+    path: "/graphic-design/astraotoshop",
   },
   {
     id: "geo",
@@ -41,6 +46,7 @@ export const brandList: BrandItem[] = [
     logo: `${import.meta.env.BASE_URL}img/vendor-experienc/geonerations.avif`,
     initials: "GN",
     color: "#3a1a6e",
+    path: "/graphic-design/geonerations",
   },
   {
     id: "roudotul",
@@ -48,7 +54,7 @@ export const brandList: BrandItem[] = [
     logo: `${import.meta.env.BASE_URL}img/vendor-experienc/majlis-ta'lim.avif`,
     initials: "RJ",
     color: "#6e3a1a",
+    path: "/graphic-design/majlis",
   },
 ];
 
-astastoshop;

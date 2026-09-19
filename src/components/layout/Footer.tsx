@@ -29,6 +29,17 @@ function InstagramIcon({ className = "w-4 h-4" }: { className?: string }) {
 }
 
 // =============================================
+// Ikon LinkedIn SVG
+// =============================================
+function LinkedInIcon({ className = "w-4 h-4" }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="currentColor">
+      <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 8.76a1.68 1.68 0 1 0-.02-3.36 1.68 1.68 0 0 0 .02 3.36M5.07 18.5h2.78v-8.37H5.07v8.37Z" />
+    </svg>
+  );
+}
+
+// =============================================
 // DATA: Navigasi Utama
 // =============================================
 const mainNavLinks = [
@@ -59,15 +70,15 @@ const designProjects = [
 const contactList = [
   {
     label: "WhatsApp",
-    value: "+62 881 010 069 341",
+    value: "0881-0100-69341",
     href: "https://wa.me/62881010069341?text=Hello%20Danu,%20I'm%20interested%20in%20working%20together%20on%20a%20design%20project.",
     icon: MessageCircle,
     badge: "Fast Response",
   },
   {
     label: "Email",
-    value: "Danusatya9@gmail.com",
-    href: "mailto:Danusatya9@gmail.com?subject=Design%20Project%20Inquiry",
+    value: "danusatya9@gmail.com",
+    href: "mailto:danusatya9@gmail.com?subject=Design%20Project%20Inquiry",
     icon: Mail,
     badge: "Official Inquiry",
   },
@@ -77,6 +88,13 @@ const contactList = [
     href: "https://instagram.com/dnustya_",
     icon: InstagramIcon,
     badge: "Daily Portfolio",
+  },
+  {
+    label: "LinkedIn",
+    value: "Danu Satya",
+    href: "https://www.linkedin.com/in/danu-satya",
+    icon: LinkedInIcon,
+    badge: "Professional Profile",
   },
 ];
 
@@ -251,7 +269,7 @@ export default function Footer() {
               <div className="absolute -inset-2 bg-[#5b13ec]/40 rounded-full blur-xl opacity-50 group-hover:opacity-80 transition duration-300" />
               <img
                 src={`${import.meta.env.BASE_URL}img/profile/danu-jas.avif`}
-                alt="Danu Prasetyo"
+                alt="Danu Satya"
                 className="relative h-60 xl:h-72 object-contain object-bottom drop-shadow-[0_20px_35px_rgba(0,0,0,0.7)] group-hover:scale-105 transition-transform duration-300"
               />
             </div>
@@ -265,7 +283,7 @@ export default function Footer() {
       <div className="w-full border-t border-white/10 bg-[#12033b]/90 px-6 sm:px-10 lg:px-12 py-4 sm:py-5">
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
           <p className="font-spartan text-sm text-purple-200/80 font-normal">
-            © 2026 <strong className="text-white font-bold">Danu Prasetyo</strong>. All rights reserved.
+            © 2026 <strong className="text-white font-bold">Danu Satya</strong>. All rights reserved.
           </p>
 
           {/* Tombol Back to Top */}

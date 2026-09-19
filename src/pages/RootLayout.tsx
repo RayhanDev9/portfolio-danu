@@ -7,19 +7,19 @@ import Footer from "../components/layout/Footer";
 // MAPPING TITLE HALAMAN BERDASARKAN RUTE
 // =============================================
 const PAGE_TITLES: Record<string, string> = {
-  "/": "Home | Danu Prasetyo - Graphic & Motion Designer",
-  "/experience": "Experience | Danu Prasetyo",
-  "/graphic-design/majlis": "Majlis Ta'lim - Graphic Design | Danu Prasetyo",
-  "/graphic-design/horison": "Horison Altama - Graphic Design | Danu Prasetyo",
-  "/graphic-design/astraotoshop": "Astra Otoshop - Graphic Design | Danu Prasetyo",
-  "/graphic-design/mister-klinner": "Mister Klinner - Graphic Design | Danu Prasetyo",
-  "/graphic-design/geonerations": "Geonerations - Graphic Design | Danu Prasetyo",
-  "/graphic-design/via-fabula": "Via Fabula - Graphic Design | Danu Prasetyo",
-  "/motion-graphic": "Motion Graphic | Danu Prasetyo",
-  "/graphic-motion": "Motion Graphic | Danu Prasetyo",
-  "/creative-journey": "Brands & Creative Journey | Danu Prasetyo",
-  "/contact": "Contact & Inquiry | Danu Prasetyo",
-  "/profile": "About Danu Prasetyo | Profile",
+  "/": "Home | Danu Satya - Graphic & Motion Designer",
+  "/experience": "Experience | Danu Satya",
+  "/graphic-design/majlis": "Majlis Ta'lim - Graphic Design | Danu Satya",
+  "/graphic-design/horison": "Horison Altama - Graphic Design | Danu Satya",
+  "/graphic-design/astraotoshop": "Astra Otoshop - Graphic Design | Danu Satya",
+  "/graphic-design/mister-klinner": "Mister Klinner - Graphic Design | Danu Satya",
+  "/graphic-design/geonerations": "Geonerations - Graphic Design | Danu Satya",
+  "/graphic-design/via-fabula": "Via Fabula - Graphic Design | Danu Satya",
+  "/motion-graphic": "Motion Graphic | Danu Satya",
+  "/graphic-motion": "Motion Graphic | Danu Satya",
+  "/creative-journey": "Brands & Creative Journey | Danu Satya",
+  "/contact": "Contact & Inquiry | Danu Satya",
+  "/profile": "About Danu Satya | Profile",
 };
 
 export default function RootLayout() {
@@ -31,7 +31,7 @@ export default function RootLayout() {
 
     // Set dynamic browser tab title
     const newTitle =
-      PAGE_TITLES[pathname] || "Danu Prasetyo | Graphic & Motion Designer";
+      PAGE_TITLES[pathname] || "Danu Satya | Graphic & Motion Designer";
     document.title = newTitle;
   }, [pathname]);
 
