@@ -4,6 +4,20 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+    <!-- GitHub Pages SPA Redirect Unpacker -->
+    <script>
+      (function(l) {
+        if (l.search[1] === '/' ) {
+          var decoded = l.search.slice(1).split('&').map(function(s) { 
+            return s.replace(/~and~/g, '&')
+          }).join('?');
+          window.history.replaceState(null, null,
+              l.pathname.slice(0, -1) + decoded + l.hash
+          );
+        }
+      }(window.location))
+    </script>
+
     <!-- Primary Meta Tags -->
     <title>Danu Satya | Graphic & Motion Designer Portfolio</title>
     <meta name="title" content="Danu Satya | Graphic & Motion Designer Portfolio" />
@@ -151,7 +165,7 @@
         ]
       }
     </script>
-    <script type="module" crossorigin src="/portfolio-danu/assets/index-CY1VdGnY.js"></script>
+    <script type="module" crossorigin src="/portfolio-danu/assets/index-DKGWonPA.js"></script>
     <link rel="modulepreload" crossorigin href="/portfolio-danu/assets/rolldown-runtime-CbXtAM7H.js">
     <link rel="modulepreload" crossorigin href="/portfolio-danu/assets/vendor-icons-DUdx3rlg.js">
     <link rel="modulepreload" crossorigin href="/portfolio-danu/assets/vendor-react-BTP2c4GX.js">
