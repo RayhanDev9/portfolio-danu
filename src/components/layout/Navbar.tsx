@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import { Link, useLocation } from "react-router-dom";
 import {
+  Menu,
   ChevronDown,
   X,
   MessageCircle,
@@ -64,8 +65,10 @@ export default function Navbar() {
   const [mobileAccordionOpen, setMobileAccordionOpen] = useState(true);
   const [desktopDesignOpen, setDesktopDesignOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
 
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const lastScrollY = useRef(0);
 
   // Kunci scroll body saat menu mobile terbuka (menggunakan custom hook)
   useScrollLock(mobileOpen);
@@ -74,20 +77,48 @@ export default function Navbar() {
   const closeDropdown = useCallback(() => setDesktopDesignOpen(false), []);
   useClickOutside(dropdownRef, closeDropdown, desktopDesignOpen);
 
-  // Tutup menu saat rute berpindah
+  // Tutup menu dan pastikan navbar terlihat saat rute berpindah
   useEffect(() => {
     setMobileOpen(false);
     setDesktopDesignOpen(false);
+    setIsVisible(true);
+    lastScrollY.current = window.scrollY;
   }, [location.pathname]);
 
-  // Efek deteksi scroll untuk efek glassmorphism & shadow dinamis (navbar tetap selalu terlihat)
+  // Efek deteksi arah scroll (hilang saat scroll ke bawah, muncul saat scroll ke atas)
   useEffect(() => {
+    lastScrollY.current = window.scrollY;
     let ticking = false;
 
     const handleScroll = () => {
       if (!ticking) {
         window.requestAnimationFrame(() => {
-          setIsScrolled(window.scrollY > 20);
+          const currentScrollY = window.scrollY;
+
+          // Saat di paling atas halaman (<= 20px), selalu tampilkan navbar
+          if (currentScrollY <= 20) {
+            setIsVisible(true);
+            setIsScrolled(false);
+            lastScrollY.current = currentScrollY;
+            ticking = false;
+            return;
+          }
+
+          setIsScrolled(true);
+
+          const diff = currentScrollY - lastScrollY.current;
+
+          // Scroll ke bawah dengan selisih signifikan -> sembunyikan navbar & tutup dropdown desktop
+          if (diff > 8 && currentScrollY > 60) {
+            setIsVisible(false);
+            setDesktopDesignOpen(false);
+          }
+          // Scroll ke atas -> tampilkan kembali navbar
+          else if (diff < -8) {
+            setIsVisible(true);
+          }
+
+          lastScrollY.current = currentScrollY;
           ticking = false;
         });
         ticking = true;
@@ -99,37 +130,39 @@ export default function Navbar() {
   }, []);
 
   const isDesignActive = currentPath.startsWith("/graphic-design");
-  const avatarUrl = getAssetUrl("img/profile/danu-duduk.avif");
+  const avatarUrl = getAssetUrl("favicon-96x96.png");
 
   return (
     <>
       {/* ============================
-          TOP NAVBAR HEADER BAR (Always Visible & Floating)
+          TOP NAVBAR HEADER BAR (Smart Auto-Hide on Scroll Down & Show on Scroll Up)
           ============================ */}
       <nav
         id="main-navbar"
-        className="fixed top-0 left-0 right-0 z-40 w-full transition-all duration-300 px-4 sm:px-6 py-3 sm:py-4 pointer-events-none"
+        aria-label="Main Navigation"
+        className={`fixed top-0 left-0 right-0 z-40 w-full transition-all duration-300 ease-in-out px-3.5 sm:px-6 py-2.5 sm:py-4 pointer-events-none ${isVisible
+            ? "translate-y-0 opacity-100"
+            : "-translate-y-full opacity-0"
+          }`}
       >
         {/* ============================
             DESKTOP NAVBAR (md ke atas)
             ============================ */}
         <div className="hidden md:flex items-center justify-center pointer-events-auto">
-          {/* Pill kuning melayang dengan backdrop blur halus saat di-scroll */}
+          {/* Pill kuning melayang dengan backdrop blur halus dan shadow dinamis */}
           <div
-            className={`flex items-center gap-1 lg:gap-2 bg-[#e8fb31] rounded-full px-4 lg:px-6 py-2 transition-all duration-300 ${
-              isScrolled
-                ? "shadow-2xl shadow-black/40 ring-1 ring-black/10 scale-[0.98]"
-                : "shadow-xl border border-black/5"
-            }`}
+            className={`flex items-center gap-1 lg:gap-2 bg-[#e8fb31] rounded-full px-4 lg:px-6 py-2 transition-all duration-300 ${isScrolled
+                ? "shadow-[0_12px_36px_rgba(0,0,0,0.45)] ring-1 ring-black/15 scale-[0.98]"
+                : "shadow-[0_8px_24px_rgba(0,0,0,0.25)] border border-black/5"
+              }`}
           >
             {/* Link: Home */}
             <Link
               to="/"
-              className={`font-spartan font-bold text-sm lg:text-base px-3 lg:px-5 py-1.5 rounded-full transition-all duration-200 no-underline ${
-                isActive(currentPath, "/") && !isDesignActive
+              className={`font-spartan font-bold text-sm lg:text-base px-3.5 lg:px-5 py-1.5 rounded-full transition-all duration-200 no-underline ${isActive(currentPath, "/") && !isDesignActive
                   ? "bg-[#5b13ec] text-white shadow-md"
                   : "text-[#1a1a1a] hover:bg-black/10"
-              }`}
+                }`}
             >
               Home
             </Link>
@@ -137,11 +170,10 @@ export default function Navbar() {
             {/* Link: Experience */}
             <Link
               to="/experience"
-              className={`font-spartan font-bold text-sm lg:text-base px-3 lg:px-5 py-1.5 rounded-full transition-all duration-200 no-underline ${
-                isActive(currentPath, "/experience")
+              className={`font-spartan font-bold text-sm lg:text-base px-3.5 lg:px-5 py-1.5 rounded-full transition-all duration-200 no-underline ${isActive(currentPath, "/experience")
                   ? "bg-[#5b13ec] text-white shadow-md"
                   : "text-[#1a1a1a] hover:bg-black/10"
-              }`}
+                }`}
             >
               Experience
             </Link>
@@ -151,37 +183,53 @@ export default function Navbar() {
               <button
                 id="design-dropdown-btn"
                 onClick={() => setDesktopDesignOpen((prev) => !prev)}
-                className={`font-spartan font-bold text-sm lg:text-base px-3 lg:px-5 py-1.5 rounded-full transition-all duration-200 flex items-center gap-1.5 cursor-pointer border-none ${
-                  isDesignActive
+                className={`font-spartan font-bold text-sm lg:text-base px-3.5 lg:px-5 py-1.5 rounded-full transition-all duration-200 flex items-center gap-1.5 cursor-pointer border-none ${isDesignActive
                     ? "bg-[#5b13ec] text-white shadow-md"
                     : "text-[#1a1a1a] hover:bg-black/10 bg-transparent"
-                }`}
+                  }`}
               >
                 Graphic Design
                 <ChevronDown
-                  className={`w-3.5 h-3.5 transition-transform duration-200 ${
-                    desktopDesignOpen ? "rotate-180" : ""
-                  }`}
+                  className={`w-3.5 h-3.5 transition-transform duration-200 ${desktopDesignOpen ? "rotate-180" : ""
+                    }`}
                 />
               </button>
 
-              {/* Dropdown Panel Desktop */}
+              {/* Dropdown Panel Desktop dengan Background Drop Glassmorphism Mewah */}
               {desktopDesignOpen && (
-                <div className="absolute top-full left-0 mt-2 bg-white rounded-2xl shadow-2xl border border-black/10 overflow-hidden min-w-[240px] z-50 py-2 animate-in fade-in slide-in-from-top-2 duration-200">
+                <div className="absolute top-full left-1/2 -translate-x-1/2 mt-3 bg-[#110729]/95 backdrop-blur-2xl rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.6)] border border-white/15 overflow-hidden min-w-[270px] z-50 p-2 animate-in fade-in slide-in-from-top-2 duration-200">
+                  <div className="px-3 py-1.5 mb-1 border-b border-white/10">
+                    <span className="text-[10px] font-sans font-bold uppercase tracking-wider text-white/50">
+                      Portfolio Kategori
+                    </span>
+                  </div>
                   {DESIGN_SUB_LINKS.map((sub) => {
                     const Icon = sub.icon;
+                    const active = isActive(currentPath, sub.href);
                     return (
                       <Link
                         key={sub.href}
                         to={sub.href}
-                        className={`flex items-center gap-3 px-4 py-2.5 font-spartan font-bold text-sm no-underline transition-colors duration-150 ${
-                          isActive(currentPath, sub.href)
-                            ? "bg-[#5b13ec] text-white"
-                            : "text-[#1a1a1a] hover:bg-[#e8fb31]"
-                        }`}
+                        onClick={() => setDesktopDesignOpen(false)}
+                        className={`flex items-center gap-3 px-3 py-2.5 rounded-xl font-spartan font-bold text-sm no-underline transition-all duration-150 group ${active
+                            ? "bg-[#5b13ec] text-white shadow-md"
+                            : "text-white/90 hover:bg-white/10 hover:text-[#e8fb31]"
+                          }`}
                       >
-                        {Icon && <Icon className="w-4 h-4 opacity-80" />}
-                        <span>{sub.label}</span>
+                        <div
+                          className={`w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0 transition-all ${active
+                              ? "bg-[#e8fb31] text-[#1a1a1a]"
+                              : "bg-white/10 text-white/80 group-hover:bg-[#e8fb31] group-hover:text-[#1a1a1a]"
+                            }`}
+                        >
+                          {Icon && <Icon className="w-3.5 h-3.5" />}
+                        </div>
+                        <div className="flex flex-col min-w-0">
+                          <span className="leading-tight">{sub.label}</span>
+                          <span className="font-sans text-[11px] font-normal text-white/50 group-hover:text-white/70 line-clamp-1">
+                            {sub.description}
+                          </span>
+                        </div>
                       </Link>
                     );
                   })}
@@ -192,11 +240,10 @@ export default function Navbar() {
             {/* Link: Motion Graphic */}
             <Link
               to="/motion-graphic"
-              className={`font-spartan font-bold text-sm lg:text-base px-3 lg:px-5 py-1.5 rounded-full transition-all duration-200 no-underline ${
-                isActive(currentPath, "/motion-graphic")
+              className={`font-spartan font-bold text-sm lg:text-base px-3.5 lg:px-5 py-1.5 rounded-full transition-all duration-200 no-underline ${isActive(currentPath, "/motion-graphic")
                   ? "bg-[#5b13ec] text-white shadow-md"
                   : "text-[#1a1a1a] hover:bg-black/10"
-              }`}
+                }`}
             >
               Motion Graphic
             </Link>
@@ -204,11 +251,10 @@ export default function Navbar() {
             {/* Link: Brands */}
             <Link
               to="/creative-journey"
-              className={`font-spartan font-bold text-sm lg:text-base px-3 lg:px-5 py-1.5 rounded-full transition-all duration-200 no-underline ${
-                isActive(currentPath, "/creative-journey")
+              className={`font-spartan font-bold text-sm lg:text-base px-3.5 lg:px-5 py-1.5 rounded-full transition-all duration-200 no-underline ${isActive(currentPath, "/creative-journey")
                   ? "bg-[#5b13ec] text-white shadow-md"
                   : "text-[#1a1a1a] hover:bg-black/10"
-              }`}
+                }`}
             >
               Brands
             </Link>
@@ -216,11 +262,10 @@ export default function Navbar() {
             {/* Link: Contact */}
             <Link
               to="/contact"
-              className={`font-spartan font-bold text-sm lg:text-base px-3 lg:px-5 py-1.5 rounded-full transition-all duration-200 no-underline ${
-                isActive(currentPath, "/contact")
+              className={`font-spartan font-bold text-sm lg:text-base px-3.5 lg:px-5 py-1.5 rounded-full transition-all duration-200 no-underline ${isActive(currentPath, "/contact")
                   ? "bg-[#5b13ec] text-white shadow-md"
                   : "text-[#1a1a1a] hover:bg-black/10"
-              }`}
+                }`}
             >
               Contact
             </Link>
@@ -229,75 +274,74 @@ export default function Navbar() {
             <Link
               to="/profile"
               title="Lihat Profil Danu"
-              className="ml-2 flex-shrink-0 transition-transform duration-200 hover:scale-110 active:scale-95"
+              className="ml-1.5 flex-shrink-0 transition-transform duration-200 hover:scale-110 active:scale-95"
             >
               <img
                 src={avatarUrl}
                 alt="Danu Profile"
-                className={`w-8 h-8 lg:w-9 lg:h-9 rounded-full object-cover object-top transition-all duration-200 ${
-                  currentPath === "/profile"
+                className={`w-8 h-8 lg:w-9 lg:h-9 rounded-full object-cover object-top transition-all duration-200 ${currentPath === "/profile"
                     ? "ring-2 ring-[#5b13ec] ring-offset-2 ring-offset-[#e8fb31] shadow-md"
                     : "border-2 border-transparent hover:border-black/20"
-                }`}
+                  }`}
               />
             </Link>
           </div>
         </div>
 
         {/* ============================
-            MOBILE NAVBAR TRIGGER (< md)
+            MOBILE NAVBAR TRIGGER (< md) dengan Floating Backdrop Glass Capsule
             ============================ */}
-        <div className="flex md:hidden items-center justify-between pointer-events-auto">
-          <Link
-            to="/profile"
-            title="Lihat Profil Danu"
-            className={`flex items-center gap-2.5 transition-all duration-200 hover:scale-105 active:scale-95 no-underline group px-3 py-1.5 rounded-2xl ${
-              isScrolled
-                ? "bg-[#0f0728]/80 backdrop-blur-md border border-white/15 shadow-xl"
-                : ""
-            }`}
+        <div className="flex md:hidden items-center justify-between pointer-events-auto max-w-lg mx-auto w-full">
+          <div
+            className={`w-full flex items-center justify-between px-3.5 py-2 rounded-2xl transition-all duration-300 ${isScrolled
+                ? "bg-[#0f0728]/85 backdrop-blur-xl border border-white/15 shadow-[0_8px_30px_rgba(0,0,0,0.5)]"
+                : "bg-[#0f0728]/60 backdrop-blur-md border border-white/10 shadow-md"
+              }`}
           >
-            <div className="relative">
-              <img
-                src={avatarUrl}
-                alt="Danu Profile"
-                className={`w-9 h-9 rounded-full object-cover object-top transition-all duration-200 ${
-                  currentPath === "/profile"
-                    ? "ring-2 ring-[#e8fb31] shadow-lg"
-                    : "ring-2 ring-white/30 group-hover:ring-white/60"
-                }`}
-              />
-              {currentPath === "/profile" && (
-                <span className="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-[#e8fb31] ring-2 ring-[#5b13ec]" />
-              )}
-            </div>
-            <div className="flex flex-col">
-              <span
-                className={`font-spartan font-black text-sm tracking-wide transition-colors drop-shadow ${
-                  currentPath === "/profile"
-                    ? "text-[#e8fb31]"
-                    : "text-white group-hover:text-[#e8fb31]"
-                }`}
-              >
-                Danu Satya
-              </span>
-              <span className="font-sans text-[10px] text-[#e8fb31] font-semibold -mt-1">
-                Graphic & Motion Designer
-              </span>
-            </div>
-          </Link>
+            {/* Profil Brand Left */}
+            <Link
+              to="/profile"
+              title="Lihat Profil Danu"
+              className="flex items-center gap-2.5 transition-all duration-200 active:scale-95 no-underline group"
+            >
+              <div className="relative">
+                <img
+                  src={avatarUrl}
+                  alt="Danu Profile"
+                  className={`w-9 h-9 rounded-full object-cover object-top transition-all duration-200 ${currentPath === "/profile"
+                      ? "ring-2 ring-[#e8fb31] shadow-lg"
+                      : "ring-2 ring-white/30 group-hover:ring-white/60"
+                    }`}
+                />
+                {currentPath === "/profile" && (
+                  <span className="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-[#e8fb31] ring-2 ring-[#5b13ec]" />
+                )}
+              </div>
+              <div className="flex flex-col">
+                <span
+                  className={`font-spartan font-black text-sm tracking-wide transition-colors ${currentPath === "/profile"
+                      ? "text-[#e8fb31]"
+                      : "text-white group-hover:text-[#e8fb31]"
+                    }`}
+                >
+                  Danu Satya
+                </span>
+                <span className="font-sans text-[10px] text-[#e8fb31] font-semibold -mt-1">
+                  Graphic &amp; Motion Designer
+                </span>
+              </div>
+            </Link>
 
-          {/* Hamburger Button */}
-          <button
-            id="mobile-menu-btn"
-            onClick={() => setMobileOpen(true)}
-            aria-label="Open menu"
-            className="flex flex-col justify-center items-center gap-1.5 w-10 h-10 rounded-xl bg-[#e8fb31] text-[#1a1a1a] shadow-lg border-none cursor-pointer hover:bg-yellow-300 active:scale-95 transition-all"
-          >
-            <span className="block w-5 h-0.5 bg-[#1a1a1a] rounded-full" />
-            <span className="block w-5 h-0.5 bg-[#1a1a1a] rounded-full" />
-            <span className="block w-5 h-0.5 bg-[#1a1a1a] rounded-full" />
-          </button>
+            {/* Hamburger Button Right (Garis 3 menggunakan library Lucide Menu) */}
+            <button
+              id="mobile-menu-btn"
+              onClick={() => setMobileOpen(true)}
+              aria-label="Buka menu navigasi"
+              className="flex items-center justify-center w-10 h-10 rounded-xl bg-[#e8fb31] text-[#1a1a1a] shadow-md border-none cursor-pointer hover:bg-yellow-300 active:scale-95 transition-all"
+            >
+              <Menu className="w-5 h-5 text-[#1a1a1a]" strokeWidth={2.5} />
+            </button>
+          </div>
         </div>
       </nav>
 
@@ -321,11 +365,10 @@ export default function Navbar() {
                 <img
                   src={avatarUrl}
                   alt="Danu Profile"
-                  className={`w-10 h-10 rounded-full object-cover object-top transition-all duration-200 group-hover:scale-105 ${
-                    currentPath === "/profile"
+                  className={`w-10 h-10 rounded-full object-cover object-top transition-all duration-200 group-hover:scale-105 ${currentPath === "/profile"
                       ? "ring-2 ring-[#e8fb31] shadow-lg"
                       : "ring-2 ring-white/20 group-hover:ring-white/40"
-                  }`}
+                    }`}
                 />
                 {currentPath === "/profile" && (
                   <span className="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-[#e8fb31] ring-2 ring-[#0f0728]" />
@@ -333,11 +376,10 @@ export default function Navbar() {
               </div>
               <div className="flex flex-col">
                 <span
-                  className={`font-spartan font-bold text-base transition-colors leading-tight ${
-                    currentPath === "/profile"
+                  className={`font-spartan font-bold text-base transition-colors leading-tight ${currentPath === "/profile"
                       ? "text-[#e8fb31]"
                       : "text-white group-hover:text-[#e8fb31]"
-                  }`}
+                    }`}
                 >
                   Danu Satya
                 </span>
@@ -364,11 +406,10 @@ export default function Navbar() {
               <Link
                 to="/"
                 onClick={() => setMobileOpen(false)}
-                className={`flex items-center justify-between py-2 text-lg font-bold no-underline transition-colors ${
-                  isActive(currentPath, "/") && !isDesignActive
+                className={`flex items-center justify-between py-2 text-lg font-bold no-underline transition-colors ${isActive(currentPath, "/") && !isDesignActive
                     ? "text-[#e8fb31]"
                     : "text-white/90 hover:text-[#e8fb31]"
-                }`}
+                  }`}
               >
                 <span>Home</span>
                 {isActive(currentPath, "/") && !isDesignActive && (
@@ -382,11 +423,10 @@ export default function Navbar() {
               <Link
                 to="/experience"
                 onClick={() => setMobileOpen(false)}
-                className={`flex items-center justify-between py-2 text-lg font-bold no-underline transition-colors ${
-                  isActive(currentPath, "/experience")
+                className={`flex items-center justify-between py-2 text-lg font-bold no-underline transition-colors ${isActive(currentPath, "/experience")
                     ? "text-[#e8fb31]"
                     : "text-white/90 hover:text-[#e8fb31]"
-                }`}
+                  }`}
               >
                 <span>Experience</span>
                 {isActive(currentPath, "/experience") && (
@@ -411,21 +451,19 @@ export default function Navbar() {
                   Graphic Design
                 </span>
                 <ChevronDown
-                  className={`w-5 h-5 transition-transform duration-300 ${
-                    mobileAccordionOpen
+                  className={`w-5 h-5 transition-transform duration-300 ${mobileAccordionOpen
                       ? "rotate-180 text-[#e8fb31]"
                       : "text-white/60"
-                  }`}
+                    }`}
                 />
               </button>
 
               {/* Sub-items List (Matching Supabase Screenshot 2 layout) */}
               <div
-                className={`grid grid-cols-1 gap-2 overflow-hidden transition-all duration-300 ease-in-out ${
-                  mobileAccordionOpen
+                className={`grid grid-cols-1 gap-2 overflow-hidden transition-all duration-300 ease-in-out ${mobileAccordionOpen
                     ? "max-h-[800px] opacity-100 pt-2 pb-1"
                     : "max-h-0 opacity-0 pointer-events-none"
-                }`}
+                  }`}
               >
                 {DESIGN_SUB_LINKS.map((sub) => {
                   const active = isActive(currentPath, sub.href);
@@ -435,19 +473,17 @@ export default function Navbar() {
                       key={sub.href}
                       to={sub.href}
                       onClick={() => setMobileOpen(false)}
-                      className={`group flex items-center gap-3.5 p-2.5 rounded-xl no-underline transition-all duration-150 ${
-                        active
+                      className={`group flex items-center gap-3.5 p-2.5 rounded-xl no-underline transition-all duration-150 ${active
                           ? "bg-white/10 border border-[#e8fb31]/40"
                           : "hover:bg-white/5 active:bg-white/10 border border-transparent"
-                      }`}
+                        }`}
                     >
                       {/* Box Icon rounded squarish */}
                       <div
-                        className={`w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0 transition-all ${
-                          active
+                        className={`w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0 transition-all ${active
                             ? "bg-[#5b13ec] text-[#e8fb31] border border-[#e8fb31]/50 shadow-md"
                             : "bg-white/5 border border-white/10 text-white/80 group-hover:bg-[#5b13ec] group-hover:border-[#5b13ec] group-hover:text-white"
-                        }`}
+                          }`}
                       >
                         {Icon && <Icon className="w-5 h-5" />}
                       </div>
@@ -455,11 +491,10 @@ export default function Navbar() {
                       {/* Content: Title & Subtitle */}
                       <div className="flex flex-col min-w-0 flex-1">
                         <span
-                          className={`font-spartan font-bold text-[15px] leading-tight transition-colors ${
-                            active
+                          className={`font-spartan font-bold text-[15px] leading-tight transition-colors ${active
                               ? "text-[#e8fb31]"
                               : "text-white group-hover:text-[#e8fb31]"
-                          }`}
+                            }`}
                         >
                           {sub.label}
                         </span>
@@ -478,11 +513,10 @@ export default function Navbar() {
               <Link
                 to="/motion-graphic"
                 onClick={() => setMobileOpen(false)}
-                className={`flex items-center justify-between py-2 text-lg font-bold no-underline transition-colors ${
-                  isActive(currentPath, "/motion-graphic")
+                className={`flex items-center justify-between py-2 text-lg font-bold no-underline transition-colors ${isActive(currentPath, "/motion-graphic")
                     ? "text-[#e8fb31]"
                     : "text-white/90 hover:text-[#e8fb31]"
-                }`}
+                  }`}
               >
                 <span>Motion Graphic</span>
                 {isActive(currentPath, "/motion-graphic") && (
@@ -496,11 +530,10 @@ export default function Navbar() {
               <Link
                 to="/creative-journey"
                 onClick={() => setMobileOpen(false)}
-                className={`flex items-center justify-between py-2 text-lg font-bold no-underline transition-colors ${
-                  isActive(currentPath, "/creative-journey")
+                className={`flex items-center justify-between py-2 text-lg font-bold no-underline transition-colors ${isActive(currentPath, "/creative-journey")
                     ? "text-[#e8fb31]"
                     : "text-white/90 hover:text-[#e8fb31]"
-                }`}
+                  }`}
               >
                 <span>Brands</span>
                 {isActive(currentPath, "/creative-journey") && (
@@ -514,11 +547,10 @@ export default function Navbar() {
               <Link
                 to="/contact"
                 onClick={() => setMobileOpen(false)}
-                className={`flex items-center justify-between py-2 text-lg font-bold no-underline transition-colors ${
-                  isActive(currentPath, "/contact")
+                className={`flex items-center justify-between py-2 text-lg font-bold no-underline transition-colors ${isActive(currentPath, "/contact")
                     ? "text-[#e8fb31]"
                     : "text-white/90 hover:text-[#e8fb31]"
-                }`}
+                  }`}
               >
                 <span>Contact</span>
                 {isActive(currentPath, "/contact") && (
@@ -532,11 +564,10 @@ export default function Navbar() {
               <Link
                 to="/profile"
                 onClick={() => setMobileOpen(false)}
-                className={`flex items-center justify-between py-2 text-lg font-bold no-underline transition-colors ${
-                  isActive(currentPath, "/profile")
+                className={`flex items-center justify-between py-2 text-lg font-bold no-underline transition-colors ${isActive(currentPath, "/profile")
                     ? "text-[#e8fb31]"
                     : "text-white/90 hover:text-[#e8fb31]"
-                }`}
+                  }`}
               >
                 <span>Profile</span>
                 {isActive(currentPath, "/profile") && (

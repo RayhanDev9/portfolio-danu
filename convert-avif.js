@@ -80,11 +80,10 @@ async function runAutoScript() {
     
     if (fs.existsSync(indexHtmlPath)) {
         let content = fs.readFileSync(indexHtmlPath, 'utf8');
-        if (content.match(/\.(png|jpe?g)/i)) {
-            const newContent = content.replace(/\.(png|jpe?g)/gi, '.avif');
-            fs.writeFileSync(indexHtmlPath, newContent, 'utf8');
-            console.log(`[UPDATE KODE] Referensi gambar diubah pada file: index.html`);
-        }
+        // Only replace inside img/ paths, not favicons or og-image
+        content = content.replace(/(href|src)=["'](\.\/|\/)?img\/([^"']+)\.(png|jpe?g)["']/gi, '$1="$2img/$3.avif"');
+        fs.writeFileSync(indexHtmlPath, content, 'utf8');
+        console.log(`[UPDATE KODE] Referensi gambar diubah pada file: index.html`);
     }
     
     console.log('\n--- SEMUA PROSES SELESAI BRO! ---');

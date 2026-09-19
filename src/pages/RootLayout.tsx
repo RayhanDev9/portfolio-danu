@@ -100,9 +100,9 @@ export default function RootLayout() {
     });
   }, [pathname]);
 
-  // 2. Set Favicon ke danu-duduk.avif
+  // 2. Set Favicon dynamically
   useEffect(() => {
-    const faviconUrl = getAssetUrl("img/profile/danu-duduk.avif");
+    const faviconUrl = getAssetUrl("favicon-48x48.png");
     let link: HTMLLinkElement | null =
       document.querySelector("link[rel~='icon']");
     if (!link) {
