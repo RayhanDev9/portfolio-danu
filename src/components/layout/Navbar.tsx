@@ -284,7 +284,7 @@ export default function Navbar() {
           <Link
             to="/profile"
             title="Lihat Profil Danu"
-            className="flex items-center gap-2.5 transition-transform duration-200 hover:scale-105 active:scale-95 no-underline"
+            className="flex items-center gap-2.5 transition-transform duration-200 hover:scale-105 active:scale-95 no-underline group"
           >
             <div className="relative">
               <img
@@ -293,17 +293,25 @@ export default function Navbar() {
                 className={`w-9 h-9 rounded-full object-cover object-top transition-all duration-200 ${
                   currentPath === "/profile"
                     ? "ring-2 ring-[#e8fb31] shadow-lg"
-                    : "ring-2 ring-white/30 hover:ring-[#e8fb31]"
+                    : "ring-2 ring-white/30 group-hover:ring-white/60"
                 }`}
               />
-              <span className="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-[#e8fb31] ring-2 ring-[#5b13ec]" />
+              {currentPath === "/profile" && (
+                <span className="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-[#e8fb31] ring-2 ring-[#5b13ec]" />
+              )}
             </div>
             <div className="flex flex-col">
-              <span className="font-spartan font-black text-sm tracking-wide text-white drop-shadow">
+              <span
+                className={`font-spartan font-black text-sm tracking-wide transition-colors drop-shadow ${
+                  currentPath === "/profile"
+                    ? "text-[#e8fb31]"
+                    : "text-white group-hover:text-[#e8fb31]"
+                }`}
+              >
                 Danu Satya
               </span>
               <span className="font-sans text-[10px] text-[#e8fb31] font-semibold -mt-1">
-              Graphic & Motion Designer
+                Graphic & Motion Designer
               </span>
             </div>
           </Link>
@@ -342,12 +350,24 @@ export default function Navbar() {
                 <img
                   src={`${import.meta.env.BASE_URL}img/profile/danu-duduk.avif`}
                   alt="Danu Profile"
-                  className="w-10 h-10 rounded-full object-cover object-top ring-2 ring-[#e8fb31] group-hover:scale-105 transition-transform"
+                  className={`w-10 h-10 rounded-full object-cover object-top transition-all duration-200 group-hover:scale-105 ${
+                    currentPath === "/profile"
+                      ? "ring-2 ring-[#e8fb31] shadow-lg"
+                      : "ring-2 ring-white/20 group-hover:ring-white/40"
+                  }`}
                 />
-                <span className="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-[#e8fb31] ring-2 ring-[#0f0728]" />
+                {currentPath === "/profile" && (
+                  <span className="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-[#e8fb31] ring-2 ring-[#0f0728]" />
+                )}
               </div>
               <div className="flex flex-col">
-                <span className="font-spartan font-bold text-base text-white group-hover:text-[#e8fb31] transition-colors leading-tight">
+                <span
+                  className={`font-spartan font-bold text-base transition-colors leading-tight ${
+                    currentPath === "/profile"
+                      ? "text-[#e8fb31]"
+                      : "text-white group-hover:text-[#e8fb31]"
+                  }`}
+                >
                   Danu Satya
                 </span>
                 <span className="font-sans text-xs text-white/60">

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Send, MapPin, CheckCircle, Clock, MessageCircle } from "lucide-react";
+import { MapPin, CheckCircle, Clock, MessageCircle } from "lucide-react";
 import { PROFILE_INFO, SERVICE_CATEGORIES } from "../data/contactData";
 
 export default function ContactFormSection() {
