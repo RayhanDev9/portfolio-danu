@@ -53,11 +53,11 @@ export default function ImageModal({
         </div>
 
         {/* Image Display */}
-        <div className="p-2 sm:p-4 overflow-auto flex items-center justify-center max-h-[calc(90vh-60px)]">
+        <div className="p-2 sm:p-4 overflow-auto no-scrollbar flex items-center justify-center max-h-[calc(90vh-60px)]">
           <img
             src={imageSrc}
             alt={title || "Preview"}
-            className="max-h-[80vh] w-auto object-contain rounded-lg shadow-lg"
+            className="max-h-[78vh] max-w-full w-auto object-contain rounded-lg shadow-lg"
           />
         </div>
       </div>

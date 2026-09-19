@@ -1,7 +1,7 @@
 export default function EducationHero() {
   return (
     <div className="relative w-full max-w-7xl mx-auto flex flex-col items-center justify-center pt-16 sm:pt-20 md:pt-24 pb-6 sm:pb-8 px-2 sm:px-4 select-none">
-      <h2 className="flex items-center justify-center font-spartan font-black text-3xl xs:text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl 2xl:text-[9.5rem] tracking-wider leading-none text-[#e8fb31] text-center drop-shadow-[0_8px_20px_rgba(0,0,0,0.3)] whitespace-nowrap">
+      <h2 className="flex items-center justify-center font-spartan font-black text-5xl xs:text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[9.5rem] 2xl:text-[10.5rem] tracking-wider leading-none text-[#e8fb31] text-center drop-shadow-[0_8px_20px_rgba(0,0,0,0.3)] whitespace-nowrap">
         <span>EDUCAT</span>
         {/* Foto Danu sebagai Huruf 'I' */}
         <span className="inline-flex items-center justify-center h-[1.12em] w-[0.52em] sm:w-[0.56em] mx-0.5 sm:mx-1 shrink-0 overflow-visible">

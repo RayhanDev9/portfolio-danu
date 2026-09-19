@@ -51,11 +51,11 @@ export default function ImageModal({ item, onClose }: ImageModalProps) {
         </div>
 
         {/* Gambar */}
-        <div className="flex-1 overflow-auto p-3 flex items-center justify-center bg-stone-950/60">
+        <div className="flex-1 overflow-auto no-scrollbar p-3 flex items-center justify-center bg-stone-950/60">
           <img
             src={item.image}
             alt={item.alt}
-            className="max-h-[75vh] w-auto object-contain rounded-lg shadow-md"
+            className="max-h-[75vh] max-w-full w-auto object-contain rounded-lg shadow-md"
           />
         </div>
 
