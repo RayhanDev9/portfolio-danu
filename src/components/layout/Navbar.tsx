@@ -63,11 +63,9 @@ export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileAccordionOpen, setMobileAccordionOpen] = useState(true);
   const [desktopDesignOpen, setDesktopDesignOpen] = useState(false);
-  const [isVisible, setIsVisible] = useState(true);
   const [isScrolled, setIsScrolled] = useState(false);
 
   const dropdownRef = useRef<HTMLDivElement>(null);
-  const lastScrollY = useRef(0);
 
   // Kunci scroll body saat menu mobile terbuka (menggunakan custom hook)
   useScrollLock(mobileOpen);
@@ -76,11 +74,10 @@ export default function Navbar() {
   const closeDropdown = useCallback(() => setDesktopDesignOpen(false), []);
   useClickOutside(dropdownRef, closeDropdown, desktopDesignOpen);
 
-  // Tutup menu saat rute berpindah & reset navbar visibility
+  // Tutup menu saat rute berpindah
   useEffect(() => {
     setMobileOpen(false);
     setDesktopDesignOpen(false);
-    setIsVisible(true);
   }, [location.pathname]);
 
   // Efek deteksi scroll untuk efek glassmorphism & shadow dinamis (navbar tetap selalu terlihat)
