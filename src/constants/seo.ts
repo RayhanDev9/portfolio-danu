@@ -9,22 +9,22 @@ export interface PageSEOConfig {
 export const SEO_BASE_URL = "https://rayhandev9.github.io/portfolio-danu";
 
 export const DEFAULT_SEO: PageSEOConfig = {
-  title: "Danu Satya | Graphic & Motion Designer Portfolio",
+  title: "Danu Satya | Graphic & Simple Motion Designer Portfolio",
   description:
-    "Website portofolio resmi Danu Satya — Graphic Designer & Motion Graphic Specialist asal Indonesia. Berpengalaman dalam visual branding, feeds sosial media, dan motion story.",
+    "Website portofolio resmi Danu Satya — Graphic Designer & Simple Motion Designer Specialist asal Indonesia. Berpengalaman dalam visual branding, feeds sosial media, dan motion story.",
   keywords:
-    "Danu Satya, Graphic Designer Indonesia, Motion Designer, Visual Branding, Social Media Designer, Portofolio Desain Grafis, UI Graphic, Desain Poster, Motion Graphic Artist",
+    "Danu Satya, Graphic Designer Indonesia, Simple Motion Designer, Visual Branding, Social Media Designer, Portofolio Desain Grafis, UI Graphic, Desain Poster, Motion Graphic Artist",
   canonicalPath: "/",
   ogType: "website",
 };
 
 export const ROUTE_SEO_CONFIGS: Record<string, PageSEOConfig> = {
   "/": {
-    title: "Home | Danu Satya - Graphic & Motion Designer",
+    title: "Home | Danu Satya - Graphic & Simple Motion Designer",
     description:
       "Selamat datang di portofolio kreatif Danu Satya. Jelajahi karya terbaik dalam desain grafis, visual branding, dan motion graphic dinamis.",
     keywords:
-      "Danu Satya, Graphic Designer, Motion Graphics, Visual Identity, Creative Portfolio, Designer Rangkasbitung, Desain Grafis Indonesia",
+      "Danu Satya, Graphic Designer, Simple Motion Designer, Motion Graphics, Visual Identity, Creative Portfolio, Designer Rangkasbitung, Desain Grafis Indonesia",
     canonicalPath: "/",
     ogType: "website",
   },
@@ -96,7 +96,7 @@ export const ROUTE_SEO_CONFIGS: Record<string, PageSEOConfig> = {
     description:
       "Showcase animasi motion graphics interaktif dan video editing Danu Satya — Title animation, promo video, dan After Effects motion design.",
     keywords:
-      "Motion Graphic Danu Satya, Video Animation, After Effects Portfolio, Animasi Iklan, Motion Designer Indonesia",
+      "Motion Graphic Danu Satya, Video Animation, After Effects Portfolio, Animasi Iklan, Simple Motion Designer Indonesia",
     canonicalPath: "/motion-graphic",
     ogType: "website",
   },
@@ -105,7 +105,7 @@ export const ROUTE_SEO_CONFIGS: Record<string, PageSEOConfig> = {
     description:
       "Showcase animasi motion graphics interaktif dan video editing Danu Satya — Title animation, promo video, dan After Effects motion design.",
     keywords:
-      "Motion Graphic Danu Satya, Video Animation, After Effects Portfolio, Animasi Iklan, Motion Designer Indonesia",
+      "Motion Graphic Danu Satya, Video Animation, After Effects Portfolio, Animasi Iklan, Simple Motion Designer Indonesia",
     canonicalPath: "/motion-graphic",
     ogType: "website",
   },

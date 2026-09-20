@@ -151,7 +151,7 @@ async function generate() {
       </text>
 
       <text x="510" y="295" font-family="'Inter', sans-serif" font-weight="700" font-size="28" fill="url(#goldGrad)" letter-spacing="1">
-        GRAPHIC &amp; MOTION DESIGNER
+        GRAPHIC &amp; SIMPLE MOTION DESIGNER
       </text>
 
       <text x="510" y="375" font-family="'Inter', sans-serif" font-weight="400" font-size="20" fill="#CBD5E1">

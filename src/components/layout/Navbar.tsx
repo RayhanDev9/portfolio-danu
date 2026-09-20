@@ -327,7 +327,7 @@ export default function Navbar() {
                   Danu Satya
                 </span>
                 <span className="font-sans text-[10px] text-[#e8fb31] font-semibold -mt-1">
-                  Graphic &amp; Motion Designer
+                  Graphic &amp; Simple Motion Designer
                 </span>
               </div>
             </Link>
@@ -384,7 +384,7 @@ export default function Navbar() {
                   Danu Satya
                 </span>
                 <span className="font-sans text-xs text-white/60">
-                  Graphic & Motion Designer
+                  Graphic & Simple Motion Designer
                 </span>
               </div>
             </Link>

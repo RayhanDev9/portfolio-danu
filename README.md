@@ -1,4 +1,4 @@
-# 🎨 Danu Satya — Graphic & Motion Designer Portfolio
+# 🎨 Danu Satya — Graphic & Simple Motion Designer Portfolio
 
 [![React](https://img.shields.io/badge/React-19.2.8-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://react.dev/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-6.0-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
@@ -6,7 +6,7 @@
 [![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-v4-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
 [![React Router](https://img.shields.io/badge/React_Router-v7-CA4245?style=for-the-badge&logo=react-router&logoColor=white)](https://reactrouter.com/)
 
-Website portofolio interaktif, modern, dan responsif milik **Danu Satya**, seorang *Graphic Designer & Motion Graphic Specialist*. Dibangun dengan estetika visual **Electric Purple (`#5b13ec`)**, aksen **Neon Yellow (`#e8fb31`)**, efek Glassmorphism, kartu portofolio 3D, mockup smartphone interaktif, modal lightbox (gambar & video), serta navigasi mobile bertingkat terinspirasi dari **Supabase**.
+Website portofolio interaktif, modern, dan responsif milik **Danu Satya**, seorang *Graphic Designer & Simple Motion Designer*. Dibangun dengan estetika visual **Electric Purple (`#5b13ec`)**, aksen **Neon Yellow (`#e8fb31`)**, efek Glassmorphism, kartu portofolio 3D, mockup smartphone interaktif, modal lightbox (gambar & video), serta navigasi mobile bertingkat terinspirasi dari **Supabase**.
 
 ---
 
@@ -64,7 +64,7 @@ Website portofolio interaktif, modern, dan responsif milik **Danu Satya**, seora
 ### Mobile Navigation (Supabase Style Layout & Animation)
 - **Top Bar (Tertutup)**: Brand avatar Danu di kiri dan tombol hamburger kuning di kanan.
 - **Overlay Menu (Terbuka)**:
-  - Header: Avatar + Nama *Danu Satya* (*Graphic & Motion Designer*) di kiri + tombol Close `X` di kanan.
+  - Header: Avatar + Nama *Danu Satya* (*Graphic & Simple Motion Designer*) di kiri + tombol Close `X` di kanan.
   - List item vertikal bergaris pembatas (`divide-y divide-white/10`).
   - Accordion **Graphic Design**: Menampilkan 6 sub-item lengkap dengan box icon rounded, judul tebal, dan deskripsi singkat.
   - Bottom CTA: Tombol *"Let's Talk on WhatsApp"* tebal berwarna kuning neon serta tautan cepat ke Email dan Instagram.

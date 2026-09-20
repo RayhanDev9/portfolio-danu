@@ -66,7 +66,7 @@ export const DESIGN_SUB_LINKS: DesignSubLinkItem[] = [
 ];
 
 export const PAGE_TITLES: Record<string, string> = {
-  "/": "Home | Danu Satya - Graphic & Motion Designer",
+  "/": "Home | Danu Satya - Graphic & Simple Motion Designer",
   "/experience": "Experience | Danu Satya",
   "/graphic-design/majlis": "Majlis Ta'lim - Graphic Design | Danu Satya",
   "/graphic-design/horison": "Horison Altama - Graphic Design | Danu Satya",
