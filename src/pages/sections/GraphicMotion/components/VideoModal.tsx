@@ -26,6 +26,9 @@ export default function VideoModal({ item, onClose }: VideoModalProps) {
 
   if (!item) return null;
 
+  const isSquare = item.aspectRatio === "1:1";
+  const isImage = item.isImageOnly || !item.videoUrl;
+
   return (
     <div
       className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/90 backdrop-blur-xl animate-in fade-in duration-200"
@@ -33,7 +36,9 @@ export default function VideoModal({ item, onClose }: VideoModalProps) {
     >
       {/* Modal Container */}
       <div
-        className="relative max-w-sm sm:max-w-md w-full bg-[#12082b] border border-white/20 rounded-3xl overflow-hidden shadow-2xl flex flex-col items-center p-4 sm:p-6"
+        className={`relative ${
+          isSquare ? "max-w-md sm:max-w-lg" : "max-w-xs sm:max-w-sm"
+        } w-full bg-[#12082b] border border-white/20 rounded-3xl overflow-hidden shadow-2xl flex flex-col items-center p-4 sm:p-6`}
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header: Title & Close Button */}
@@ -50,24 +55,39 @@ export default function VideoModal({ item, onClose }: VideoModalProps) {
           </div>
           <button
             onClick={onClose}
-            className="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors cursor-pointer border-none"
-            aria-label="Tutup video"
+            className="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors cursor-pointer border-none ml-2"
+            aria-label="Tutup preview"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
 
-        {/* Video Player */}
-        <div className="relative w-full aspect-[9/16] max-h-[70vh] bg-black rounded-2xl overflow-hidden shadow-inner flex items-center justify-center">
-          <video
-            ref={videoRef}
-            src={item.videoUrl}
-            controls
-            autoPlay
-            playsInline
-            className="w-full h-full object-contain"
-          />
-        </div>
+        {/* Media Player: Image or Video */}
+        {isImage ? (
+          <div className="relative w-full aspect-square max-h-[70vh] bg-black/40 rounded-2xl overflow-hidden shadow-inner flex items-center justify-center">
+            <img
+              src={item.imageUrl || item.poster}
+              alt={item.title}
+              className="w-full h-full object-contain"
+            />
+          </div>
+        ) : (
+          <div
+            className={`relative w-full ${
+              isSquare ? "aspect-square" : "aspect-[9/16]"
+            } max-h-[70vh] bg-black rounded-2xl overflow-hidden shadow-inner flex items-center justify-center`}
+          >
+            <video
+              ref={videoRef}
+              src={item.videoUrl}
+              poster={item.poster}
+              controls
+              autoPlay
+              playsInline
+              className="w-full h-full object-contain"
+            />
+          </div>
+        )}
       </div>
     </div>
   );

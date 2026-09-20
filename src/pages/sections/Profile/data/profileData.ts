@@ -63,6 +63,7 @@ export const PROFILE_STATS: StatItem[] = [
 
 // 3. Software Proficiency
 export const SOFTWARE_SKILLS: SkillItem[] = [
+
   {
     name: "Adobe Photoshop",
     level: 80,
@@ -76,10 +77,10 @@ export const SOFTWARE_SKILLS: SkillItem[] = [
     description: "Vector illustration, logo branding, & vector assets.",
   },
   {
-    name: "Adobe Premiere Pro",
-    level: 30,
-    icon: `${BASE}img/tools-skills/pr.avif`,
-    description: "Video editing, color grading, & pacing storytelling.",
+    name: "Canva Pro",
+    level: 92,
+    icon: `${BASE}img/tools-skills/canva.avif`,
+    description: "Rapid social media templates & collaborative client designs.",
   },
   {
     name: "Adobe After Effects",
@@ -88,11 +89,18 @@ export const SOFTWARE_SKILLS: SkillItem[] = [
     description: "Motion graphics, title animation, & visual effects.",
   },
   {
-    name: "Canva Pro",
-    level: 92,
-    icon: `${BASE}img/tools-skills/canva.avif`,
-    description: "Rapid social media templates & collaborative client designs.",
+    name: "Adobe Premiere Pro",
+    level: 30,
+    icon: `${BASE}img/tools-skills/pr.avif`,
+    description: "Video editing, color grading, & pacing storytelling.",
   },
+  {
+    name: "CapCut",
+    level: 95,
+    icon: `${BASE}img/tools-skills/capcut.svg`,
+    description: "Short-form video editing, dynamic reels, motion pacing, & captions.",
+  },
+
 ];
 
 // 4. Kategori Keahlian Desain (Chips)

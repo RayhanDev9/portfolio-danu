@@ -34,11 +34,11 @@ export const softwareList: SoftwareItem[] = [
     isCanva: false,
   },
   {
-    name: "After Effects",
-    icon: `${import.meta.env.BASE_URL}img/tools-skills/ae.avif`,
-    code: "Ae",
-    bg: "bg-[#00005b]",
-    text: "text-[#9999ff]",
+    name: "CapCut",
+    icon: `${import.meta.env.BASE_URL}img/tools-skills/capcut.svg`,
+    code: "Cc",
+    bg: "bg-[#000000]",
+    text: "text-white",
     isCanva: false,
   },
   {
@@ -48,6 +48,14 @@ export const softwareList: SoftwareItem[] = [
     bg: "",
     text: "",
     isCanva: true,
+  },
+  {
+    name: "After Effects",
+    icon: `${import.meta.env.BASE_URL}img/tools-skills/ae.avif`,
+    code: "Ae",
+    bg: "bg-[#00005b]",
+    text: "text-[#9999ff]",
+    isCanva: false,
   },
   {
     name: "Premiere Pro",

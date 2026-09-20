@@ -23,7 +23,7 @@ export default function MisterKlinnerMotion({ onSelect }: MisterKlinnerMotionPro
 
       <div className="relative z-10 max-w-7xl mx-auto">
         {/* Logo Mister Klinner */}
-        <div className="mb-10 flex items-center">
+        <div className="mb-8 sm:mb-10 flex items-center">
           <div className="flex flex-col">
             <span className="font-bubbles text-2xl sm:text-3xl text-[#e52421] tracking-wide drop-shadow-md leading-none">
               Mister

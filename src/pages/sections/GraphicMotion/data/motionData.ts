@@ -4,8 +4,10 @@ export interface MotionItem {
   id: string;
   title: string;
   subtitle?: string;
-  videoUrl: string;
+  videoUrl?: string;
+  imageUrl?: string;
   poster?: string;
+  isImageOnly?: boolean;
   aspectRatio: "9:16" | "1:1" | "4:5";
   brand: "astra" | "mister-klinner";
   highlightBorder?: boolean;
@@ -55,7 +57,7 @@ export const ASTRA_SMARTPHONES: MotionItem[] = [
   },
 ];
 
-// 2. Data Video Feed Balap Motor Astra Otoshop (4 Feed Bawah)
+// 2. Data Video Feed Balap Motor Astra Otoshop (4 Feed Bawah: 3 Video + 1 Gambar Statis)
 export const ASTRA_FEED_CARDS: MotionItem[] = [
   {
     id: "astra-feed-1",
@@ -85,9 +87,10 @@ export const ASTRA_FEED_CARDS: MotionItem[] = [
   {
     id: "astra-feed-4",
     title: "5 Hari Lagi Di GIIAS 2026",
-    subtitle: "Countdown Final Post",
-    videoUrl: `${BASE}vidio/motion/carousel motion/4.mp4`,
-    poster: `${BASE}vidio/motion/carousel motion/4.avif`,
+    subtitle: "Countdown Final Poster",
+    imageUrl: `${BASE}vidio/motion/carousel motion/4.png`,
+    poster: `${BASE}vidio/motion/carousel motion/4.png`,
+    isImageOnly: true,
     aspectRatio: "1:1",
     brand: "astra",
   },
