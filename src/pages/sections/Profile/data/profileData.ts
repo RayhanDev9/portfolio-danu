@@ -77,7 +77,7 @@ export const SOFTWARE_SKILLS: SkillItem[] = [
     description: "Vector illustration, logo branding, & vector assets.",
   },
   {
-    name: "Canva Pro",
+    name: "Canva ",
     level: 92,
     icon: `${BASE}img/tools-skills/canva.avif`,
     description: "Rapid social media templates & collaborative client designs.",
