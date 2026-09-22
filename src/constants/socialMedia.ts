@@ -40,6 +40,7 @@ export const CONTACT_CHANNELS: ContactChannel[] = [
     bgColor: "bg-[#24d058] hover:bg-[#1fb84d]",
     textColor: "text-white",
     iconType: "whatsapp",
+    isCopyable: true,
   },
   {
     ...SOCIAL_LINKS.email,
@@ -60,6 +61,7 @@ export const CONTACT_CHANNELS: ContactChannel[] = [
       "bg-gradient-to-r from-[#f09433] via-[#dc2743] to-[#bc1888] hover:opacity-95",
     textColor: "text-white",
     iconType: "instagram",
+    isCopyable: true,
   },
   {
     ...SOCIAL_LINKS.linkedin,
@@ -69,5 +71,6 @@ export const CONTACT_CHANNELS: ContactChannel[] = [
     bgColor: "bg-[#0077b5] hover:bg-[#00669c]",
     textColor: "text-white",
     iconType: "linkedin",
+    isCopyable: true,
   },
 ];

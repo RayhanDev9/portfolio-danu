@@ -75,13 +75,14 @@ export default function ContactCards() {
                 {item.isCopyable && (
                   <button
                     onClick={(e) => handleCopy(e, item)}
-                    className="p-1.5 rounded-lg bg-black/10 hover:bg-black/20 transition-colors cursor-pointer border-none"
-                    title="Copy Email"
+                    className="p-1.5 rounded-lg bg-black/10 hover:bg-black/20 transition-colors cursor-pointer border-none flex items-center justify-center"
+                    title={`Salin ${item.name}`}
+                    aria-label={`Salin info ${item.name}`}
                   >
                     {copiedId === item.id ? (
-                      <Check className="w-4 h-4 text-emerald-600" />
+                      <Check className={`w-4 h-4 ${item.textColor === "text-slate-900" ? "text-emerald-600" : "text-[#e8fb31]"}`} />
                     ) : (
-                      <Copy className="w-4 h-4" />
+                      <Copy className="w-4 h-4 opacity-80 hover:opacity-100" />
                     )}
                   </button>
                 )}
