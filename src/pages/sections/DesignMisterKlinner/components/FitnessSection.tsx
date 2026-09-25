@@ -62,7 +62,7 @@ export default function FitnessSection() {
                   {card.title}
                 </span>
                 <span className="bg-[#253b80] text-white font-black text-xs px-4 py-1.5 rounded-full shadow-xl border border-white/40">
-                  🔍 Zoom Desain
+                  🔍 View Design
                 </span>
               </div>
             </div>

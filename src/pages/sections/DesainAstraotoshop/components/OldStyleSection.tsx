@@ -58,7 +58,7 @@ export default function OldStyleSection() {
                   {card.title}
                 </span>
                 <span className="bg-[#FFDE00] text-blue-950 font-black text-[10px] px-3 py-1 rounded-full mt-2 shadow-lg">
-                  🔍 Zoom Desain
+                  🔍 View Design
                 </span>
               </div>
             </div>

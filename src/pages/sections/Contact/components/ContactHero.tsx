@@ -17,8 +17,8 @@ export default function ContactHero() {
 
       {/* 3. Subtitle Description */}
       <p className="max-w-2xl mx-auto text-sm sm:text-base md:text-lg text-purple-100/90 leading-relaxed font-normal">
-        Punya ide kreatif, butuh desain grafis berkualitas, visual branding, atau
-        motion graphic untuk mengembangkan brand Anda? Hubungi saya sekarang!
+        Have a creative idea, need high-quality graphic design, visual branding, or
+        motion graphics to grow your brand? Get in touch with me today!
       </p>
     </div>
   );

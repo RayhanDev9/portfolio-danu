@@ -10,7 +10,7 @@ export default function ProfileSkills() {
             Expertise & Workflow
           </span>
           <h2 className="font-spartan font-black text-3xl sm:text-4xl md:text-5xl text-white uppercase">
-            Software & Keahlian
+            Software & Skills
           </h2>
         </div>
 
@@ -55,7 +55,7 @@ export default function ProfileSkills() {
         {/* 2. Core Capabilities Chips */}
         <div>
           <h4 className="text-center font-bold text-sm uppercase tracking-wider text-purple-200 mb-4">
-            Spesialisasi Desain
+            Design Specialization
           </h4>
           <div className="flex flex-wrap justify-center gap-2.5 sm:gap-3">
             {CORE_CAPABILITIES.map((cap) => (

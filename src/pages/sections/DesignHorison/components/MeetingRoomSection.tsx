@@ -87,7 +87,7 @@ export default function MeetingRoomSection() {
                   {card.title}
                 </span>
                 <span className="bg-yellow-400 text-blue-950 font-bold text-[10px] px-2 py-0.5 rounded-full mt-1">
-                  🔍 Lihat Desain
+                  🔍 View Design
                 </span>
               </div>
             </div>

@@ -12,7 +12,7 @@ export default function ContactFormSection() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     trackWhatsAppClick("contact_brief_form");
-    const text = `Halo Danu, nama saya ${name || "Klien"}.\n\nSaya tertarik dengan layanan: *${selectedService}*.\n\nDetail Pesan:\n${message || "Mohon info lebih lanjut mengenai kerja sama proyek."}`;
+    const text = `Hello Danu, my name is ${name || "Client"}.\n\nI am interested in your service: *${selectedService}*.\n\nMessage Details:\n${message || "Please provide more information regarding project collaboration."}`;
     const phoneRaw = SOCIAL_LINKS.whatsapp.value.replace(/[^0-9]/g, "");
     const phoneFormatted = phoneRaw.startsWith("0") ? `62${phoneRaw.slice(1)}` : phoneRaw;
     const url = `https://wa.me/${phoneFormatted}?text=${encodeURIComponent(text)}`;
@@ -57,19 +57,18 @@ export default function ContactFormSection() {
               </div>
               <div className="flex items-center gap-3 text-xs sm:text-sm text-purple-100">
                 <Clock className="w-4 h-4 text-[#e8fb31] shrink-0" />
-                <span>Fast Response (08.00 - 22.00 WIB)</span>
+                <span>Fast Response (08:00 - 22:00 UTC+7)</span>
               </div>
               <div className="flex items-center gap-3 text-xs sm:text-sm text-purple-100">
                 <CheckCircle className="w-4 h-4 text-[#e8fb31] shrink-0" />
-                <span>Revisi Ramah & Tepat Waktu</span>
+                <span>Friendly Revisions & On-Time Delivery</span>
               </div>
             </div>
           </div>
 
           <div className="p-4 rounded-2xl bg-[#e8fb31]/10 border border-[#e8fb31]/30 text-center">
             <p className="text-xs text-[#e8fb31] font-bold">
-              💡 Siap membantu proyek branding, feed medsos, hingga motion
-              graphic!
+              💡 Ready to help with branding, social media feeds, and motion graphic projects!
             </p>
           </div>
         </div>
@@ -91,24 +90,23 @@ export default function ContactFormSection() {
                 />
               </svg>
               <h2 className="font-spartan font-black text-2xl sm:text-3xl text-slate-900">
-                Kirim Brief Proyek
+                Send Project Brief
               </h2>
             </div>
             <p className="text-xs sm:text-sm text-slate-600 mb-6">
-              Isi formulir singkat di bawah ini untuk memulai obrolan langsung
-              via WhatsApp.
+              Fill out the quick form below to start a direct chat via WhatsApp.
             </p>
 
             <form onSubmit={handleSubmit} className="space-y-5">
               {/* Input Nama */}
               <div>
                 <label className="block font-bold text-xs uppercase tracking-wider text-slate-700 mb-1.5">
-                  Nama Anda / Perusahaan
+                  Your Name / Company
                 </label>
                 <input
                   type="text"
                   required
-                  placeholder="Misal: Danu / PT. Creative Studio"
+                  placeholder="E.g., Danu / Creative Studio"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#5b13ec] text-sm"
@@ -118,7 +116,7 @@ export default function ContactFormSection() {
               {/* Kategori Layanan (Chips) */}
               <div>
                 <label className="block font-bold text-xs uppercase tracking-wider text-slate-700 mb-2">
-                  Layanan yang Dibutuhkan
+                  Required Service
                 </label>
                 <div className="flex flex-wrap gap-2">
                   {SERVICE_CATEGORIES.map((cat) => (
@@ -141,12 +139,12 @@ export default function ContactFormSection() {
               {/* Input Pesan / Brief */}
               <div>
                 <label className="block font-bold text-xs uppercase tracking-wider text-slate-700 mb-1.5">
-                  Detail Kebutuhan / Pesan
+                  Project Details / Message
                 </label>
                 <textarea
                   rows={4}
                   required
-                  placeholder="Ceritakan gambaran proyek, target waktu, atau referensi desain yang diinginkan..."
+                  placeholder="Describe your project overview, timeline, or design references..."
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
                   className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#5b13ec] text-sm resize-none"
@@ -158,7 +156,7 @@ export default function ContactFormSection() {
                 type="submit"
                 className="w-full py-4 rounded-2xl bg-[#e8fb31] hover:bg-[#d8ea20] text-[#1a1a1a] font-spartan font-black text-base sm:text-lg uppercase tracking-wider shadow-lg hover:shadow-xl transition-all duration-200 flex items-center justify-center gap-2 group cursor-pointer border-none"
               >
-                <span>Kirim Pesan ke WhatsApp</span>
+                <span>Send Message to WhatsApp</span>
                 <MessageCircle />
               </button>
             </form>

@@ -5,7 +5,7 @@ export const SOCIAL_LINKS = {
     id: "whatsapp",
     label: "WhatsApp",
     value: "0881-0100-69341",
-    href: "https://wa.me/62881010069341?text=Halo%20Danu,%20saya%20tertarik%20bekerja%20sama%20untuk%20proyek%20desain.",
+    href: "https://wa.me/62881010069341?text=Hello%20Danu,%20I'm%20interested%20in%20collaborating%20on%20a%20design%20project.",
     badge: "Fast Response",
   },
   email: {
@@ -35,8 +35,8 @@ export const CONTACT_CHANNELS: ContactChannel[] = [
   {
     ...SOCIAL_LINKS.whatsapp,
     name: "WhatsApp",
-    label: "Fast Response (Chat Langsung)",
-    badge: "Online • < 15 Menit",
+    label: "Fast Response (Direct Chat)",
+    badge: "Online • < 15 Mins",
     bgColor: "bg-[#24d058] hover:bg-[#1fb84d]",
     textColor: "text-white",
     iconType: "whatsapp",
@@ -44,9 +44,9 @@ export const CONTACT_CHANNELS: ContactChannel[] = [
   },
   {
     ...SOCIAL_LINKS.email,
-    name: "Email Resmi",
-    label: "Kirim Brief Proyek / Penawaran",
-    badge: "Respon < 24 Jam",
+    name: "Official Email",
+    label: "Send Project Brief / Inquiry",
+    badge: "Response < 24 Hours",
     bgColor: "bg-white hover:bg-slate-100",
     textColor: "text-slate-900",
     iconType: "email",
@@ -55,7 +55,7 @@ export const CONTACT_CHANNELS: ContactChannel[] = [
   {
     ...SOCIAL_LINKS.instagram,
     name: "Instagram",
-    label: "Direct Message & Portofolio",
+    label: "Direct Message & Portfolio",
     badge: "Daily Active",
     bgColor:
       "bg-gradient-to-r from-[#f09433] via-[#dc2743] to-[#bc1888] hover:opacity-95",

@@ -26,10 +26,10 @@ export default function ProfileHero() {
               <Sparkles className="w-5 h-5 fill-current" />
               <div>
                 <span className="block font-spartan font-black text-sm sm:text-base leading-none">
-                  1-2 Tahun
+                  1-2 Years
                 </span>
                 <span className="text-[10px] font-bold uppercase tracking-wider block">
-                  Pengalaman
+                  Experience
                 </span>
               </div>
             </div>
@@ -65,7 +65,7 @@ export default function ProfileHero() {
               to="/contact"
               className="px-6 sm:px-8 py-3.5 rounded-full bg-[#e8fb31] hover:bg-[#d8ea20] text-[#1a1a1a] font-spartan font-black text-sm sm:text-base uppercase tracking-wider shadow-lg hover:shadow-xl hover:scale-105 active:scale-95 transition-all duration-200 flex items-center gap-2 no-underline"
             >
-              <span>Hubungi Saya</span>
+              <span>Get In Touch</span>
               <Send className="w-4 h-4" />
             </Link>
 
@@ -73,7 +73,7 @@ export default function ProfileHero() {
               to="/creative-journey"
               className="px-6 sm:px-8 py-3.5 rounded-full bg-white/15 hover:bg-white/25 text-white font-spartan font-bold text-sm sm:text-base uppercase tracking-wider backdrop-blur-md border border-white/20 hover:scale-105 active:scale-95 transition-all duration-200 flex items-center gap-2 no-underline"
             >
-              <span>Lihat Portofolio</span>
+              <span>View Portfolio</span>
               <ArrowRight className="w-4 h-4" />
             </Link>
           </div>

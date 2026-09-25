@@ -16,7 +16,7 @@ export default function ContactFAQ() {
           <HelpCircle className="w-4 h-4" /> FAQ
         </div>
         <h2 className="font-spartan font-black text-3xl sm:text-4xl text-white uppercase">
-          Pertanyaan Seputar Kerja Sama
+          Frequently Asked Questions
         </h2>
       </div>
 

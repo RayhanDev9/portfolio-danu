@@ -26,9 +26,9 @@ export const PERSONAL_INFO = {
   name: "Danu Satya",
   tagline: "Graphic Designer & Creative Visual Specialist",
   about:
-    "Saya adalah seorang Graphic Designer dan Motion Graphic Enthusiast yang berfokus pada pembuatan identitas visual yang kuat, konten media sosial yang berdampak, dan desain berorientasi pada cerita (story-driven design). Dengan pengalaman menangani berbagai brand dari skala lokal hingga nasional, saya selalu memadukan estetika modern dengan strategi komunikasi visual yang relevan bagi audiens.",
+    "I am a Graphic Designer and Motion Graphic Enthusiast focusing on creating strong visual identities, impactful social media content, and story-driven designs. With experience handling various brands from local to national scales, I consistently combine modern aesthetics with visual communication strategies that resonate with audiences.",
   location: "Rangkasbitung, Indonesia",
-  experienceYears: "1-2 Tahun",
+  experienceYears: "1-2 Years",
   avatar: `${BASE}img/profile/danu-duduk.avif`,
   formalAvatar: `${BASE}img/profile/danu-jas.avif`,
 };
@@ -38,26 +38,26 @@ export const PROFILE_STATS: StatItem[] = [
   {
     id: "stat-1",
     value: "1-2",
-    label: "Tahun Pengalaman",
-    sublabel: "Di industri kreatif & desain",
+    label: "Years of Experience",
+    sublabel: "In creative & design industry",
   },
   {
     id: "stat-2",
     value: "50+",
-    label: "Proyek Selesai",
+    label: "Projects Completed",
     sublabel: "Feed, poster, branding & motion",
   },
   {
     id: "stat-3",
     value: "6+",
-    label: "Brand Partner",
-    sublabel: "Kolaborasi agensi & UMKM",
+    label: "Brand Partners",
+    sublabel: "Agency & SME collaborations",
   },
   {
     id: "stat-4",
     value: "100%",
     label: "On-Time Delivery",
-    sublabel: "Dedikasi & kualitas terbaik",
+    sublabel: "Dedication & top quality",
   },
 ];
 
@@ -107,7 +107,7 @@ export const SOFTWARE_SKILLS: SkillItem[] = [
 export const CORE_CAPABILITIES = [
   "Social Media Feed & Carousel Design",
   "Visual Branding & Identity Guidelines",
-  "Simpale Motion Graphics",
+  "Simple Motion Graphics",
   "Event & Promotional Posters",
 ];
 
@@ -117,21 +117,21 @@ export const PROFILE_VALUES: ValueItem[] = [
     id: "val-1",
     title: "Story-Driven Concept",
     description:
-      "Desain bukan hanya tentang tampilan visual, tetapi bagaimana menyampaikan pesan dan cerita yang menyentuh emosi audiens.",
+      "Design is not just about visual appearance, but how to convey messages and stories that resonate emotionally with the audience.",
     icon: "lightbulb",
   },
   {
     id: "val-2",
     title: "Audience-Centric Approach",
     description:
-      "Menyesuaikan gaya visual, tone-of-voice, dan tipografi agar tepat sasaran sesuai demografi audiens brand klien.",
+      "Tailoring visual style, tone of voice, and typography to precisely align with the client brand's target audience demographics.",
     icon: "target",
   },
   {
     id: "val-3",
     title: "Precision & Visual Excellence",
     description:
-      "Perhatian mendalam pada detail, hierarchy, balance warna, serta finishing yang rapi dan memukau.",
+      "Deep attention to detail, hierarchy, color balance, and clean, stunning finishing.",
     icon: "palette",
   },
 ];

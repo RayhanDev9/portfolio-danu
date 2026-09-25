@@ -96,7 +96,7 @@ export default function NewStyleSection() {
               {/* Hover Overlay */}
               <div className="absolute inset-0 bg-blue-900/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center rounded-2xl pointer-events-none">
                 <span className="bg-[#FFDE00] text-blue-950 font-black text-xs px-4 py-2 rounded-full shadow-2xl">
-                  🔍 Zoom Detail Desain Baru
+                  🔍 View Design Details
                 </span>
               </div>
             </div>

@@ -264,7 +264,7 @@ export default function WeddingSection() {
               {/* Overlay Hover Helper */}
               <div className="absolute inset-0 bg-blue-900/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center rounded-xl pointer-events-none">
                 <span className="bg-white text-blue-950 font-spartan font-bold text-xs sm:text-sm px-4 py-2 rounded-full shadow-2xl">
-                  🔍 Klik untuk Membaca Paket Lengkap
+                  🔍 Click to View Full Package
                 </span>
               </div>
             </div>

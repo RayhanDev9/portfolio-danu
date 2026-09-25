@@ -68,7 +68,7 @@ export default function ContactCards() {
 
               <div className="flex items-center justify-between pt-2 border-t border-black/10">
                 <span className="text-xs font-bold uppercase tracking-wider flex items-center gap-1 group-hover:underline">
-                  Hubungi Sekarang{" "}
+                  Contact Now{" "}
                   <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                 </span>
 
@@ -76,8 +76,8 @@ export default function ContactCards() {
                   <button
                     onClick={(e) => handleCopy(e, item)}
                     className="p-1.5 rounded-lg bg-black/10 hover:bg-black/20 transition-colors cursor-pointer border-none flex items-center justify-center"
-                    title={`Salin ${item.name}`}
-                    aria-label={`Salin info ${item.name}`}
+                    title={`Copy ${item.name}`}
+                    aria-label={`Copy info ${item.name}`}
                   >
                     {copiedId === item.id ? (
                       <Check className={`w-4 h-4 ${item.textColor === "text-slate-900" ? "text-emerald-600" : "text-[#e8fb31]"}`} />

@@ -200,7 +200,7 @@ export default function Navbar() {
                 <div className="absolute top-full left-1/2 -translate-x-1/2 mt-3 bg-[#110729]/95 backdrop-blur-2xl rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.6)] border border-white/15 overflow-hidden min-w-[270px] z-50 p-2 animate-in fade-in slide-in-from-top-2 duration-200">
                   <div className="px-3 py-1.5 mb-1 border-b border-white/10">
                     <span className="text-[10px] font-sans font-bold uppercase tracking-wider text-white/50">
-                      Portfolio Kategori
+                      Portfolio Categories
                     </span>
                   </div>
                   {DESIGN_SUB_LINKS.map((sub) => {
@@ -273,7 +273,7 @@ export default function Navbar() {
             {/* Foto Profil — pojok kanan pill */}
             <Link
               to="/profile"
-              title="Lihat Profil Danu"
+              title="View Danu's Profile"
               className="ml-1.5 flex-shrink-0 transition-transform duration-200 hover:scale-110 active:scale-95"
             >
               <img
@@ -301,7 +301,7 @@ export default function Navbar() {
             {/* Profil Brand Left */}
             <Link
               to="/profile"
-              title="Lihat Profil Danu"
+              title="View Danu's Profile"
               className="flex items-center gap-2.5 transition-all duration-200 active:scale-95 no-underline group"
             >
               <div className="relative">

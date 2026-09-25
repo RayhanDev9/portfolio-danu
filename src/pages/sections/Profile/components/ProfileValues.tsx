@@ -9,7 +9,7 @@ export default function ProfileValues() {
           Work Principles
         </span>
         <h2 className="font-spartan font-black text-3xl sm:text-4xl md:text-5xl text-white uppercase">
-          Filosofi & Nilai Desain
+          Design Philosophy & Values
         </h2>
       </div>
 
