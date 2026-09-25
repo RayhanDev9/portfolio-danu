@@ -78,7 +78,7 @@ const router = createBrowserRouter(
     },
   ],
   {
-    basename: "/portfolio-danu", // <-- Wajib ada agar routing pas dengan subpath GitHub Pages
+    basename: "/", // <-- Wajib ada agar routing pas dengan subpath GitHub Pages
   },
 );
 
