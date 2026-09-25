@@ -161,7 +161,7 @@ async function generate() {
       <!-- Badge / URL -->
       <rect x="510" y="420" width="380" height="52" rx="26" fill="#1e1045" stroke="#7c3aed" stroke-width="2" />
       <text x="540" y="454" font-family="'Inter', sans-serif" font-weight="600" font-size="18" fill="#F8FAFC">
-        🌐 rayhandev9.github.io/portfolio-danu
+        🌐 danusatya.my.id
       </text>
     </svg>
   `);

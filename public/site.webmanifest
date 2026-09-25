@@ -2,20 +2,20 @@
   "name": "Danu Satya | Graphic & Simple Motion Designer Portfolio",
   "short_name": "Danu Satya",
   "description": "Portofolio profesional Danu Satya, spesialis Graphic Design, Visual Branding, dan Simple Motion Graphics.",
-  "start_url": "/portfolio-danu/",
-  "scope": "/portfolio-danu/",
+  "start_url": "/",
+  "scope": "/",
   "display": "standalone",
   "background_color": "#0f0728",
   "theme_color": "#FFD700",
   "icons": [
     {
-      "src": "/portfolio-danu/favicon-192x192.png",
+      "src": "/favicon-192x192.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any maskable"
     },
     {
-      "src": "/portfolio-danu/favicon-512x512.png",
+      "src": "/favicon-512x512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"

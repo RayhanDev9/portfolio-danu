@@ -6,7 +6,7 @@ export interface PageSEOConfig {
   ogType?: "website" | "profile" | "article";
 }
 
-export const SEO_BASE_URL = "https://rayhandev9.github.io/portfolio-danu";
+export const SEO_BASE_URL = "https://danusatya.my.id";
 
 export const DEFAULT_SEO: PageSEOConfig = {
   title: "Danu Satya | Graphic & Simple Motion Designer Portfolio",
