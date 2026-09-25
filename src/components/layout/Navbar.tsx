@@ -359,15 +359,15 @@ export default function Navbar() {
             <Link
               to="/profile"
               onClick={() => setMobileOpen(false)}
-              className="flex items-center gap-3 no-underline group"
+              className="flex items-center gap-2.5 no-underline group"
             >
               <div className="relative">
                 <img
                   src={avatarUrl}
                   alt="Danu Profile"
-                  className={`w-10 h-10 rounded-full object-cover object-top transition-all duration-200 group-hover:scale-105 ${currentPath === "/profile"
+                  className={`w-9 h-9 rounded-full object-cover object-top transition-all duration-200 group-hover:scale-105 ${currentPath === "/profile"
                       ? "ring-2 ring-[#e8fb31] shadow-lg"
-                      : "ring-2 ring-white/20 group-hover:ring-white/40"
+                      : "ring-2 ring-white/30 group-hover:ring-white/60"
                     }`}
                 />
                 {currentPath === "/profile" && (
@@ -376,15 +376,15 @@ export default function Navbar() {
               </div>
               <div className="flex flex-col">
                 <span
-                  className={`font-spartan font-bold text-base transition-colors leading-tight ${currentPath === "/profile"
+                  className={`font-spartan font-black text-sm tracking-wide transition-colors ${currentPath === "/profile"
                       ? "text-[#e8fb31]"
                       : "text-white group-hover:text-[#e8fb31]"
                     }`}
                 >
                   Danu Satya
                 </span>
-                <span className="font-sans text-xs text-white/60">
-                  Graphic & Simple Motion Designer
+                <span className="font-sans text-[10px] sm:text-xs text-[#e8fb31] font-semibold -mt-1">
+                  Graphic &amp; Simple Motion Designer
                 </span>
               </div>
             </Link>
