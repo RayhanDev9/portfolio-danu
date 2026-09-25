@@ -8,7 +8,7 @@ export default function Contact() {
   return (
     <main
       id="contact"
-      className="relative w-full min-h-screen bg-gradient-to-b from-[#5b13ec] via-[#4811be] to-[#340c8c] text-white overflow-x-hidden font-sans selection:bg-[#e8fb31] selection:text-slate-900 flex flex-col justify-between"
+      className="relative w-full min-h-screen bg-gradient-to-b from-[#5b13ec] via-[#4811be] to-[#340c8c] text-white overflow-x-hidden font-sans selection:bg-[#e8fb31] selection:text-slate-900 flex flex-col"
     >
       {/* 1. Retro Cross Ornaments (+) */}
       <CrossOrnaments />
