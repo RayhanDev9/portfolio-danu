@@ -9,7 +9,7 @@ export default function CreativeJourney() {
     <section
       id="creative-journey"
       className="relative w-full min-h-screen text-white flex flex-col justify-between overflow-hidden
-        pt-24 pb-8 sm:pt-28 sm:pb-12 lg:pt-32 lg:pb-16
+        pt-28 sm:pt-32 md:pt-36 lg:pt-40 pb-8 sm:pb-12 lg:pb-16
         px-4 sm:px-6 lg:px-12 select-none"
     >
       {/* === BACKGROUND: foto jalan aspal === */}

@@ -9,7 +9,7 @@ export default function MajlisHero({ onSelectImage }: MajlisHeroProps) {
   const { hero } = majlisData;
 
   return (
-    <section className="relative w-full pt-16 sm:pt-20 md:pt-24 pb-12 sm:pb-16 px-4 sm:px-6 lg:px-12 flex flex-col items-center">
+    <section className="relative w-full pt-28 sm:pt-32 md:pt-36 lg:pt-40 pb-12 sm:pb-16 px-4 sm:px-6 lg:px-12 flex flex-col items-center">
       {/* Title Besar */}
       <div className="text-center mb-8 sm:mb-12">
         <h1 className="font-spartan font-black text-4xl sm:text-6xl md:text-7xl lg:text-8xl tracking-tight leading-tight uppercase select-none drop-shadow-md">
