@@ -6,4 +6,4 @@ Allow: /
 Disallow: /dist/
 
 # Sitemap location
-Sitemap: https://rayhandev9.github.io/portfolio-danu/sitemap.xml
+Sitemap: https://danusatya.my.id/sitemap.xml
