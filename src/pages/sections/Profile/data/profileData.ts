@@ -96,7 +96,7 @@ export const SOFTWARE_SKILLS: SkillItem[] = [
   },
   {
     name: "CapCut",
-    level: 95,
+    level: 40,
     icon: `${BASE}img/tools-skills/capcut.svg`,
     description: "Short-form video editing, dynamic reels, motion pacing, & captions.",
   },
