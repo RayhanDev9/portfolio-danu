@@ -9,6 +9,11 @@ import {
 import { FOOTER_NAV_LINKS, DESIGN_SUB_LINKS } from "../../constants/navigation";
 import { SOCIAL_LINKS } from "../../constants/socialMedia";
 import { getAssetUrl } from "../../utils/asset";
+import {
+  trackWhatsAppClick,
+  trackEmailClick,
+  trackSocialClick,
+} from "../../utils/analytics";
 
 // =============================================
 // Ikon Instagram SVG
@@ -49,18 +54,22 @@ const contactList = [
   {
     ...SOCIAL_LINKS.whatsapp,
     icon: MessageCircle,
+    trackingType: "whatsapp",
   },
   {
     ...SOCIAL_LINKS.email,
     icon: Mail,
+    trackingType: "email",
   },
   {
     ...SOCIAL_LINKS.instagram,
     icon: InstagramIcon,
+    trackingType: "instagram",
   },
   {
     ...SOCIAL_LINKS.linkedin,
     icon: LinkedInIcon,
+    trackingType: "linkedin",
   },
 ];
 
@@ -202,6 +211,15 @@ export default function Footer() {
                   href={item.href}
                   target="_blank"
                   rel="noreferrer"
+                  onClick={() => {
+                    if (item.trackingType === "whatsapp") {
+                      trackWhatsAppClick("footer");
+                    } else if (item.trackingType === "email") {
+                      trackEmailClick("click", "footer");
+                    } else {
+                      trackSocialClick(item.label, item.href);
+                    }
+                  }}
                   className="group flex items-center justify-between p-3 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/10 hover:border-[#e8fb31]/50 no-underline transition-all duration-200"
                 >
                   <div className="flex items-center gap-3">

@@ -4,6 +4,7 @@ import Navbar from "../components/layout/Navbar";
 import Footer from "../components/layout/Footer";
 import PageLoader from "../components/common/PageLoader";
 import { ROUTE_SEO_CONFIGS, DEFAULT_SEO, SEO_BASE_URL } from "../constants/seo";
+import { trackPageView } from "../utils/analytics";
 
 function setMetaTag(
   selector: string,
@@ -31,6 +32,9 @@ export default function RootLayout() {
 
     // Title
     document.title = seo.title;
+
+    // Google Analytics 4 SPA Route Tracking
+    trackPageView(pathname, seo.title);
 
     // Meta Description & Keywords
     setMetaTag('meta[name="description"]', "content", seo.description, () => {

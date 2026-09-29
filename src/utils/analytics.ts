@@ -5,6 +5,7 @@
 
 declare global {
   interface Window {
+    dataLayer?: unknown[];
     gtag?: (
       command: "event" | "config" | "js" | "set",
       actionOrTarget: string,
@@ -26,6 +27,23 @@ export function trackEvent(
     }
   } catch {
     // Fail silently in development or when blocked by adblockers
+  }
+}
+
+/**
+ * Track SPA Page View for Google Analytics 4 on route transitions
+ */
+export function trackPageView(pagePath: string, pageTitle?: string): void {
+  try {
+    if (typeof window !== "undefined" && typeof window.gtag === "function") {
+      window.gtag("event", "page_view", {
+        page_path: pagePath,
+        page_title: pageTitle || document.title,
+        page_location: window.location.href,
+      });
+    }
+  } catch {
+    // Fail silently
   }
 }
 
@@ -73,3 +91,4 @@ export function trackProjectView(projectName: string): void {
     project_name: projectName,
   });
 }
+

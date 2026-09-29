@@ -2,14 +2,32 @@ import { useState } from "react";
 import { Check, Copy, ArrowUpRight } from "lucide-react";
 import { CONTACT_CHANNELS } from "../data/contactData";
 import type { ContactChannel } from "../data/contactData";
+import {
+  trackWhatsAppClick,
+  trackEmailClick,
+  trackSocialClick,
+  trackEvent,
+} from "../../../../utils/analytics";
 
 export default function ContactCards() {
   const [copiedId, setCopiedId] = useState<string | null>(null);
 
+  const handleCardClick = (item: ContactChannel) => {
+    if (item.iconType === "whatsapp") {
+      trackWhatsAppClick("contact_card");
+    } else if (item.iconType === "email") {
+      trackEmailClick("click", "contact_card");
+    } else {
+      trackSocialClick(item.name, item.href);
+    }
+  };
+
   const handleCopy = (e: React.MouseEvent, channel: ContactChannel) => {
     e.preventDefault();
+    e.stopPropagation();
     navigator.clipboard.writeText(channel.value);
     setCopiedId(channel.id);
+    trackEvent("contact_info_copied", { channel: channel.name });
     setTimeout(() => setCopiedId(null), 2000);
   };
 
@@ -22,6 +40,7 @@ export default function ContactCards() {
             href={item.href}
             target="_blank"
             rel="noreferrer"
+            onClick={() => handleCardClick(item)}
             className={`${item.bgColor} ${item.textColor} rounded-3xl p-6 sm:p-7 shadow-xl hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 flex flex-col justify-between group no-underline relative overflow-hidden`}
           >
             {/* Top Row: Icon & Badge */}
