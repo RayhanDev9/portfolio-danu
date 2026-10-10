@@ -79,7 +79,7 @@ export const portfolioCategories: PortfolioCategory[] = [
     id: "graphic-designer",
     title: "Graphic Designer",
     image: `${import.meta.env.BASE_URL}img/category/graphic-designer.avif`,
-    link: "/graphic-design/majlis",
+    link: "/graphic-design/astraotoshop",
   },
   {
     id: "motion-graphic",

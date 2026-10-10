@@ -78,8 +78,8 @@ const contactList = [
 // =============================================
 function isLinkActive(currentPath: string, href: string): boolean {
   if (href === "/") return currentPath === "/";
-  if (href === "/graphic-design/majlis") {
-    return currentPath.startsWith("/graphic-design");
+  if (href === "/graphic-design/astraotoshop") {
+    return currentPath.startsWith("/graphic-design/astraotoshop");
   }
   return currentPath === href || currentPath.startsWith(href);
 }

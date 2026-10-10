@@ -19,7 +19,7 @@ export const MAIN_NAV_LINKS: NavLinkItem[] = [
 export const FOOTER_NAV_LINKS: NavLinkItem[] = [
   { label: "Home", href: "/" },
   { label: "Experience", href: "/experience" },
-  { label: "Graphic Design", href: "/graphic-design/majlis" },
+  { label: "Graphic Design", href: "/graphic-design/astraotoshop" },
   { label: "Motion Graphic", href: "/motion-graphic" },
   { label: "Brands & Journey", href: "/creative-journey" },
   { label: "Profile", href: "/profile" },
@@ -28,28 +28,36 @@ export const FOOTER_NAV_LINKS: NavLinkItem[] = [
 
 export const DESIGN_SUB_LINKS: DesignSubLinkItem[] = [
   {
-    label: "Majlis Ta'lim",
-    description: "Islamic community branding & event materials",
-    href: "/graphic-design/majlis",
-    icon: BookOpen,
+    label: "Astra Otoshop",
+    description: "Automotive e-commerce & spare parts promo",
+    href: "/graphic-design/astraotoshop",
+    icon: ShoppingBag,
   },
+  
   {
     label: "Horison Altama",
     description: "Hotel & hospitality promotional branding",
     href: "/graphic-design/horison",
     icon: Building2,
   },
-  {
-    label: "Astra Otoshop",
-    description: "Automotive e-commerce & spare parts promo",
-    href: "/graphic-design/astraotoshop",
-    icon: ShoppingBag,
-  },
+
   {
     label: "Mister Klinner",
     description: "Household cleaning products & lifestyle",
     href: "/graphic-design/mister-klinner",
     icon: Sparkles,
+  },
+    {
+    label: "Via Fabula",
+    description: "Creative storytelling & event organizing",
+    href: "/graphic-design/via-fabula",
+    icon: Layers,
+  },
+  {
+    label: "Majlis Ta'lim",
+    description: "Islamic community branding & event materials",
+    href: "/graphic-design/majlis",
+    icon: BookOpen,
   },
   {
     label: "Geonerations",
@@ -57,12 +65,7 @@ export const DESIGN_SUB_LINKS: DesignSubLinkItem[] = [
     href: "/graphic-design/geonerations",
     icon: Flame,
   },
-  {
-    label: "Via Fabula",
-    description: "Creative storytelling & event organizing",
-    href: "/graphic-design/via-fabula",
-    icon: Layers,
-  },
+
 ];
 
 export const PAGE_TITLES: Record<string, string> = {
